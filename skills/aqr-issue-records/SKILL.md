@@ -10,7 +10,7 @@ A disciplined way to make doc or code changes, ship fixes, or run investigations
 
 ## Scope
 
-This skill defines what gets recorded when making doc or code changes, shipping fixes, or running investigations in a repo. For each piece of work — an **issue** — it specifies the artifacts, their roles, and the type taxonomy. The surrounding workflow (clarification, planning, execution, review) is owned by the user's methodology skill, not by this one.
+This skill defines what gets recorded when making doc or code changes, shipping fixes, or running investigations in a repo. For each piece of work — an **issue** — it specifies the artifacts, their roles, and the type taxonomy. The surrounding workflow (clarification, planning, execution, review) is owned by the user's methodology skill (such as Superpowers), not by this one.
 
 The contract this skill enforces:
 
@@ -35,7 +35,7 @@ The `issues/<YYYYMM>/` grouping is for human navigation and bulk review. It carr
 
 ## Artifacts
 
-Five canonical file names. Each name describes the file's semantic role; the issue type determines which ones appear. All artifacts in a type's set are required — there are no optional files.
+Five canonical file names. Each name describes its semantic role; the issue type determines which ones appear. These names and roles are part of the contract — do not rename them and do not invent additional required artifacts.
 
 | File          | Used by                                       | When it appears              | Role                                                                                                                                                   |
 | --------------| --------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -98,12 +98,6 @@ The user typically asks for one of:
 - Compare an existing issue's artifacts against the templates and report drift.
 
 The skill does not auto-create issues from casual task descriptions. The user must explicitly invoke the skill or name a target issue directory.
-
-## How this skill relates to execution workflows
-
-This skill composes with methodology skills (e.g. Superpowers) for *how* individual phases are conducted — clarification dialogue, critique, TDD, debugging, verification commands, review checklist. The methodology skill drives the technique; this skill defines what gets written down at each phase boundary.
-
-The artifact names (`task.md`, `plan.md`, `progress.md`, `summary.md`, `report.md`) and their roles are part of the contract: do not rename them and do not invent additional required artifacts.
 
 ## Reading order for a fresh issue
 
