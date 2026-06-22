@@ -33,6 +33,8 @@ issues/<YYYYMM>/<issue-id>/
 
 The `issues/<YYYYMM>/` grouping is for human navigation and bulk review. It carries no semantic meaning beyond that.
 
+An issue directory may also contain an `assets/` subdirectory for reference material the user provided as input — a screenshot of a bug, a PDF spec, sample data, an excerpt of discussion with another AI used to guide the issue, anything the user pasted in to shape the issue's scope. The canonical artifacts (`task.md` / `plan.md` / `progress.md` / `summary.md` / `report.md`) live at the directory root; `assets/` holds the supporting inputs alongside them.
+
 ## Artifacts
 
 Five canonical file names. Each name describes its semantic role; the issue type determines which ones appear. These names and roles are part of the contract — do not rename them and do not invent additional required artifacts.
