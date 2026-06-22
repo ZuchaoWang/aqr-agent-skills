@@ -112,7 +112,7 @@ Each verb names the artifact to create or update; the methodology skill (e.g. Su
 - **execute** — carry out `plan.md`; writes `progress.md` as work lands and `summary.md` (or `report.md`) at completion.
 - **revise** — update an existing `task.md` or `plan.md` when something surfaces mid-execution.
 
-The user may name a single verb, chain multiple (e.g. "create, plan, and execute this issue"), or name none. When no verb is named, infer from the issue's current state: only `task.md` exists → run `plan`; `task.md` and `plan.md` exist → run `execute`; `progress.md` shows `## Status: done` → ask the user what they want.
+The user may name a single verb, chain multiple (e.g. "create, plan, and execute this issue"), or name none. When no verb is named, infer from the user's prose. If still unclear, ask.
 
 The skill does not auto-create issues from casual task descriptions. The user must explicitly invoke the skill or name a target issue directory.
 
