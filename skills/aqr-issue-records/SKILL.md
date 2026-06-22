@@ -10,14 +10,9 @@ A disciplined way to make doc or code changes, ship fixes, or run investigations
 
 ## Scope
 
-This skill defines what gets recorded when making doc or code changes, shipping fixes, or running investigations in a repo. For each piece of work — an **issue** — it specifies the artifacts, their roles, and the type taxonomy. The surrounding workflow (clarification, planning, execution, review) is owned by the user's methodology skill (such as Superpowers), not by this one.
+The skill specifies the artifacts, their roles, and the type taxonomy. The surrounding workflow (clarification, planning, execution, review) is owned by the user's methodology skill (such as Superpowers), not by this one.
 
-The contract this skill enforces:
-
-- Each issue lives in its own directory under `issues/<YYYYMM>/<issue-id>/`.
-- Each issue has the same canonical artifacts, in the same roles.
-- The artifacts are text files written in the user's project documentation style.
-- Anyone — the user, a reviewer, a future agent — can read the artifacts cold and understand what was attempted, what was decided, what was verified, and what is still open.
+The artifacts are text files written in the user's project documentation style. Anyone — the user, a reviewer, a future agent — can read them cold and understand what was attempted, what was decided, what was verified, and what is still open.
 
 ## Invocation
 
@@ -53,7 +48,7 @@ Five canonical file names. Each name describes its semantic role; the issue type
 
 | File          | Used by                                       | When it appears              | Role                                                                                                                                                   |
 | --------------| --------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `task.md`     | all types                                     | at issue creation            | Semantic definition: goal, context, scope, out-of-scope, acceptance criteria. No file lists.                                                          |
+| `task.md`     | all types                                     | at issue creation            | Semantic definition: type, goal, context, scope, out-of-scope, acceptance criteria. No file lists.                                                    |
 | `plan.md`     | all types                                     | during planning              | Investigation findings, planned changes with concrete file paths, open questions, execution steps, self-review notes.                                 |
 | `progress.md` | doc-update, code-update, fix                  | when execution begins        | Log of which planned steps were carried out. Starts `## Status: in-progress`; ends `## Status: done`. Distinct from `summary.md` (see below).         |
 | `summary.md`  | doc-update, code-update, fix                  | at completion                | What shipped in the diff: files changed (with per-location detail for modifications), commits made, verification notes, known limitations.            |
@@ -94,27 +89,18 @@ Four types. Each type has its own template set under `templates/`.
 - **fix** — Small correction issue. Used for bugs, failed tests, broken docs, inconsistencies, or small cleanup. Can touch code, docs, or both, but **a fix that touches both must be small and atomic** — one defect, no subtasks. Large work that needs both code and docs is split: `doc-update` first to define the intended behavior, then a `code-update` follow-up to implement it.
 - **investigate** — Pure investigation or feasibility check. Produces findings but no file changes. Findings live in `report.md`. If findings deserve a permanent home under `docs/`, follow up with a doc-update issue.
 
-Per-type artifact sets:
-
-- doc-update: `task.md` + `plan.md` + `progress.md` + `summary.md`
-- code-update: `task.md` + `plan.md` + `progress.md` + `summary.md`
-- fix: `task.md` + `plan.md` + `progress.md` + `summary.md`
-- investigate: `task.md` + `plan.md` + `report.md`
-
-See `reference/issue-types.md` for the full decision tree and `reference/artifact-meanings.md` for what each artifact is and is not.
+See `reference/issue-types.md` for the full decision tree and the per-type artifact sets. See `reference/artifact-meanings.md` for what each artifact is and is not.
 
 ## When the user invokes this skill
 
 Each verb names the artifact to create or update; the methodology skill (e.g. Superpowers) drives the actual work.
 
-- **create** — draft `task.md` (and create the issue directory).
+- **create** — draft `task.md`; set up the issue directory if it does not already exist, otherwise update in place.
 - **plan** — draft `plan.md`.
 - **execute** — carry out `plan.md`; writes `progress.md` as work lands and `summary.md` (or `report.md`) at completion.
 - **revise** — update an existing `task.md` or `plan.md` when something surfaces mid-execution.
 
-The user may name a single verb, chain multiple (e.g. "create, plan, and execute this issue"), or name none. When no verb is named, infer from the user's prose. If still unclear, ask.
-
-The skill does not auto-create issues from casual task descriptions. The user must explicitly invoke the skill or name a target issue directory.
+The skill activates only on explicit slash invocation. Once activated, the verb is read from the user's prose, inferred, or asked for — never assumed. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
 
 ## Reading order for a fresh issue
 
