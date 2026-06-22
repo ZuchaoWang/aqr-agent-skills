@@ -102,6 +102,8 @@ Each verb names the artifact to create or update; the methodology skill (e.g. Su
 
 The skill activates only on explicit slash invocation. Once activated, the verb is read from the user's prose, inferred, or asked for — never assumed. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
 
+**Clarification stance.** Front-load clarification at the start of each verb — ask a few targeted questions to make the work unambiguous. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.
+
 ## Reading order for a fresh issue
 
 1. `task.md` — what is the issue?
