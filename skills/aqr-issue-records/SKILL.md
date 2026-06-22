@@ -1,12 +1,12 @@
 ---
 name: aqr-issue-records
-description: Repo-visible issue record format. Per-type templates (doc-update, code-update, fix, investigate) with task / plan / progress / summary / report artifacts. Manual-only — invoke via slash command.
+description: Disciplined doc and code changes, fixes, and investigations in a repo. Each issue lives in its own directory with task / plan / progress / summary / report artifacts, typed as doc-update, code-update, fix, or investigate. Manual-only — invoke via slash command.
 disable-model-invocation: true
 ---
 
 # aqr-issue-records
 
-Defines the repo-visible issue record format. Provides artifact templates for four issue types (doc-update, code-update, fix, investigate) and reference docs that explain the meaning of each artifact and what a good summary.md / report.md looks like.
+A disciplined way to make doc or code changes, ship fixes, or run investigations in a repo. Each piece of work — an **issue** — lives in its own directory under `issues/`, follows one of four types (`doc-update`, `code-update`, `fix`, `investigate`), and is recorded through five canonical artifacts: `task.md`, `plan.md`, `progress.md`, `summary.md`, `report.md`. Templates and reference docs are provided for each.
 
 ## Scope
 
