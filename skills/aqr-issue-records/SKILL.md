@@ -91,9 +91,15 @@ See `reference/issue-types.md` for the full decision tree and `reference/artifac
 
 ## When the user invokes this skill
 
-The user typically asks for one of:
+The user invokes the skill with a verb, optionally naming an issue by ID or description. Each verb names the artifact to create or update; the methodology skill (e.g. Superpowers) drives the actual work — clarification, planning, execution, review.
 
-- Create / plan / execute / revise an issue by ID or description.
+- **create** — draft `task.md` (and create the issue directory).
+- **plan** — draft `plan.md`.
+- **execute** — carry out `plan.md`; writes `progress.md` as work lands and `summary.md` (or `report.md`) at completion.
+- **revise** — update an existing `task.md` or `plan.md` when something surfaces mid-execution.
+
+Other invocations:
+
 - Apply a specific issue type's template to a new issue.
 - Compare an existing issue's artifacts against the templates and report drift.
 
