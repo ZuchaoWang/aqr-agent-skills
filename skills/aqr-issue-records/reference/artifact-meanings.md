@@ -6,6 +6,8 @@ Five canonical artifacts. Each has a single role; mixing roles across files is t
 
 Written first, at issue creation. The source of truth for **scope**.
 
+The user's initial brief is usually rough — a goal and some context. The agent's job during clarification is to drive every section of `task.md` to a state where it can be stated unambiguously: restate the goal in the agent's own words for the user to confirm, ask targeted questions about context and scope, draft sections the user can revise, and surface open questions rather than resolving them by assumption. The bar is "a reader who never met the user can pick up this `task.md` and execute correctly." If any section still needs conversation with the user to reach that bar, the section is not done.
+
 `task.md` is **semantic**, not enumerative. It describes the issue at the level of "what behavior or knowledge changes" — not "which files change". The exact file list lives in `plan.md`. Keeping these separate means:
 
 - A reader can understand the issue from `task.md` without getting bogged down in implementation detail.
@@ -29,6 +31,8 @@ Written first, at issue creation. The source of truth for **scope**.
 - Commit discipline. That is execution-time and lives in `progress.md` / `summary.md`.
 
 ### 1.2 Acceptance criteria
+
+Acceptance criteria are typically drafted by the agent based on the goal and context, then confirmed or revised by the user. Users rarely specify criteria unprompted — the agent sees the structure of the work and is better placed to enumerate checkable outcomes. Draft them, show them to the user, and do not proceed to execution until the user accepts them.
 
 Acceptance criteria are the most important part of `task.md`. They are what `summary.md` checks against. Good criteria:
 
