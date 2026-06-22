@@ -1,5 +1,11 @@
 # Task
 
+## Type
+
+`doc-update`
+
+<!-- Set at creation. If the work outgrows this type, split into a new issue rather than relabeling. -->
+
 ## Goal
 
 <!-- One paragraph: what doc area changes, why now, and what "done" looks like. State the audience for the docs if it is not obvious (other agents, future contributors, end users). -->

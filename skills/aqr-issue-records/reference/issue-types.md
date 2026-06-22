@@ -74,13 +74,32 @@ Small correction issue. Used for:
 - Inconsistencies between docs and code.
 - Small cleanup that is too narrow for a full code-update.
 
-Can touch code, docs, or both, but should stay narrow. A fix that grows to include new behavior is no longer a fix; convert it to a `code-update` (or split it) before scope expands.
+Can touch code, docs, or both. **If a fix touches both code and docs in the same issue, it must be small and atomic** — one defect, no subtasks, lands in a small number of commits. A fix that is large and touches both code and docs is not a valid `fix`; reject it and split.
 
-### 4.1 Why fix can touch both code and docs
+A fix that grows to include new behavior is no longer a fix; convert it to a `code-update` (or split it) before scope expands.
 
-Unlike `code-update`, `fix` is allowed to touch both code and docs in the same issue. The reasoning: a defect often has a code fix and a doc fix that are inseparable as a unit (the doc said X, the code did Y, the fix changes both). Splitting these into two issues creates artificial coordination overhead.
+### 4.1 Why fix can touch both code and docs (when small)
+
+Unlike `code-update`, `fix` is allowed to touch both code and docs in the same issue **when the change is small and atomic**. The reasoning: a defect often has a code fix and a doc fix that are inseparable as a unit (the doc said X, the code did Y, the fix changes both). Splitting these into two issues creates artificial coordination overhead.
 
 The boundary with `code-update`: if the change introduces new behavior, it is a `code-update`. If it corrects existing behavior to match what was intended, it is a `fix`.
+
+### 4.2 Large work that needs both code and docs: split
+
+When the change touches both code and docs but is large or has multiple subtasks, do not use a single `fix`. Split:
+
+1. Open a `doc-update` issue first to define the intended behavior. Code is written to satisfy documented specifications, not the other way around.
+2. Once the doc-update lands, open a `code-update` follow-up that implements against the new doc. The code-update's `task.md` references the doc-update's directory.
+
+This keeps each issue's type coherent, gives the doc work its own review surface, and produces a clean audit trail. The overhead of two issues is intentional — large cross-tree work benefits from the structure.
+
+### 4.3 Artifacts
+
+Required: `task.md`, `plan.md`, `progress.md`, `summary.md`. `progress.md` is where per-defect verification lives; `summary.md` stays focused on the resulting diff.
+
+### 4.4 Commit discipline
+
+Fixes usually commit per defect. Each commit message should name the defect (e.g. `fix(<area>): <short description> — <root-cause>`). When live verification reveals that an initial fix missed a sibling site, write a follow-up commit rather than amending — the audit trail matters more than the clean log.
 
 ### 4.2 Artifacts
 
@@ -137,8 +156,9 @@ Not used: `progress.md`, `summary.md`. Investigations are usually single-session
 ## 6. Anti-patterns
 
 - **Mixing types.** An issue starts as one type and ends as another. If scope changes type mid-flight, split the issue — do not silently relabel.
+- **Big fix touching both code and docs.** A `fix` that is large and touches both code and docs is not a valid fix. Split into a `doc-update` first (to define intended behavior), then a `code-update` follow-up. See §4.2.
 - **Fix-bloat.** A `fix` that grows new features or refactors surrounding code. Split before scope creeps.
-- **Code-update with doc changes.** A `code-update` that also touches docs. Move the doc work to a separate `doc-update` issue. (The reverse does not apply to `fix` — see §4.1.)
+- **Code-update with doc changes.** A `code-update` that also touches docs. Move the doc work to a separate `doc-update` issue. (The reverse does not apply to a small `fix` — see §4.1.)
 - **Doc-update shipping code.** A `doc-update` issue that touches source files. Either the docs led to discoveries that need a separate `code-update`, or the type was wrong from the start.
 - **Investigate as a dumping ground.** An `investigate` issue that "explores X" without a clear question. If you cannot state the question, the issue is not ready.
 - **Skipping report.md on investigate.** An `investigate` issue with `task.md` and `plan.md` but no `report.md` is incomplete. The `report.md` IS the artifact — without it, nothing was produced.

@@ -1,5 +1,11 @@
 # Task
 
+## Type
+
+`code-update`
+
+<!-- Set at creation. If the work outgrows this type, split into a new issue rather than relabeling. -->
+
 ## Goal
 
 <!-- One paragraph: what behavior changes, what "done" looks like. Reference the user-facing or system-facing outcome, not just the implementation. -->

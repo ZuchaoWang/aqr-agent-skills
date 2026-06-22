@@ -77,7 +77,7 @@ Four types. Each type has its own template set under `templates/`.
 
 - **doc-update** — Docs-only issue. Used for product specs, architecture docs, implementation docs, research notes that get a permanent home under `docs/`, design decisions, data notes, and convention updates.
 - **code-update** — Code and test change issue. Code-only. If a doc needs to change to stay consistent with the new code, open a separate doc-update issue rather than expanding this issue's scope.
-- **fix** — Small correction issue. Used for bugs, failed tests, broken docs, inconsistencies, or small cleanup. Can touch code, docs, or both, but should stay narrow.
+- **fix** — Small correction issue. Used for bugs, failed tests, broken docs, inconsistencies, or small cleanup. Can touch code, docs, or both, but **a fix that touches both must be small and atomic** — one defect, no subtasks. Large work that needs both code and docs is split: `doc-update` first to define the intended behavior, then a `code-update` follow-up to implement it.
 - **investigate** — Pure investigation or feasibility check. Produces findings but no file changes. Findings live in `report.md`. If findings deserve a permanent home under `docs/`, follow up with a doc-update issue.
 
 Per-type artifact sets:
@@ -98,6 +98,8 @@ The user typically asks for one of:
 - Compare an existing issue's artifacts against the templates and report drift.
 
 The skill does not auto-create issues from casual task descriptions. The user must explicitly invoke the skill or name a target issue directory.
+
+See `reference/lifecycle.md` for the full verb semantics — what state each verb starts and ends in, how bundled operations work, and how to handle replanning mid-flight.
 
 ## How this skill relates to execution workflows
 

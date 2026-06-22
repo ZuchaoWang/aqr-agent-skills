@@ -16,6 +16,7 @@ The user's initial brief is usually rough — a goal and some context. The agent
 
 `task.md` answers:
 
+- What type of issue is this? (Type)
 - What is the issue? (Goal)
 - Why now? (Context)
 - What kind of change is this, at a high level? (Scope)

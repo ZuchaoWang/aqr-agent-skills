@@ -1,5 +1,11 @@
 # Task
 
+## Type
+
+`fix`
+
+<!-- Set at creation. A fix that touches both code and docs must be small and atomic — one defect, no subtasks. Larger work that needs both code and docs is split: doc-update first, then a code-update follow-up. If the work outgrows this type, split into a new issue rather than relabeling. -->
+
 ## Goal
 
 <!-- One paragraph: which defect set is being fixed and what "all fixed" looks like. Each defect lands in its own commit unless the plan explicitly says otherwise. -->

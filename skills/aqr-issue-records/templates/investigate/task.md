@@ -1,5 +1,11 @@
 # Task
 
+## Type
+
+`investigate`
+
+<!-- Set at creation. Produces no file changes; findings live in report.md. If the work outgrows this type, split into a new issue rather than relabeling. -->
+
 ## Goal
 
 <!-- The question, stated semantically. What does the user want to know or decide? Frame it as a question or a decision to be made, not as work to be done. -->
