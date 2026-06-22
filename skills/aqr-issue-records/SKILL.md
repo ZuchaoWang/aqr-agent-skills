@@ -89,7 +89,7 @@ Four types. Each type has its own template set under `templates/`.
 - **fix** — Small correction issue. Used for bugs, failed tests, broken docs, inconsistencies, or small cleanup. Can touch code, docs, or both, but **a fix that touches both must be small and atomic** — one defect, no subtasks. Large work that needs both code and docs is split: `doc-update` first to define the intended behavior, then a `code-update` follow-up to implement it.
 - **investigate** — Pure investigation or feasibility check. Produces findings but no file changes. Findings live in `report.md`. If findings deserve a permanent home under `docs/`, follow up with a doc-update issue.
 
-See `reference/issue-types.md` for the full decision tree and the per-type artifact sets. See `reference/artifact-meanings.md` for what each artifact is and is not.
+See `reference/issue-types.md` for the full decision tree and the per-type artifact sets. See `reference/<artifact>-guidelines.md` (one per artifact: task, plan, progress, summary, report) for how to write each artifact.
 
 ## When the user invokes this skill
 
