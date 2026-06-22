@@ -98,11 +98,6 @@ The user invokes the skill with a verb, optionally naming an issue by ID or desc
 - **execute** — carry out `plan.md`; writes `progress.md` as work lands and `summary.md` (or `report.md`) at completion.
 - **revise** — update an existing `task.md` or `plan.md` when something surfaces mid-execution.
 
-Other invocations:
-
-- Apply a specific issue type's template to a new issue.
-- Compare an existing issue's artifacts against the templates and report drift.
-
 The skill does not auto-create issues from casual task descriptions. The user must explicitly invoke the skill or name a target issue directory.
 
 ## Reading order for a fresh issue
