@@ -20,25 +20,7 @@ Write for all three. Lead with the bottom line; back it with evidence; be grep-f
 
 ### 2.1 Structure
 
-```markdown
-## Files Changed
-
-### Created
-
-- `path/to/new/file` — one-line role.
-
-### Modified
-
-- `path/to/existing/file`
-  - `<function or section>` — what changed.
-  - `<function or section>` — what changed.
-
-### Deleted
-
-- `path/to/removed/file` — reason.
-```
-
-Omit empty subsections. Do not write "None." under each — the absence of the subsection is the signal.
+See `templates/<type>/summary.md` for the Created / Modified / Deleted structure. Omit empty subsections — do not write "None." under each; the absence of the subsection is the signal.
 
 ### 2.2 Modifications must name locations
 
@@ -87,15 +69,7 @@ Reference the issue directory (`issues/YYYYMM/<id>/`) so a reader can find the o
 
 Include a commit table only if the work spanned multiple commits and the mapping matters for review or audit. For a single-commit issue, omit the table and reference the SHA in Summary.
 
-Format:
-
-```markdown
-| # | SHA | Defect / Step |
-|---|-----|---------------|
-| 1 | `3117408` | 1 — event-page anchors (drop `.close`/`.open`, set concrete tops) |
-```
-
-The "Defect / Step" column should match the `## Execution Steps` from `plan.md` so a reader can cross-reference. Never amend a published commit; if live verification reveals a follow-up is needed, add a new row.
+See `templates/<type>/summary.md` for the table format. The "Item / Step" column should match the `## Execution Steps` (or Per-Item Change Plan) from `plan.md` so a reader can cross-reference. Never amend a published commit; if live verification reveals a follow-up is needed, add a new row.
 
 ## 5. Verification Notes
 

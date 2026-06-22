@@ -11,9 +11,9 @@ Does the issue produce any file change in the repo?
 ├── no → investigate
 └── yes → Is the change small and atomic (one cohesive change, no subtasks)?
         ├── yes → fix
-        └── no → Does it change BOTH source code/tests AND docs?
+        └── no → Does it change BOTH code/tests AND docs?
                 ├── yes → REJECT — split: doc-update first, then code-update follow-up
-                └── no → Is it primarily source code or tests?
+                └── no → Is it primarily code or tests?
                         ├── yes → code-update
                         └── no → doc-update
 ```

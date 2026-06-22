@@ -32,12 +32,12 @@ Update `progress.md` as steps land. Do not batch updates to the end. A reader sh
 
 - **Wrong status line format.** Automation depends on the exact `## Status: in-progress` / `## Status: done` string.
 - **Batch-updating at completion.** The log should reflect execution as it happens.
-- **Logging narrative without mapping to planned steps.** Each entry should reference the step or defect from `plan.md`.
+- **Logging narrative without mapping to planned steps.** Each entry should reference the step or item from `plan.md`.
 - **Using progress.md as the diff summary.** That is `summary.md`'s role.
 
 ## 5. Quick checklist before flipping to done
 
 - [ ] Status line is `## Status: done`.
-- [ ] Every planned step (or per-defect fix) has an entry.
+- [ ] Every planned step (or per-item change) has an entry.
 - [ ] Deviations from `plan.md` are called out.
-- [ ] Multi-commit work has commits mapped to steps or defects.
+- [ ] Multi-commit work has commits mapped to steps or items.

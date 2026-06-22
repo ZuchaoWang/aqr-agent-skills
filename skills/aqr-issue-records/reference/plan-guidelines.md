@@ -24,7 +24,7 @@ The `Planned Changes` shape varies by issue type:
 
 - `doc-update/plan.md` has `Planned Documentation Changes` (with `Cleanup (deletions)` and `Docs to create or update` subsections).
 - `code-update/plan.md` has `Planned Code Changes` and `Planned Test Changes`. It does NOT have a `Planned Documentation Changes` section — doc work goes in a separate `doc-update` issue.
-- `fix/plan.md` has `Per-Defect Fix Plan` — one subsection per defect from `task.md`.
+- `fix/plan.md` has `Per-Item Change Plan` — one subsection per item from `task.md`.
 - `investigate/plan.md` has `Investigation Approach` — ordered steps that describe what will be checked.
 
 ## 5. Anti-patterns

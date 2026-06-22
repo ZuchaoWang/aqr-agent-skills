@@ -4,17 +4,17 @@
 
 ## Execution Log
 
-<!-- Per-defect progress: which defects from plan.md are fixed, which are in verification, which are still open. Update after each defect lands. -->
+<!-- Per-item progress: which items from plan.md are done, which are in verification, which are still open. Update after each item lands. -->
 
 ## Commits
 
-| # | SHA | Defect |
-|---|-----|--------|
+| # | SHA | Item |
+|---|-----|------|
 | 1 | `xxxxxxx` | 1 — one-line role |
 
-## Verification Log
+## Verification Notes
 
-<!-- Per-defect verification. Concrete commands run and their results. Include grep checks, test output, lint output, manual reproduction steps. -->
+<!-- Per-item verification. Concrete commands run and their results. Include grep checks, test output, lint output, manual reproduction steps. -->
 
 ## Notes
 

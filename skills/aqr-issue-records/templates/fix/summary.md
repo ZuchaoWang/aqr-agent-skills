@@ -2,12 +2,12 @@
 
 ## Summary
 
-<!-- One paragraph: all defects fixed, all commits landed, all checks green. Reference the issue directory so a reviewer can find the original task and plan. -->
+<!-- One paragraph: all items landed, all commits in, all checks green. Reference the issue directory so a reviewer can find the original task and plan. -->
 
 ## Commits
 
-| # | SHA | Defect |
-|---|-----|--------|
+| # | SHA | Item |
+|---|-----|------|
 | 1 | `xxxxxxx` | 1 — one-line role |
 
 ## Files Changed
@@ -35,7 +35,7 @@
 
 ## Known Limitations
 
-<!-- Defects deferred, partial fixes, sibling bugs noted but out of scope. Each item should be checkable by a reviewer without re-running the work. -->
+<!-- Items deferred, partial changes, sibling issues noted but out of scope. Each item should be checkable by a reviewer without re-running the work. -->
 
 ## Follow-Up Issues
 

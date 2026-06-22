@@ -2,17 +2,17 @@
 
 ## Context
 
-<!-- Per-defect root cause analysis with file:line citations. Confirm each defect against current code, not against the report alone. -->
+<!-- Per-item analysis with file:line citations. Confirm each item against current code, not against the report alone. -->
 
 ## Investigation Findings
 
-<!-- What you traced, what you verified. Note any sibling call sites that share the same bug pattern — these are candidates for the same fix or for follow-up issues. -->
+<!-- What you traced, what you verified. Note any sibling sites that share the same pattern — these are candidates for the same change or for follow-up issues. -->
 
-## Per-Defect Fix Plan
+## Per-Item Change Plan
 
-<!-- For each defect from task.md: the exact change, files touched, expected side effects, and any non-obvious risk. -->
+<!-- For each item from task.md: the exact change, files touched, expected side effects, and any non-obvious risk. -->
 
-### Defect 1 — <short name>
+### Item 1 — <short name>
 
 - Change: ...
 - Files: `path/to/file:LL`
@@ -27,9 +27,9 @@
 
 <!-- Ordered. Each step maps to one commit. Step names should be checkable from `git log --oneline`. -->
 
-1. Fix defect 1 — one-line description.
-2. Fix defect 2 — one-line description.
+1. Item 1 — one-line description.
+2. Item 2 — one-line description.
 
 ## Self-Review Notes
 
-<!-- Did any fix introduce new risks? Are there sibling call sites with the same bug? Did the fix touch code outside the working directory constraint? Did the fix accidentally weaken a test instead of fixing the code? -->
+<!-- Did any change introduce new risks? Are there sibling sites with the same pattern? Did the change touch code outside the working directory constraint? Did the change accidentally weaken a test? -->

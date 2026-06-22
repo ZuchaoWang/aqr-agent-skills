@@ -88,7 +88,7 @@ A reader picking up `summary.md` expects file changes and verification. A reader
 
 These two files serve different purposes, not the same purpose at different lifecycle stages:
 
-- `progress.md` is the **execution log**. It tracks which planned steps (from `plan.md`'s Execution Steps) or per-defect fixes (from `plan.md`'s Per-Defect Fix Plan) were carried out, in order. It answers "did you do what you planned?".
+- `progress.md` is the **execution log**. It tracks which planned steps (from `plan.md`'s Execution Steps) or per-item changes (from `plan.md`'s Per-Item Change Plan) were carried out, in order. It answers "did you do what you planned?".
 - `summary.md` is the **diff and verification summary**. It tracks what files changed, which commits landed, how each acceptance criterion was verified, what limitations were accepted, and what follow-ups surfaced. It answers "what shipped and how was it verified?".
 
 A reviewer reading `progress.md` wants to see the work unfold against the plan. A reviewer reading `summary.md` wants to see the resulting diff and its verification. Both are required for doc-update, code-update, and fix.
