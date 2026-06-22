@@ -100,7 +100,7 @@ Each verb names the artifact to create or update; the methodology skill (e.g. Su
 - **execute** — carry out `plan.md`; writes `progress.md` as work lands and `summary.md` (or `report.md`) at completion.
 - **revise** — update an existing `task.md` or `plan.md` when something surfaces mid-execution.
 
-The skill activates only on explicit slash invocation. Once activated, the verb is read from the user's prose, inferred, or asked for — never assumed. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
+The skill activates only on explicit slash invocation. Once activated, the verb is read from the user's prose, inferred, or asked for if unclear. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
 
 **Clarification stance.** Front-load clarification at the start of each invocation — one round covers the whole chain of verbs the user named, not per verb. Ask a few targeted questions to make the work unambiguous. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.
 
