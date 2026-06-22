@@ -10,7 +10,7 @@ Defines the repo-visible issue record format. Provides artifact templates for fo
 
 ## Scope
 
-This skill owns the **issue lifecycle** for projects that adopt it — create, plan, execute, summarize or report. It replaces per-project issue-handling skills (such as `handle-issue`); projects do not need to run both. It does not replace methodology skills like Superpowers, which still drive *how* individual phases are conducted (clarification dialogue, critique, TDD, debugging, verification commands, review checklist).
+This skill owns the **issue lifecycle** for projects that adopt it — create, plan, execute, summarize or report. Any prior per-project issue-handling skill should be uninstalled when this one is installed.
 
 The contract this skill enforces:
 
@@ -103,9 +103,9 @@ See `reference/lifecycle.md` for the full verb semantics — what state each ver
 
 ## How this skill relates to execution workflows
 
-This skill replaces per-project issue-handling skills (such as `handle-issue`). It owns the full issue lifecycle — create, plan, execute, summarize or report — and the contract for what gets written into the repo. The artifact names (`task.md`, `plan.md`, `progress.md`, `summary.md`, `report.md`) and their roles are part of that contract: do not rename them and do not invent additional required artifacts.
+This skill composes with methodology skills (e.g. Superpowers) for *how* individual phases are conducted — clarification dialogue, critique, TDD, debugging, verification commands, review checklist. The methodology skill drives the technique; this skill defines what gets written down at each phase boundary.
 
-This skill still composes with methodology skills (e.g. Superpowers) for *how* individual phases are conducted — clarification dialogue, critique, TDD, debugging, verification commands, review checklist. The methodology skill drives the technique; this skill defines what gets written down at each phase boundary.
+The artifact names (`task.md`, `plan.md`, `progress.md`, `summary.md`, `report.md`) and their roles are part of the contract: do not rename them and do not invent additional required artifacts.
 
 ## Reading order for a fresh issue
 
