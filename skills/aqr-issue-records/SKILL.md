@@ -10,7 +10,7 @@ A disciplined way to make doc or code changes, ship fixes, or run investigations
 
 ## Scope
 
-This skill owns the **issue lifecycle** for projects that adopt it — create, plan, execute, summarize or report. Any prior per-project issue-handling skill should be uninstalled when this one is installed.
+This skill defines what gets recorded when making doc or code changes, shipping fixes, or running investigations in a repo. For each piece of work — an **issue** — it specifies the artifacts, their roles, and the type taxonomy. The surrounding workflow (clarification, planning, execution, review) is owned by the user's methodology skill, not by this one.
 
 The contract this skill enforces:
 
@@ -98,8 +98,6 @@ The user typically asks for one of:
 - Compare an existing issue's artifacts against the templates and report drift.
 
 The skill does not auto-create issues from casual task descriptions. The user must explicitly invoke the skill or name a target issue directory.
-
-See `reference/lifecycle.md` for the full verb semantics — what state each verb starts and ends in, how bundled operations work, and how to handle replanning mid-flight.
 
 ## How this skill relates to execution workflows
 
