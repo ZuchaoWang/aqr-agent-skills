@@ -1,164 +1,66 @@
 # Issue types
 
-Four issue types: `doc-update`, `code-update`, `fix`, `investigate`. Each type has its own template set under `templates/`. Pick the type based on what the issue primarily produces; the type determines which artifacts are required.
+Four issue types: `doc-update`, `code-update`, `fix`, `investigate`. Pick the type based on what the issue primarily produces. Each issue has exactly one type.
+
+For the per-type artifact sets, see the table in `SKILL.md`. For how to write each artifact, see `reference/<artifact>-guidelines.md`. This doc covers type choice only.
 
 ## 1. Decision tree
 
 ```text
 Does the issue produce any file change in the repo?
 ├── no → investigate
-└── yes → Is the issue primarily fixing something broken?
+└── yes → Is the change small and atomic (one cohesive change, no subtasks)?
         ├── yes → fix
-        └── no → Is the issue primarily changing source code or tests?
-                ├── yes → code-update
-                └── no → doc-update
+        └── no → Does it change BOTH source code/tests AND docs?
+                ├── yes → REJECT — split: doc-update first, then code-update follow-up
+                └── no → Is it primarily source code or tests?
+                        ├── yes → code-update
+                        └── no → doc-update
 ```
 
-Each issue has exactly one type. If scope expands mid-flight such that the type would change, the right move is usually to split the issue rather than relabel it. See "Anti-patterns" below.
+A `fix` may touch any combination of code, tests, docs, config, infra, and data files in one issue — the small-and-atomic check is about size and cohesion, not about which trees are touched. Anything that is not small follows the right branch, where code and docs cannot share an issue.
 
 ## 2. doc-update
 
 Docs-only issue. Produces changes under `docs/` (or root dotfiles / config that are documentation-shaped, like `.markdownlint.json` or `CLAUDE.md`).
 
-Used for:
+Used for: product specs, architecture docs, implementation docs, research notes that get a permanent home under `docs/research/`, data source docs, convention updates, migration analysis.
 
-- Product specs and screen designs.
-- Architecture docs and design decisions.
-- Implementation docs (per-module reference).
-- Research notes that get a permanent home under `docs/research/`.
-- Data source docs, schemas, processing notes.
-- Convention updates (code style, doc style, testing policy).
-- Migration analysis from prior codebases.
+Boundaries:
 
-### 2.1 Boundary with investigate
-
-`investigate` produces findings but no file changes; the findings live in `report.md`. `doc-update` produces permanent doc files under `docs/`. A common flow: an `investigate` issue answers a question, and one of its follow-ups is a `doc-update` that writes the answer into `docs/research/` or `docs/architecture/` so the answer outlives the issue record.
-
-### 2.2 Boundary with code-update
-
-`doc-update` does not ship code. If doc work surfaces a code change, open a separate `code-update` issue rather than expanding the doc-update.
-
-### 2.3 Artifacts
-
-Required: `task.md`, `plan.md`, `progress.md`, `summary.md`.
-
-### 2.4 Template sections specific to doc-update
-
-`task.md` describes the doc area semantically (Goal, Context, Scope as prose, Out of Scope, Acceptance Criteria, Open Questions) — it does not enumerate files. `plan.md` enumerates the exact docs to create, update, or delete under `Planned Documentation Changes`. `summary.md` lists every touched file under `Files Changed` with per-section locations for modifications.
+- If doc work surfaces a code change, open a separate `code-update` rather than expanding the doc-update.
+- `investigate` produces findings in `report.md`; `doc-update` promotes findings to permanent files under `docs/`. A common flow is `investigate` → `doc-update` follow-up.
 
 ## 3. code-update
 
 Code and test change issue. **Code-only.** If a doc needs to change to stay consistent with the new code, open a separate `doc-update` issue rather than expanding this issue's scope.
 
-The reasoning: code and docs change for different reasons, on different cadences, and are reviewed by different audiences. Mixing them produces plans that are incomplete-as-design and incomplete-as-implementation. A 1-line doc tweak forced into a code-update tends to either expand into a doc rewrite or get dropped on the floor; both are worse than a clean separate issue.
+Why split: a large doc update needs human review before code follows it. Review may surface revisions; once the doc lands, the code-update follows an agreed direction. An issue does not pause mid-execution for re-clarification — so doc work and code work must live in separate issues, giving the doc its own review surface and the code a stable target.
 
-### 3.1 Artifacts
-
-Required: `task.md`, `plan.md`, `progress.md`, `summary.md`.
-
-### 3.2 Template sections specific to code-update
-
-`plan.md` has `Planned Code Changes` and `Planned Test Changes` as separate sections. It does NOT have a `Planned Documentation Changes` section — that belongs in a separate `doc-update` issue. `task.md` has matching semantic scope (`Goal`, `Context`, `Scope`, `Out of Scope`, `Acceptance Criteria`, `Open Questions`) without enumerating files.
-
-### 3.3 Relationship to docs
-
-A code-update issue should usually reference an approved doc rather than redesign. If the implementation surfaces a design question that the docs do not answer, the right move is usually to open a separate `investigate` issue to answer the question, then (if needed) a `doc-update` to record the answer, then resume the code-update.
+A code-update should usually reference an approved doc rather than redesign. If the implementation surfaces a design question the docs do not answer, open a separate `investigate` to answer it, then (if needed) a `doc-update` to record the answer, then resume the code-update.
 
 ## 4. fix
 
-Small correction issue. Used for:
+A `fix` is any small change — one cohesive change, no subtasks, lands in a small number of commits. It can be corrective (bug fix), additive (small feature), subtractive (cleanup), or anything else, as long as it is small. It can touch any combination of code, tests, docs, config, infra, and data in one issue.
 
-- Bugs (functional defects).
-- Failed tests.
-- Broken docs (typos, wrong paths, stale references).
-- Inconsistencies between docs and code.
-- Small cleanup that is too narrow for a full code-update.
+Small changes do not benefit from the doc-first-then-code structure — forcing them through separate issues creates artificial coordination overhead, so the skill allows a `fix` to span trees that larger work cannot.
 
-Can touch code, docs, or both. **If a fix touches both code and docs in the same issue, it must be small and atomic** — one defect, no subtasks, lands in a small number of commits. A fix that is large and touches both code and docs is not a valid `fix`; reject it and split.
-
-A fix that grows to include new behavior is no longer a fix; convert it to a `code-update` (or split it) before scope expands.
-
-### 4.1 Why fix can touch both code and docs (when small)
-
-Unlike `code-update`, `fix` is allowed to touch both code and docs in the same issue **when the change is small and atomic**. The reasoning: a defect often has a code fix and a doc fix that are inseparable as a unit (the doc said X, the code did Y, the fix changes both). Splitting these into two issues creates artificial coordination overhead.
-
-The boundary with `code-update`: if the change introduces new behavior, it is a `code-update`. If it corrects existing behavior to match what was intended, it is a `fix`.
-
-### 4.2 Large work that needs both code and docs: split
-
-When the change touches both code and docs but is large or has multiple subtasks, do not use a single `fix`. Split:
-
-1. Open a `doc-update` issue first to define the intended behavior. Code is written to satisfy documented specifications, not the other way around.
-2. Once the doc-update lands, open a `code-update` follow-up that implements against the new doc. The code-update's `task.md` references the doc-update's directory.
-
-This keeps each issue's type coherent, gives the doc work its own review surface, and produces a clean audit trail. The overhead of two issues is intentional — large cross-tree work benefits from the structure.
-
-### 4.3 Artifacts
-
-Required: `task.md`, `plan.md`, `progress.md`, `summary.md`. `progress.md` is where per-defect verification lives; `summary.md` stays focused on the resulting diff.
-
-### 4.4 Commit discipline
-
-Fixes usually commit per defect. Each commit message should name the defect (e.g. `fix(<area>): <short description> — <root-cause>`). When live verification reveals that an initial fix missed a sibling site, write a follow-up commit rather than amending — the audit trail matters more than the clean log.
-
-### 4.2 Artifacts
-
-Required: `task.md`, `plan.md`, `progress.md`, `summary.md`. `progress.md` is where per-defect verification lives; `summary.md` stays focused on the resulting diff.
-
-### 4.3 Commit discipline
-
-Fixes usually commit per defect. Each commit message should name the defect (e.g. `fix(<area>): <short description> — <root-cause>`). When live verification reveals that an initial fix missed a sibling site, write a follow-up commit rather than amending — the audit trail matters more than the clean log.
+Boundary: if the change is too large to fit "small and atomic", route via the right branch of the decision tree. If it touches both code and docs and is large, split (see §1 tree).
 
 ## 5. investigate
 
-Pure investigation or feasibility check. **Produces no file changes.** Findings live in `report.md`.
+Pure investigation, feasibility check, or lookup. **Produces no file changes.** Findings live in `report.md`.
 
-Used for:
+Used for: feasibility checks ("can we do X with tool Y?"), debugging investigations ("why does this sometimes fail under load?"), comparative analysis ("option A vs option B for our use case"), codebase audits ("audit the auth surface for outdated patterns"), environment checks ("is the remote server accessible from staging?"), quick lookups ("does this library already support X?"), pre-implementation research that does not yet warrant a permanent doc.
 
-- Feasibility checks ("can we do X with tool Y?").
-- Debugging investigations ("why does this sometimes fail under load?").
-- Comparative analysis ("option A vs option B for our use case").
-- Lookups ("does this library already support X?").
-- Pre-implementation research that does not yet warrant a permanent doc.
+Boundaries:
 
-### 5.1 Boundary with doc-update (research subtype)
+- Use `investigate` when findings are time-sensitive, specific to one issue's context, or the user does not want to commit to maintaining a permanent doc.
+- Use `doc-update` (research) when findings should outlive the issue, will be cited by future work, or the project maintains a research library under `docs/research/`.
+- A common flow: `investigate` concludes with a follow-up `doc-update` that promotes the findings to `docs/research/`.
 
-`doc-update` research writes findings to a permanent home under `docs/research/`. `investigate` keeps findings in `report.md` only. Use `investigate` when:
+What investigate is not:
 
-- The findings are likely time-sensitive (a decision will be made and the investigation becomes moot).
-- The findings are specific to one issue's context and do not generalize.
-- The user does not want to commit to maintaining a permanent doc.
-
-Use `doc-update` (research) when:
-
-- The findings should outlive the issue.
-- The findings will be cited by future work.
-- The project maintains a research library under `docs/research/`.
-
-A common flow: an `investigate` issue concludes with a follow-up `doc-update` issue that promotes the findings to `docs/research/`.
-
-### 5.2 Artifacts
-
-Required: `task.md`, `plan.md`, `report.md`.
-
-Not used: `progress.md`, `summary.md`. Investigations are usually single-session; if an investigation genuinely spans multiple sessions, treat the first session as a sub-investigation and the second as a follow-up issue. And because there are no file changes, there is nothing for a `summary.md` to summarize — the `report.md` IS the artifact.
-
-### 5.3 Template sections specific to investigate
-
-`task.md` frames the question semantically. `report.md` IS the deliverable — it has `Summary`, `Findings`, `Answer`, `Confidence and Limitations`, `Open Questions`, `Follow-Up Issues`. It does NOT have a `Files Changed` section.
-
-### 5.4 What investigate is not
-
-- It is not a license to skip documentation. If findings warrant a permanent record, open a `doc-update` follow-up.
-- It is not a synonym for "small". A two-week feasibility study is an `investigate`. A five-minute code change is a `code-update` or `fix`.
-- It is not for orphan work that does not fit elsewhere. If you cannot articulate the question the investigation answers, the issue is not ready to open.
-
-## 6. Anti-patterns
-
-- **Mixing types.** An issue starts as one type and ends as another. If scope changes type mid-flight, split the issue — do not silently relabel.
-- **Big fix touching both code and docs.** A `fix` that is large and touches both code and docs is not a valid fix. Split into a `doc-update` first (to define intended behavior), then a `code-update` follow-up. See §4.2.
-- **Fix-bloat.** A `fix` that grows new features or refactors surrounding code. Split before scope creeps.
-- **Code-update with doc changes.** A `code-update` that also touches docs. Move the doc work to a separate `doc-update` issue. (The reverse does not apply to a small `fix` — see §4.1.)
-- **Doc-update shipping code.** A `doc-update` issue that touches source files. Either the docs led to discoveries that need a separate `code-update`, or the type was wrong from the start.
-- **Investigate as a dumping ground.** An `investigate` issue that "explores X" without a clear question. If you cannot state the question, the issue is not ready.
-- **Skipping report.md on investigate.** An `investigate` issue with `task.md` and `plan.md` but no `report.md` is incomplete. The `report.md` IS the artifact — without it, nothing was produced.
+- Not a license to skip documentation. If findings warrant a permanent record, open a `doc-update` follow-up.
+- Not a synonym for "small". A two-week feasibility study is an `investigate`; a five-minute code change is a `code-update` or `fix`.
+- Not a dumping ground for orphan work. If you cannot state the question the investigation answers, the issue is not ready.
