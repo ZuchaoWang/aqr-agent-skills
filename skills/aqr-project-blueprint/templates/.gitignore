@@ -1,0 +1,29 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+.auth
+
+# Local editor / agent state
+.claude/settings.local.json
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+
+# Caches and scratch
+tmp/
+.cache/
+.playwright-mcp/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+node_modules/
+dist/
+build/
+coverage/
+
+# Data and logs (uncomment if the repo carries data files)
+#/data/
+#*.log
