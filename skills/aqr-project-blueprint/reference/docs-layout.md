@@ -1,5 +1,3 @@
-Status: active
-
 # Docs layout
 
 The recommended `docs/` structure. Six sections, each with its own role. Projects add per-section docs as the project grows; they do not create new top-level sections without good reason.

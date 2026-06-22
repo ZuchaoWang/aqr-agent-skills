@@ -1,5 +1,3 @@
-Status: active
-
 # Issue types
 
 Four issue types: `doc-update`, `code-update`, `fix`, `investigate`. Each type has its own template set under `templates/`. Pick the type based on what the issue primarily produces; the type determines which artifacts are required.

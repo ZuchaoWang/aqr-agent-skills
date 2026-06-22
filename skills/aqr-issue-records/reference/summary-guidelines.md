@@ -1,5 +1,3 @@
-Status: active
-
 # Summary guidelines
 
 `summary.md` is the artifact that future readers — the user, a reviewer, a future agent — will reach for first when they want to understand what an issue actually did. It deserves more care than `progress.md` because it is the durable summary.

@@ -1,5 +1,3 @@
-Status: active
-
 # Artifact meanings
 
 Five canonical artifacts. Each has a single role; mixing roles across files is the most common source of confused issue records.
@@ -96,13 +94,13 @@ Optional. Created when execution begins. The **live operational log** for resuma
 
 The first content after the `# Progress` title must be:
 
-```
+```markdown
 ## Status: in-progress
 ```
 
 or
 
-```
+```markdown
 ## Status: done
 ```
 

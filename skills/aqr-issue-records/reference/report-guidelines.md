@@ -1,5 +1,3 @@
-Status: active
-
 # Report guidelines
 
 `report.md` is the deliverable for `investigate` issues. There are no file changes elsewhere — the investigation produces no artifacts under `docs/` or in source code — so the quality of the issue equals the quality of the report.

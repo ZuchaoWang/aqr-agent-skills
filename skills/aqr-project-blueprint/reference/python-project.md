@@ -1,5 +1,3 @@
-Status: active
-
 # Python project reference
 
 Defaults for a Python service or library following the blueprint. Adjust per project; record deviations in `docs/conventions/backend-python.md`.

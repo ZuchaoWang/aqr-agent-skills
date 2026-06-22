@@ -1,5 +1,3 @@
-Status: active
-
 # Frontend (React + TypeScript) reference
 
 Defaults for a React + TypeScript frontend. Not prescriptive at the framework level — the blueprint recommends Vite + React + TypeScript as the starting point, but the conventions below apply regardless of the chosen framework.

@@ -1,5 +1,3 @@
-Status: active
-
 # Node project reference
 
 Defaults for a Node-based frontend or service following the blueprint. Adjust per project; record deviations in `docs/conventions/frontend-react.md` (frontend) or a project-specific backend doc.

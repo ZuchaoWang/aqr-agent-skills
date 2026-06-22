@@ -1,5 +1,3 @@
-Status: active
-
 # Root files
 
 The recommended root files for a project following the blueprint. Each file has a single role; projects add or skip files based on their stack.
