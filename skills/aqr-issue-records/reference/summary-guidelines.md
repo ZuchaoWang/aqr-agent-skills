@@ -1,12 +1,12 @@
 Status: active
 
-# Result guidelines
+# Summary guidelines
 
-`result.md` is the artifact that future readers — the user, a reviewer, a future agent — will reach for first when they want to understand what an issue actually did. It deserves more care than `progress.md` because it is the durable summary.
+`summary.md` is the artifact that future readers — the user, a reviewer, a future agent — will reach for first when they want to understand what an issue actually did. It deserves more care than `progress.md` because it is the durable summary.
 
-For `investigate` issues, `result.md` IS the deliverable — there are no file changes elsewhere, so the quality of the issue is the quality of `result.md`.
+This guide covers `summary.md` for `doc-update`, `code-update`, and `fix` issues. For investigate findings, see `report-guidelines.md`.
 
-## 1. What result.md is for
+## 1. What summary.md is for
 
 Three audiences, three uses:
 
@@ -18,13 +18,13 @@ Write for all three. Lead with the bottom line; back it with evidence; be grep-f
 
 ## 2. The Status header
 
-`result.md` starts with `Status: active`. Not `draft` — by the time result.md exists, the work is done and the summary is stable. Not `archived` — the result is still the current truth.
+`summary.md` starts with `Status: active`. Not `draft` — by the time summary.md exists, the work is done and the summary is stable. Not `archived` — the summary is still the current truth.
 
-The only time `result.md` carries a different status is when the work is later superseded by another issue; then this issue's `result.md` stays `active` and the superseding issue's docs reference it.
+The only time `summary.md` carries a different status is when the work is later superseded by another issue; then this issue's `summary.md` stays `active` and the superseding issue's docs reference it.
 
-## 3. Files Changed — for doc-update, code-update, fix
+## 3. Files Changed
 
-`Files Changed` is **always present** for these three types, even if the list is short. (If the issue produced no file changes, it should have been an `investigate`.)
+`Files Changed` is **always present** for these three types, even if the list is short. (If the issue produced no file changes, it should have been an `investigate` — see `report-guidelines.md`.)
 
 ### 3.1 Structure
 
@@ -79,9 +79,9 @@ The bad version forces a reviewer to diff the file to know what to look at. The 
 
 Every file the diff touched belongs in `Files Changed`, including dotfiles, configs, and test fixtures. Group by tree (`backend/`, `frontend/`, `docs/`, etc.) inside each subsection when the list is long.
 
-Omitting the dotfile edits or the test fixture edits makes the result harder to audit and harder to grep months later.
+Omitting the dotfile edits or the test fixture edits makes the summary harder to audit and harder to grep months later.
 
-## 4. Summary
+## 4. Summary section
 
 One paragraph. Three sentences max in most cases:
 
@@ -147,36 +147,20 @@ The suggested type helps the next agent pick the right template.
 
 If there are no follow-ups, write "None."
 
-## 9. investigate results — different shape
+## 9. Anti-patterns
 
-`investigate` issues do not have `Files Changed` or `Verification Notes`. Their `result.md` is structured around the answer:
-
-- `Summary` — the question, the bottom-line answer, the confidence level.
-- `Findings` — the actual investigation output, structured as fits the question. This IS the deliverable.
-- `Answer` — explicit answer to the question from `task.md`. If "it depends", state the conditions.
-- `Confidence and Limitations` — how confident, what would change the answer, what was NOT checked.
-- `Open Questions` — new questions surfaced.
-- `Follow-Up Issues` — same format as other types.
-
-The bar for an investigate result is higher than for other types, because the result IS the artifact. A vague or hedged investigate result is a failed issue, even if the investigation itself was thorough — write the answer clearly even when the answer is "we cannot know yet, because `<reason>`".
-
-## 10. Anti-patterns
-
-- **Mirroring progress.md.** result.md is not a copy of progress.md. progress.md is the live log; result.md is the curated summary. Drop intermediate states that did not survive to the final result.
-- **No verification notes.** "Done" without evidence is not a result. If verification was informal (manual check, visual inspection), say so explicitly.
-- **Hidden limitations.** A result.md that claims everything works, with verification notes that only check half the acceptance criteria, is dishonest. State what was not checked.
+- **Mirroring progress.md.** `summary.md` is not a copy of `progress.md`. `progress.md` is the live log; `summary.md` is the curated summary. Drop intermediate states that did not survive to the final result.
+- **No verification notes.** "Done" without evidence is not a summary. If verification was informal (manual check, visual inspection), say so explicitly.
+- **Hidden limitations.** A `summary.md` that claims everything works, with verification notes that only check half the acceptance criteria, is dishonest. State what was not checked.
 - **Vague follow-ups.** "Refactor later" is noise. Either make it specific or drop it.
-- **Missing files.** Every touched file belongs in the file list. Omitting the dotfile edits or the test fixture edits makes the result harder to audit.
+- **Missing files.** Every touched file belongs in the file list. Omitting the dotfile edits or the test fixture edits makes the summary harder to audit.
 - **Modifications without locations.** "Updated `foo.py`" forces the reviewer to diff. Always name the function, class, or section.
-- **Investigate results that hedge without saying why.** "Maybe X, maybe Y" is not an answer. State which is more likely and on what evidence; or state what is blocking the answer.
 
-## 11. Quick checklist before marking done
+## 10. Quick checklist before marking done
 
-Before flipping `progress.md` to `## Status: done` (or writing `result.md` from scratch):
+Before flipping `progress.md` to `## Status: done` (or writing `summary.md` from scratch):
 
-For doc-update / code-update / fix:
-
-- [ ] Summary states what shipped, not what was attempted.
+- [ ] Summary section states what shipped, not what was attempted.
 - [ ] Every file the diff touched is listed under `Files Changed`.
 - [ ] Every Modified entry names a location (function, class, section, or line range).
 - [ ] Every acceptance criterion has a matching verification note.
@@ -184,13 +168,3 @@ For doc-update / code-update / fix:
 - [ ] Every discovered next-step is in Follow-Up Issues, or the section says "None."
 - [ ] No reference to "TODO", "WIP", or "to be determined" remains.
 - [ ] Cross-references to other issues, docs, or commits resolve (no broken paths).
-
-For investigate:
-
-- [ ] Summary states the bottom-line answer and confidence level.
-- [ ] Findings are structured (numbered, table, timeline, or matrix — not a wall of prose).
-- [ ] Each finding has evidence (file:line, command output, doc citation).
-- [ ] Answer section explicitly answers the question from task.md.
-- [ ] Confidence and Limitations names what was NOT checked.
-- [ ] Open Questions are specific enough to become new issues.
-- [ ] Follow-Up Issues name a suggested type.

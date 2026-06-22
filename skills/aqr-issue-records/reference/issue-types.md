@@ -2,11 +2,11 @@ Status: active
 
 # Issue types
 
-Four issue types: `doc-update`, `code-update`, `fix`, `investigate`. Each type has its own template set under `templates/`. Pick the type based on what the issue primarily produces; the type determines which artifacts are required and which sections the templates emphasize.
+Four issue types: `doc-update`, `code-update`, `fix`, `investigate`. Each type has its own template set under `templates/`. Pick the type based on what the issue primarily produces; the type determines which artifacts are required.
 
 ## 1. Decision tree
 
-```
+```text
 Does the issue produce any file change in the repo?
 ├── no → investigate
 └── yes → Is the issue primarily fixing something broken?
@@ -34,7 +34,7 @@ Used for:
 
 ### 2.1 Boundary with investigate
 
-`investigate` produces findings but no file changes; the findings live in `result.md`. `doc-update` produces permanent doc files under `docs/`. A common flow: an `investigate` issue answers a question, and one of its follow-ups is a `doc-update` that writes the answer into `docs/research/` or `docs/architecture/` so the answer outlives the issue record.
+`investigate` produces findings but no file changes; the findings live in `report.md`. `doc-update` produces permanent doc files under `docs/`. A common flow: an `investigate` issue answers a question, and one of its follow-ups is a `doc-update` that writes the answer into `docs/research/` or `docs/architecture/` so the answer outlives the issue record.
 
 ### 2.2 Boundary with code-update
 
@@ -42,13 +42,13 @@ Used for:
 
 ### 2.3 Artifacts
 
-Required: `task.md`, `plan.md`, `result.md`.
+Required: `task.md`, `plan.md`, `summary.md`.
 
 Recommended for large doc sets: `progress.md`. Doc work that spans more than a handful of files, or that spans multiple sessions, benefits from a live checkpoint as much as code work does.
 
 ### 2.4 Template sections specific to doc-update
 
-`task.md` describes the doc area semantically (Goal, Context, Scope as prose, Out of Scope, Acceptance Criteria, Open Questions) — it does not enumerate files. `plan.md` enumerates the exact docs to create, update, or delete under `Planned Documentation Changes`. `result.md` lists every touched file under `Files Changed` with per-section locations for modifications.
+`task.md` describes the doc area semantically (Goal, Context, Scope as prose, Out of Scope, Acceptance Criteria, Open Questions) — it does not enumerate files. `plan.md` enumerates the exact docs to create, update, or delete under `Planned Documentation Changes`. `summary.md` lists every touched file under `Files Changed` with per-section locations for modifications.
 
 ## 3. code-update
 
@@ -58,7 +58,7 @@ The reasoning: code and docs change for different reasons, on different cadences
 
 ### 3.1 Artifacts
 
-Required: `task.md`, `plan.md`, `result.md`.
+Required: `task.md`, `plan.md`, `summary.md`.
 
 Recommended: `progress.md` for any non-trivial implementation. Code work has more failure modes than doc work — silent regressions, partial migrations, cascading test failures — and a live checkpoint makes resume and review meaningfully easier.
 
@@ -90,9 +90,9 @@ The boundary with `code-update`: if the change introduces new behavior, it is a 
 
 ### 4.2 Artifacts
 
-Required: `task.md`, `plan.md`, `result.md`.
+Required: `task.md`, `plan.md`, `summary.md`.
 
-Recommended: `progress.md` — fixes often reveal sibling call sites with the same bug, and tracking per-defect verification in `progress.md` keeps the result.md cleaner.
+Recommended: `progress.md` — fixes often reveal sibling call sites with the same bug, and tracking per-defect verification in `progress.md` keeps the `summary.md` cleaner.
 
 ### 4.3 Commit discipline
 
@@ -100,7 +100,7 @@ Fixes usually commit per defect. Each commit message should name the defect (e.g
 
 ## 5. investigate
 
-Pure investigation or feasibility check. **Produces no file changes.** Findings live in `result.md`.
+Pure investigation or feasibility check. **Produces no file changes.** Findings live in `report.md`.
 
 Used for:
 
@@ -112,7 +112,7 @@ Used for:
 
 ### 5.1 Boundary with doc-update (research subtype)
 
-`doc-update` research writes findings to a permanent home under `docs/research/`. `investigate` keeps findings in `result.md` only. Use `investigate` when:
+`doc-update` research writes findings to a permanent home under `docs/research/`. `investigate` keeps findings in `report.md` only. Use `investigate` when:
 
 - The findings are likely time-sensitive (a decision will be made and the investigation becomes moot).
 - The findings are specific to one issue's context and do not generalize.
@@ -128,15 +128,15 @@ A common flow: an `investigate` issue concludes with a follow-up `doc-update` is
 
 ### 5.2 Artifacts
 
-Required: `task.md`, `result.md`.
+Required: `task.md`, `report.md`.
 
 Optional: `plan.md` — only for non-trivial investigations where the approach itself deserves review (multiple stages, expensive experiments, controversial sources). For simple lookups, skip `plan.md`.
 
-Not used: `progress.md`. Investigations are usually single-session; if an investigation genuinely spans multiple sessions, treat the first session as a sub-investigation and the second as a follow-up issue.
+Not used: `progress.md`, `summary.md`. Investigations are usually single-session; if an investigation genuinely spans multiple sessions, treat the first session as a sub-investigation and the second as a follow-up issue. And because there are no file changes, there is nothing for a `summary.md` to summarize — the `report.md` IS the artifact.
 
 ### 5.3 Template sections specific to investigate
 
-`task.md` frames the question semantically. `result.md` IS the deliverable — it has `Summary`, `Findings`, `Answer`, `Confidence and Limitations`, `Open Questions`, `Follow-Up Issues`. It does NOT have a `Files Changed` section.
+`task.md` frames the question semantically. `report.md` IS the deliverable — it has `Summary`, `Findings`, `Answer`, `Confidence and Limitations`, `Open Questions`, `Follow-Up Issues`. It does NOT have a `Files Changed` section.
 
 ### 5.4 What investigate is not
 
@@ -151,4 +151,4 @@ Not used: `progress.md`. Investigations are usually single-session; if an invest
 - **Code-update with doc changes.** A `code-update` that also touches docs. Move the doc work to a separate `doc-update` issue. (The reverse does not apply to `fix` — see §4.1.)
 - **Doc-update shipping code.** A `doc-update` issue that touches source files. Either the docs led to discoveries that need a separate `code-update`, or the type was wrong from the start.
 - **Investigate as a dumping ground.** An `investigate` issue that "explores X" without a clear question. If you cannot state the question, the issue is not ready.
-- **Skipping result.md on investigate.** An `investigate` issue with `task.md` and `plan.md` but no `result.md` is incomplete. The `result.md` IS the artifact — without it, nothing was produced.
+- **Skipping report.md on investigate.** An `investigate` issue with `task.md` and `plan.md` but no `report.md` is incomplete. The `report.md` IS the artifact — without it, nothing was produced.
