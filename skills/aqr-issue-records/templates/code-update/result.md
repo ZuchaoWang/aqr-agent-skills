@@ -16,9 +16,19 @@ Status: active
 
 ## Files Changed
 
-<!-- Group by tree (backend/, frontend/, docs/, etc.). Use the format: path (one-line role). -->
+### Created
 
-- `path/to/file` — one-line role.
+- `path/to/new/file` — one-line role.
+
+### Modified
+
+- `path/to/existing/file`
+  - `<function or class>` — what changed.
+  - `<function or class>` — what changed.
+
+### Deleted
+
+- `path/to/removed/file` — reason.
 
 ## Verification Notes
 
@@ -33,4 +43,4 @@ Status: active
 
 ## Follow-Up Issues
 
-<!-- Natural follow-ups discovered during this work. Each item: short title + one-line rationale. -->
+<!-- Natural follow-ups discovered during this work. Each item: short title + one-line rationale + suggested type. If the change surfaces doc drift, open a doc-update issue rather than touching docs here. -->

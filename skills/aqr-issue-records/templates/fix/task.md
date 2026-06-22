@@ -4,7 +4,7 @@ Status: draft
 
 ## Goal
 
-<!-- One paragraph: which defect set is being fixed, what "all fixed" looks like. Each defect lands in its own commit unless the plan explicitly says otherwise. -->
+<!-- One paragraph: which defect set is being fixed and what "all fixed" looks like. Each defect lands in its own commit unless the plan explicitly says otherwise. -->
 
 ## Context
 
@@ -14,7 +14,7 @@ Status: draft
 
 ### Defects
 
-<!-- Numbered list. Each defect: (a) symptom, (b) root cause with file:line, (c) fix shape, (d) spec or acceptance reference if applicable. -->
+<!-- Numbered list. Each defect is named and described semantically: symptom, root cause (with file:line), fix shape, spec or acceptance reference if applicable. The exact files and locations to touch belong in plan.md. -->
 
 1. **<short name>** — symptom. Root cause at `path/to/file:LL`. Fix shape. Spec: `docs/...md §X`.
 2. **<short name>** — symptom. Root cause at `path/to/file:LL`. Fix shape. Spec: `docs/...md §X`.
@@ -28,6 +28,8 @@ All file changes confined to `<tree>/`.
 ## Out of Scope
 
 <!-- Redesign, refactoring beyond the minimum needed for the fix, trees not touched, non-relevant defects, deferred work. -->
+
+- ...
 
 ## Acceptance Criteria
 

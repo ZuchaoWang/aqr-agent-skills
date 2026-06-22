@@ -32,7 +32,9 @@ disable-model-invocation: <true | false | omit>
 ## Skills currently in this repo
 
 - `aqr-project-blueprint` — Scaffolds or compares a project against the recommended project/doc/code convention blueprint. **Manual-only.** Defines project shape: root files, docs layout, code/doc conventions. Does not mention issues or workflow.
-- `aqr-issue-records` — Defines the repo-visible issue record format (`task.md` / `plan.md` / `progress.md` / `result.md`) and three issue types (`doc-update`, `code-update`, `fix`). Auto-invocable when a project already has matching issue folders or declares use of the format.
+- `aqr-issue-records` — Defines the repo-visible issue record format (`task.md` / `plan.md` / `progress.md` / `result.md`) and four issue types (`doc-update`, `code-update`, `fix`, `investigate`). **Manual-only.** Defines artifact templates and the contract between semantic task definition (task.md) and enumerative planning (plan.md).
+
+Both skills are manual-only. The host agent will not auto-invoke them based on context; the user must invoke them via slash command.
 
 The split is deliberate: project shape and issue format are independent concerns. A project can adopt either without the other.
 

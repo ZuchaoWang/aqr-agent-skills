@@ -4,7 +4,7 @@ Status: draft
 
 ## Goal
 
-<!-- One paragraph: which docs change, why now, and what "done" looks like. State the audience for each doc if it is not obvious (other agents, future contributors, end users). -->
+<!-- One paragraph: what doc area changes, why now, and what "done" looks like. State the audience for the docs if it is not obvious (other agents, future contributors, end users). -->
 
 ## Context
 
@@ -12,20 +12,13 @@ Status: draft
 
 ## Scope
 
-### Docs to create or update
-
-<!-- Bullet list. Each entry: relative path → one-line role. -->
-
-- `docs/<area>/<file>.md` — one-line role.
-- `docs/<area>/<file>.md` — one-line role.
-
-### Docs to delete
-
-<!-- List stale or placeholder docs being removed. Each entry: path → why it is being deleted. -->
+<!-- Prose. What kinds of docs change, at a high level. Do NOT enumerate every file here — that belongs in plan.md. -->
 
 ## Out of Scope
 
-<!-- What this issue will not touch. Code, tests, build config, other doc areas, future work. -->
+<!-- Code, tests, build config, other doc areas, future work. Bullet list. -->
+
+- ...
 
 ## Acceptance Criteria
 

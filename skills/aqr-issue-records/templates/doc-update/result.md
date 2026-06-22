@@ -6,17 +6,21 @@ Status: active
 
 <!-- One paragraph: what landed, what was deleted, what was verified. Reference the issue directory (issues/YYYYMM/<id>/) so a reader can find the original task and plan. -->
 
-## Files Created
+## Files Changed
+
+### Created
 
 - `docs/<area>/<file>.md` — one-line role.
 
-## Files Updated
+### Modified
 
-- `docs/<area>/<file>.md` — what changed in one line.
+- `docs/<area>/<file>.md`
+  - `<section heading>` — what changed.
+  - `<section heading>` — what changed.
 
-## Files Deleted
+### Deleted
 
-- `docs/<area>/<file>.md` — why.
+- `docs/<area>/<file>.md` — reason.
 
 ## Verification Notes
 
@@ -31,4 +35,4 @@ Status: active
 
 ## Follow-Up Issues
 
-<!-- Natural follow-ups discovered during this work. Each item: short title + one-line rationale. The next agent can open these as new issues. -->
+<!-- Natural follow-ups discovered during this work. Each item: short title + one-line rationale + suggested type (doc-update / code-update / fix / investigate). -->

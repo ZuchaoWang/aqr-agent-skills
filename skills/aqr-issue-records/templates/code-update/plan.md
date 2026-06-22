@@ -10,10 +10,6 @@ Status: draft
 
 <!-- Per-module notes. Current public surface, current data flow, affected call sites, constraints discovered. -->
 
-## Planned Documentation Changes
-
-<!-- Usually empty or a one-line "no doc changes". If non-empty: doc path → one-line reason. -->
-
 ## Planned Code Changes
 
 <!-- Per-module. For each: file path → what changes → expected public-surface delta. -->

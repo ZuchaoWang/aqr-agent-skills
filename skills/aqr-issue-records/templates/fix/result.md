@@ -14,7 +14,19 @@ Status: active
 
 ## Files Changed
 
-- `path/to/file` — one-line role.
+### Created
+
+- `path/to/new/file` — one-line role.
+
+### Modified
+
+- `path/to/existing/file`
+  - `<function or section, with line range if useful>` — what changed.
+  - `<function or section>` — what changed.
+
+### Deleted
+
+- `path/to/removed/file` — reason.
 
 ## Verification Notes
 
@@ -29,4 +41,4 @@ Status: active
 
 ## Follow-Up Issues
 
-<!-- New issues this fix surfaces. Each item: short title + one-line rationale. -->
+<!-- New issues this fix surfaces. Each item: short title + one-line rationale + suggested type. -->

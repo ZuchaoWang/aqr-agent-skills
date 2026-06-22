@@ -12,21 +12,13 @@ Status: draft
 
 ## Scope
 
-### Code to add or change
-
-<!-- Bullet list. Each entry: path or module → one-line role of the change. -->
-
-### Tests to add or change
-
-<!-- Bullet list. Each entry: test path → behavior it locks in. -->
-
-### Docs to update
-
-<!-- Only if behavior/API/module docs must change to stay consistent. Each entry: doc path → one-line reason. -->
+<!-- Prose. What behavior changes at a high level. Do NOT enumerate files here — that belongs in plan.md. -->
 
 ## Out of Scope
 
-<!-- Refactoring not required by this change, unrelated features, future work, trees that will not be touched. -->
+<!-- Refactoring not required by this change, unrelated features, future work, trees that will not be touched, doc changes (those belong in a separate doc-update issue). -->
+
+- ...
 
 ## Acceptance Criteria
 
