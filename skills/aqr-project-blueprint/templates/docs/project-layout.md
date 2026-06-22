@@ -1,5 +1,3 @@
-Status: active
-
 # Project layout
 
 Top-level layout of this repository. One-line annotation per directory and root file. Update this doc whenever the top-level shape changes.

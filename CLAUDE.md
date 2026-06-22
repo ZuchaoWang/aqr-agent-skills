@@ -40,17 +40,17 @@ The split is deliberate: project shape and issue format are independent concerns
 
 ## Conventions inside skill files
 
-- All `templates/` and `reference/` markdown files start with a `Status:` header on the first line. Statuses follow the same lifecycle as project docs: `placeholder`, `draft`, `active`, `archived`.
+- Markdown files start with a top-level heading (`# Title`), no `Status:` header. Lifecycle signals live in filesystem location (e.g. `docs/archived/`) or git history, not in a header.
 - Templates use HTML comments (`<!-- ... -->`) as inline guidance for the user filling them in. Comments do not render in markdown preview and can be stripped before commit.
 - Reference docs use numbered headings and `-` bullets. No `---` horizontal separators.
-- `SKILL.md` files use YAML frontmatter, not a `Status:` header — they are skill definitions, not project docs.
+- `SKILL.md` files use YAML frontmatter — they are skill definitions, distinct from project docs.
 
 ## Editing skills
 
 When editing a skill:
 
 1. Read the existing `SKILL.md` first to understand the skill's scope and invocation policy.
-2. Match the conventions of existing files in the same skill (status header, numbered headings, `-` bullets, no `---`).
+2. Match the conventions of existing files in the same skill (numbered headings, `-` bullets, no `---`, no `Status:` header).
 3. Cross-check the split: `aqr-project-blueprint` files do not mention issues; `aqr-issue-records` files do not prescribe project shape.
 4. If a template or reference change affects invocation behavior, update `SKILL.md` accordingly.
 
@@ -70,6 +70,6 @@ Copy the skill directory verbatim. The host agent reads `SKILL.md` to decide whe
 There is no test suite. Verification is by inspection:
 
 - `find skills -type f | sort` — check the file tree is intact.
-- `grep -rn "Status:" skills/*/templates skills/*/reference | head` — confirm every template and reference doc carries the status header.
+- `grep -rn "^Status:" skills/` — should return nothing (Status header convention is retired). The only legitimate Status reference is the machine-checked `## Status: in-progress` / `## Status: done` line inside `progress.md` templates.
 - `grep -n "^---$" skills/*/SKILL.md` — confirm every SKILL.md has YAML frontmatter (two `---` lines).
 - Read each `SKILL.md` end-to-end before considering the skill ready.

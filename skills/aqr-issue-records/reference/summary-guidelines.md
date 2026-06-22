@@ -14,17 +14,11 @@ Three audiences, three uses:
 
 Write for all three. Lead with the bottom line; back it with evidence; be grep-friendly.
 
-## 2. The Status header
-
-`summary.md` starts with `Status: active`. Not `draft` — by the time summary.md exists, the work is done and the summary is stable. Not `archived` — the summary is still the current truth.
-
-The only time `summary.md` carries a different status is when the work is later superseded by another issue; then this issue's `summary.md` stays `active` and the superseding issue's docs reference it.
-
-## 3. Files Changed
+## 2. Files Changed
 
 `Files Changed` is **always present** for these three types, even if the list is short. (If the issue produced no file changes, it should have been an `investigate` — see `report-guidelines.md`.)
 
-### 3.1 Structure
+### 2.1 Structure
 
 ```markdown
 ## Files Changed
@@ -46,7 +40,7 @@ The only time `summary.md` carries a different status is when the work is later 
 
 Omit empty subsections. Do not write "None." under each — the absence of the subsection is the signal.
 
-### 3.2 Modifications must name locations
+### 2.2 Modifications must name locations
 
 For every Modified entry, name **where in the file** the change happened. Acceptable location anchors:
 
@@ -73,13 +67,13 @@ Bad:
 
 The bad version forces a reviewer to diff the file to know what to look at. The good version lets them navigate directly.
 
-### 3.3 Be exhaustive
+### 2.3 Be exhaustive
 
 Every file the diff touched belongs in `Files Changed`, including dotfiles, configs, and test fixtures. Group by tree (`backend/`, `frontend/`, `docs/`, etc.) inside each subsection when the list is long.
 
 Omitting the dotfile edits or the test fixture edits makes the summary harder to audit and harder to grep months later.
 
-## 4. Summary section
+## 3. Summary section
 
 One paragraph. Three sentences max in most cases:
 
@@ -89,7 +83,7 @@ One paragraph. Three sentences max in most cases:
 
 Reference the issue directory (`issues/YYYYMM/<id>/`) so a reader can find the original task and plan. Reference any prior issue the work built on.
 
-## 5. Commits
+## 4. Commits
 
 Include a commit table only if the work spanned multiple commits and the mapping matters for review or audit. For a single-commit issue, omit the table and reference the SHA in Summary.
 
@@ -103,7 +97,7 @@ Format:
 
 The "Defect / Step" column should match the `## Execution Steps` from `plan.md` so a reader can cross-reference. Never amend a published commit; if live verification reveals a follow-up is needed, add a new row.
 
-## 6. Verification Notes
+## 5. Verification Notes
 
 Map one-to-one to the acceptance criteria in `task.md`. Number them to match. For each criterion:
 
@@ -123,7 +117,7 @@ Good verification note:
 1. `npm test` exits 0; 31/31 tests pass (was 28/28 before this issue; the 3 new tests cover the throttle-after-unmount edge case).
 ```
 
-## 7. Known Limitations
+## 6. Known Limitations
 
 Each item should be:
 
@@ -133,7 +127,7 @@ Each item should be:
 
 If there are no known limitations, write "None." Do not omit the section. An empty section signals that the question was asked and answered.
 
-## 8. Follow-Up Issues
+## 7. Follow-Up Issues
 
 Each item should be specific enough to become a new issue directory without further clarification. Format:
 
@@ -145,7 +139,7 @@ The suggested type helps the next agent pick the right template.
 
 If there are no follow-ups, write "None."
 
-## 9. Anti-patterns
+## 8. Anti-patterns
 
 - **Mirroring progress.md.** `summary.md` is not a copy of `progress.md`. `progress.md` is the live log; `summary.md` is the curated summary. Drop intermediate states that did not survive to the final result.
 - **No verification notes.** "Done" without evidence is not a summary. If verification was informal (manual check, visual inspection), say so explicitly.
@@ -154,7 +148,7 @@ If there are no follow-ups, write "None."
 - **Missing files.** Every touched file belongs in the file list. Omitting the dotfile edits or the test fixture edits makes the summary harder to audit.
 - **Modifications without locations.** "Updated `foo.py`" forces the reviewer to diff. Always name the function, class, or section.
 
-## 10. Quick checklist before marking done
+## 9. Quick checklist before marking done
 
 Before flipping `progress.md` to `## Status: done` (or writing `summary.md` from scratch):
 

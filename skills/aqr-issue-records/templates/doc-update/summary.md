@@ -1,6 +1,4 @@
-Status: active
-
-# Result
+# Summary
 
 ## Summary
 

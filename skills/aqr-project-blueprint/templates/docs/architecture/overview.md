@@ -1,5 +1,3 @@
-Status: placeholder
-
 # Architecture overview
 
 ## 1. Summary

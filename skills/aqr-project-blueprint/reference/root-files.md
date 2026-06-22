@@ -35,7 +35,7 @@ Forces LF line endings on checkout regardless of contributor platform. Marks bin
 
 ### 1.6 .markdownlint.json
 
-Disables markdownlint rules incompatible with the project doc style: tight list-spacing (MD007), hard line-length limit (MD013), blank-line requirements around headings/lists (MD022, MD031, MD032), duplicate-heading within a document (MD024), etc. The status header convention (`Status:` as the first line) intentionally triggers MD041 — the project convention wins over the linter default, and projects accept that single warning class.
+Disables markdownlint rules incompatible with the project doc style: tight list-spacing (MD007), hard line-length limit (MD013), blank-line requirements around headings/lists (MD022, MD031, MD032), duplicate-heading within a document (MD024), etc.
 
 ## 2. Files added per stack
 

@@ -1,5 +1,3 @@
-Status: placeholder
-
 # Project overview
 
 ## 1. Goal

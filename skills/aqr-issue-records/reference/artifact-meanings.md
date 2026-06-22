@@ -209,7 +209,6 @@ Because `report.md` IS the artifact (not a description of artifacts produced els
 
 - `Files Changed` (the investigation produced no file changes — if it did, the type was wrong).
 - `Verification Notes` mapped to acceptance criteria (the role is played by the evidence chain inside `Findings`).
-- A `Status:` header line other than `Status: active` (the report is stable once written).
 
 ## 6. Reading order
 

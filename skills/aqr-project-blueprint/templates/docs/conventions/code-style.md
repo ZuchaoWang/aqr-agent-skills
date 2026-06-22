@@ -1,5 +1,3 @@
-Status: active
-
 # Code style
 
 Language-agnostic rules apply project-wide. Per-language rules live in `frontend-react.md` and `backend-python.md` (include only the language-specific docs that apply to this project).

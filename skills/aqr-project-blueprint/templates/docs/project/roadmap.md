@@ -1,5 +1,3 @@
-Status: placeholder
-
 # Roadmap
 
 Forward-looking milestones. Update as priorities shift; mark past milestones as Done with their completion date.

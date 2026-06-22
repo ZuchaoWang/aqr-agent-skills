@@ -1,5 +1,3 @@
-Status: placeholder
-
 # Frontend (React + TypeScript)
 
 Include this doc only if the project has a React frontend. Otherwise delete it and remove the reference from `docs/index.md`.

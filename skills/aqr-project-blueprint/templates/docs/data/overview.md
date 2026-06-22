@@ -1,5 +1,3 @@
-Status: placeholder
-
 # Data overview
 
 Per-dataset documentation: where the data comes from, what shape it has, how it is processed, and what is known about its quality. One doc per dataset under `data/`.
@@ -14,8 +12,6 @@ Per-dataset documentation: where the data comes from, what shape it has, how it 
 Each per-dataset doc covers:
 
 ```markdown
-Status: draft
-
 # <Dataset>
 
 ## Source

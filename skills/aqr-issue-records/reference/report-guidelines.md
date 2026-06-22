@@ -14,15 +14,9 @@ Three audiences, three uses:
 
 Write for all three. The report should stand on its own — a reader should not need to consult `task.md` or `plan.md` to understand the answer.
 
-## 2. The Status header
+## 2. Section-by-section guidance
 
-`report.md` starts with `Status: active`. Not `draft` — by the time report.md exists, the investigation is complete and the answer is settled. Not `archived` — the answer is still the current truth.
-
-The only time `report.md` carries a different status is when the answer is later superseded by another investigation; then this issue's `report.md` stays `active` and the superseding issue's docs reference it. If the answer gets promoted to a permanent doc under `docs/research/`, the report stays `active` and the doc references it; the report is not flipped to `archived`.
-
-## 3. Section-by-section guidance
-
-### 3.1 Summary
+### 2.1 Summary
 
 One paragraph. Three sentences max in most cases:
 
@@ -32,7 +26,7 @@ One paragraph. Three sentences max in most cases:
 
 A reader who only has time for one paragraph should leave with the answer and a sense of how much to trust it. Do not bury the answer behind setup or context — the question was already stated in `task.md`.
 
-### 3.2 Findings
+### 2.2 Findings
 
 The body of the report. Structure varies by question — numbered findings, comparison table, timeline, decision matrix. Pick what fits.
 
@@ -57,7 +51,7 @@ The library supports the use case.
 
 If the investigation involved running experiments or commands, paste the relevant output. If the investigation involved reading code, cite file:line. If the investigation involved external sources, link them.
 
-### 3.3 Answer
+### 2.3 Answer
 
 Explicit answer to the question from `task.md`. State it directly; do not make the reader synthesize it from the findings.
 
@@ -73,11 +67,11 @@ If the answer is "we cannot know yet", say what is blocking:
 We cannot know yet whether the production deployment will hit the same bottleneck. The investigation reproduced the bottleneck in staging but production has different I/O characteristics. Recommend a follow-up investigate issue once production profiling data is available.
 ```
 
-### 3.4 Confidence and Limitations
+### 2.4 Confidence and Limitations
 
 How confident is the answer, and why. What would change it. What did the investigation NOT check that a reader might assume was checked.
 
-Be specific. "Medium confidence" alone is not useful. "Medium confidence — the bench test is conclusive but the production deployment may behave differently because <reason>" is.
+Be specific. "Medium confidence" alone is not useful. "Medium confidence — the bench test is conclusive but the production deployment may behave differently because `<reason>`" is.
 
 Things to call out explicitly:
 
@@ -86,13 +80,13 @@ Things to call out explicitly:
 - Versions that may have changed since the investigation.
 - Assumptions that, if wrong, would change the answer.
 
-### 3.5 Open Questions
+### 2.5 Open Questions
 
 New questions surfaced by the investigation. Each item should be specific enough to become a new `investigate` issue if the user wants to pursue it.
 
 Vague open questions are noise. "More research needed" is not a question; "does the bottleneck persist under load X?" is.
 
-### 3.6 Follow-Up Issues
+### 2.6 Follow-Up Issues
 
 If findings warrant action — code change, doc change, fix, or deeper investigation — list them here as new issue candidates. Format:
 
@@ -106,7 +100,7 @@ A common follow-up for investigate: a `doc-update` that promotes the findings to
 
 If there are no follow-ups, write "None."
 
-## 4. Anti-patterns
+## 3. Anti-patterns
 
 - **Hedging without saying why.** "Maybe X, maybe Y" is not an answer. State which is more likely and on what evidence; or state what is blocking the answer.
 - **Findings without evidence.** Each finding needs a citation, command output, or experimental result. "I checked and it's fine" is not evidence.
@@ -116,7 +110,7 @@ If there are no follow-ups, write "None."
 - **No follow-up when findings clearly warrant action.** If the investigation concluded "this is broken and needs fixing", the fix is a follow-up issue — list it.
 - **Mirroring plan.md.** The report is the deliverable, not a log of the investigation process. Process notes belong in `plan.md` (if anywhere); findings belong in the report.
 
-## 5. Quick checklist before publishing
+## 4. Quick checklist before publishing
 
 Before considering the investigate issue done:
 

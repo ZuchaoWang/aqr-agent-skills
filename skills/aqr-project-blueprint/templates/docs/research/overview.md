@@ -1,5 +1,3 @@
-Status: placeholder
-
 # Research overview
 
 Background research, related-work comparisons, and exploratory notes. Research docs inform design decisions; they are not specs. A research note may be marked `archived` once its conclusions have been folded into `architecture/` or `implementation/`.

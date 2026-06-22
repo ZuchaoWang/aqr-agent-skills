@@ -1,5 +1,3 @@
-Status: active
-
 # Documentation Index
 
 This is the authoritative documentation map for the project. New readers start here. Update this file whenever a doc is added, removed, or moves between sections.

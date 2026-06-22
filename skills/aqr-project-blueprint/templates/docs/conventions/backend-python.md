@@ -1,5 +1,3 @@
-Status: placeholder
-
 # Backend (Python)
 
 Include this doc only if the project has a Python backend. Otherwise delete it and remove the reference from `docs/index.md`.

@@ -1,5 +1,3 @@
-Status: active
-
 # Testing
 
 What the project tests, how it tests, and what it does not test.

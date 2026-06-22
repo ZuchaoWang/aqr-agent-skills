@@ -1,5 +1,3 @@
-Status: placeholder
-
 # Implementation overview
 
 Per-module implementation reference. Each top-level directory or major module in the source tree gets a one-line role here and a dedicated per-module doc elsewhere under `implementation/`.
@@ -17,8 +15,6 @@ Per-module implementation reference. Each top-level directory or major module in
 Each per-module doc follows:
 
 ```markdown
-Status: draft
-
 # <Module>
 
 ## Description
