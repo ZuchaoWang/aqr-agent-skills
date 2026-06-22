@@ -28,6 +28,17 @@ issues/<YYYYMM>/<issue-id>/
 
 The `issues/<YYYYMM>/` grouping is for human navigation and bulk review. It carries no semantic meaning beyond that.
 
+## Issue types
+
+Four types. Each type has its own template set under `templates/`.
+
+- **doc-update** — Docs-only issue. Used for product specs, architecture docs, implementation docs, research notes that get a permanent home under `docs/`, design decisions, data notes, and convention updates.
+- **code-update** — Code and test change issue. Code-only — if a doc needs to change to stay consistent with the new code, open a separate `doc-update` issue rather than expanding this issue's scope.
+- **fix** — Any small, atomic change. Can span code, tests, docs, config, infra, and data in one issue, as long as it is one cohesive change with no subtasks. Large work follows the non-fix branch of the decision tree (`code-update` or `doc-update`, split if it touches both).
+- **investigate** — Pure investigation, feasibility check, or lookup. Produces findings but no file changes. Findings live in `report.md`. If findings deserve a permanent home under `docs/`, follow up with a `doc-update` issue.
+
+See `reference/issue-types.md` for the full decision tree and the per-type artifact sets.
+
 ## Inside an issue directory
 
 ```text
@@ -53,6 +64,8 @@ Five canonical file names. Each name describes its semantic role; the issue type
 | `progress.md` | doc-update, code-update, fix                  | when execution begins        | Log of which planned steps were carried out. Starts `## Status: in-progress`; ends `## Status: done`. Distinct from `summary.md` (see below).         |
 | `summary.md`  | doc-update, code-update, fix                  | at completion                | What shipped in the diff: files changed (with per-location detail for modifications), commits made, verification notes, known limitations.            |
 | `report.md`   | investigate                                   | at completion                | Findings, answer, confidence. The deliverable itself, not a summary of deliverables produced elsewhere.                                                |
+
+See `templates/<type>/` for section structure and inline format. See `reference/<artifact>-guidelines.md` (one per artifact: task, plan, progress, summary, report) for how to write each artifact.
 
 ### Why summary.md and report.md are different files
 
@@ -80,17 +93,6 @@ These two files serve different purposes, not the same purpose at different life
 
 A reviewer reading `progress.md` wants to see the work unfold against the plan. A reviewer reading `summary.md` wants to see the resulting diff and its verification. Both are required for doc-update, code-update, and fix.
 
-## Issue types
-
-Four types. Each type has its own template set under `templates/`.
-
-- **doc-update** — Docs-only issue. Used for product specs, architecture docs, implementation docs, research notes that get a permanent home under `docs/`, design decisions, data notes, and convention updates.
-- **code-update** — Code and test change issue. Code-only. If a doc needs to change to stay consistent with the new code, open a separate doc-update issue rather than expanding this issue's scope.
-- **fix** — Small correction issue. Used for bugs, failed tests, broken docs, inconsistencies, or small cleanup. Can touch code, docs, or both, but **a fix that touches both must be small and atomic** — one defect, no subtasks. Large work that needs both code and docs is split: `doc-update` first to define the intended behavior, then a `code-update` follow-up to implement it.
-- **investigate** — Pure investigation or feasibility check. Produces findings but no file changes. Findings live in `report.md`. If findings deserve a permanent home under `docs/`, follow up with a doc-update issue.
-
-See `reference/issue-types.md` for the full decision tree and the per-type artifact sets. See `reference/<artifact>-guidelines.md` (one per artifact: task, plan, progress, summary, report) for how to write each artifact.
-
 ## When the user invokes this skill
 
 Each verb names the artifact to create or update; the methodology skill (e.g. Superpowers) drives the actual work.
@@ -104,7 +106,7 @@ The skill activates only on explicit slash invocation. Once activated, the verb 
 
 **Clarification stance.** Front-load clarification at the start of each invocation — one round covers the whole chain of verbs the user named, not per verb. Ask a few targeted questions to make the work unambiguous. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.
 
-## Reading order for a fresh issue
+## Reading order
 
 1. `task.md` — what is the issue?
 2. `plan.md` — what is the agreed approach? Any open questions?
