@@ -2,9 +2,9 @@
 
 ## Status: in-progress
 
-## Summary
+## Execution Log
 
-<!-- Current state. What is done, what is in flight, what is blocked. Update this section after each meaningful step so a resumed session or a reviewer can pick up cold. -->
+<!-- Which planned steps from plan.md were carried out, in order. Update after each meaningful step so a resumed session or a reviewer can pick up cold. Note deviations from the plan and why. -->
 
 ## Commits
 

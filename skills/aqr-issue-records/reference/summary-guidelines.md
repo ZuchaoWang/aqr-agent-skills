@@ -141,7 +141,7 @@ If there are no follow-ups, write "None."
 
 ## 8. Anti-patterns
 
-- **Mirroring progress.md.** `summary.md` is not a copy of `progress.md`. `progress.md` is the live log; `summary.md` is the curated summary. Drop intermediate states that did not survive to the final result.
+- **Mirroring progress.md.** `summary.md` is not a copy of `progress.md`. `progress.md` logs which planned steps were carried out; `summary.md` describes the resulting diff and verification. Step-by-step execution narrative does not belong in `summary.md` — only what shipped and how it was verified.
 - **No verification notes.** "Done" without evidence is not a summary. If verification was informal (manual check, visual inspection), say so explicitly.
 - **Hidden limitations.** A `summary.md` that claims everything works, with verification notes that only check half the acceptance criteria, is dishonest. State what was not checked.
 - **Vague follow-ups.** "Refactor later" is noise. Either make it specific or drop it.
@@ -150,7 +150,7 @@ If there are no follow-ups, write "None."
 
 ## 9. Quick checklist before marking done
 
-Before flipping `progress.md` to `## Status: done` (or writing `summary.md` from scratch):
+Before flipping `progress.md` to `## Status: done`:
 
 - [ ] Summary section states what shipped, not what was attempted.
 - [ ] Every file the diff touched is listed under `Files Changed`.

@@ -10,11 +10,11 @@ Defines the repo-visible issue record format. Provides artifact templates for fo
 
 ## Scope
 
-This skill defines the **durable issue artifacts** that live inside the repo under `issues/`. It does not define the surrounding development workflow — clarification, planning, TDD, debugging, verification, and review are owned by whatever execution skill the user has paired with it (for example Superpowers).
+This skill owns the **issue lifecycle** for projects that adopt it — create, plan, execute, summarize or report. It replaces per-project issue-handling skills (such as `handle-issue`); projects do not need to run both. It does not replace methodology skills like Superpowers, which still drive *how* individual phases are conducted (clarification dialogue, critique, TDD, debugging, verification commands, review checklist).
 
 The contract this skill enforces:
 
-- Each issue lives in its own directory.
+- Each issue lives in its own directory under `issues/<YYYYMM>/<issue-id>/`.
 - Each issue has the same canonical artifacts, in the same roles.
 - The artifacts are text files written in the user's project documentation style.
 - Anyone — the user, a reviewer, a future agent — can read the artifacts cold and understand what was attempted, what was decided, what was verified, and what is still open.
@@ -35,22 +35,22 @@ The `issues/<YYYYMM>/` grouping is for human navigation and bulk review. It carr
 
 ## Artifacts
 
-Five canonical file names. Each name describes the file's semantic role; the issue type determines which ones appear.
+Five canonical file names. Each name describes the file's semantic role; the issue type determines which ones appear. All artifacts in a type's set are required — there are no optional files.
 
 | File          | Used by                                       | When it appears              | Role                                                                                                                                                   |
 | --------------| --------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `task.md`     | all types                                     | at issue creation            | Semantic definition: goal, context, scope, out-of-scope, acceptance criteria. No file lists.                                                          |
-| `plan.md`     | all types (optional for investigate)          | during planning              | Investigation findings, planned changes with concrete file paths, open questions, execution steps, self-review notes.                                 |
-| `progress.md` | doc-update, code-update, fix                  | when execution begins        | Live operational log. Starts `## Status: in-progress`; ends `## Status: done`. Optional — skip for short, atomic work.                                 |
-| `summary.md`  | doc-update, code-update, fix                  | at completion                | Final operational summary: files changed (with per-location detail for modifications), verification notes, known limitations.                          |
+| `plan.md`     | all types                                     | during planning              | Investigation findings, planned changes with concrete file paths, open questions, execution steps, self-review notes.                                 |
+| `progress.md` | doc-update, code-update, fix                  | when execution begins        | Log of which planned steps were carried out. Starts `## Status: in-progress`; ends `## Status: done`. Distinct from `summary.md` (see below).         |
+| `summary.md`  | doc-update, code-update, fix                  | at completion                | What shipped in the diff: files changed (with per-location detail for modifications), commits made, verification notes, known limitations.            |
 | `report.md`   | investigate                                   | at completion                | Findings, answer, confidence. The deliverable itself, not a summary of deliverables produced elsewhere.                                                |
 
 ### Why summary.md and report.md are different files
 
 Both are completion-stage artifacts, but they have different semantic roles:
 
-- `summary.md` describes what was **operationally produced** — which files changed, where, and how the change was verified. It is the final, curated form of the live operational log (`progress.md`).
-- `report.md` describes what was **discovered or concluded** — findings, the answer to the investigation's question, confidence in that answer. It is the deliverable, not a description of deliverables.
+- `summary.md` describes what was **operationally produced** — which files changed, where, and how the change was verified. Used by types that produce a diff (doc-update, code-update, fix).
+- `report.md` describes what was **discovered or concluded** — findings, the answer to the investigation's question, confidence in that answer. Used by the type that produces no diff (investigate). The report IS the deliverable, not a description of deliverables.
 
 A reader picking up `summary.md` expects file changes and verification. A reader picking up `report.md` expects findings and an answer. Mixing them under one name (as the previous `result.md` did) forced the reader to infer which kind of artifact they were looking at based on issue type.
 
@@ -64,9 +64,12 @@ A reader picking up `summary.md` expects file changes and verification. A reader
 
 ### progress.md vs summary.md
 
-`progress.md` is the **live** operational log; `summary.md` is the **final** operational summary. Both describe the same kind of work at different lifecycle stages. Splitting them lets the live log stay honest about confusion and false starts while the summary stays curated and stable.
+These two files serve different purposes, not the same purpose at different lifecycle stages:
 
-Short, atomic work can skip `progress.md` and write `summary.md` directly at completion.
+- `progress.md` is the **execution log**. It tracks which planned steps (from `plan.md`'s Execution Steps) or per-defect fixes (from `plan.md`'s Per-Defect Fix Plan) were carried out, in order. It answers "did you do what you planned?".
+- `summary.md` is the **diff and verification summary**. It tracks what files changed, which commits landed, how each acceptance criterion was verified, what limitations were accepted, and what follow-ups surfaced. It answers "what shipped and how was it verified?".
+
+A reviewer reading `progress.md` wants to see the work unfold against the plan. A reviewer reading `summary.md` wants to see the resulting diff and its verification. Both are required for doc-update, code-update, and fix.
 
 ## Issue types
 
@@ -79,10 +82,10 @@ Four types. Each type has its own template set under `templates/`.
 
 Per-type artifact sets:
 
-- doc-update: `task.md` + `plan.md` + `summary.md` (optional: `progress.md`)
-- code-update: `task.md` + `plan.md` + `summary.md` (optional: `progress.md`)
-- fix: `task.md` + `plan.md` + `summary.md` (optional: `progress.md`)
-- investigate: `task.md` + `report.md` (optional: `plan.md`; no `progress.md`, no `summary.md`)
+- doc-update: `task.md` + `plan.md` + `progress.md` + `summary.md`
+- code-update: `task.md` + `plan.md` + `progress.md` + `summary.md`
+- fix: `task.md` + `plan.md` + `progress.md` + `summary.md`
+- investigate: `task.md` + `plan.md` + `report.md`
 
 See `reference/issue-types.md` for the full decision tree and `reference/artifact-meanings.md` for what each artifact is and is not.
 
@@ -98,19 +101,16 @@ The skill does not auto-create issues from casual task descriptions. The user mu
 
 ## How this skill relates to execution workflows
 
-This skill is workflow-agnostic. The user may pair it with Superpowers, with `handle-issue`, or with any other execution methodology they prefer. The split:
+This skill replaces per-project issue-handling skills (such as `handle-issue`). It owns the full issue lifecycle — create, plan, execute, summarize or report — and the contract for what gets written into the repo. The artifact names (`task.md`, `plan.md`, `progress.md`, `summary.md`, `report.md`) and their roles are part of that contract: do not rename them and do not invent additional required artifacts.
 
-- **Execution methodology** (clarification, critique, planning, TDD, debugging, verification, review): owned by the workflow skill.
-- **Durable artifacts** (what gets written into the repo so the work is reviewable, resumable, and auditable): owned by this skill.
-
-When an execution workflow prescribes artifacts that overlap with this skill's, prefer this skill's format and names unless the user explicitly says otherwise. Names like `task.md`, `plan.md`, `progress.md`, `summary.md`, `report.md` are part of the contract — do not rename them.
+This skill still composes with methodology skills (e.g. Superpowers) for *how* individual phases are conducted — clarification dialogue, critique, TDD, debugging, verification commands, review checklist. The methodology skill drives the technique; this skill defines what gets written down at each phase boundary.
 
 ## Reading order for a fresh issue
 
 1. `task.md` — what is the issue?
 2. `plan.md` — what is the agreed approach? Any open questions?
-3. `progress.md` (if present, code/doc/fix) — where did execution get to? What is in flight?
-4. `summary.md` (if present, code/doc/fix) — what shipped, what was verified, what is left.
-   `report.md` (if present, investigate) — what was found, what is the answer, how confident.
+3. `progress.md` (doc/code/fix) — which planned steps were carried out? What is still in flight?
+4. `summary.md` (doc/code/fix) — what shipped, what was verified, what is left.
+   `report.md` (investigate) — what was found, what is the answer, how confident.
 
-Conflict resolution: `task.md` wins for scope decisions. `plan.md` reflects current thinking. `progress.md` reflects live state. `summary.md` (or `report.md`) is the authoritative summary at completion.
+Conflict resolution: `task.md` wins for scope decisions. `plan.md` reflects current thinking. `progress.md` reflects execution state. `summary.md` (or `report.md`) is the authoritative summary at completion.

@@ -2,9 +2,9 @@
 
 ## Status: in-progress
 
-## Summary
+## Execution Log
 
-<!-- Current state per defect. What is fixed, what is in verification, what is still open. -->
+<!-- Per-defect progress: which defects from plan.md are fixed, which are in verification, which are still open. Update after each defect lands. -->
 
 ## Commits
 

@@ -40,9 +40,7 @@ Used for:
 
 ### 2.3 Artifacts
 
-Required: `task.md`, `plan.md`, `summary.md`.
-
-Recommended for large doc sets: `progress.md`. Doc work that spans more than a handful of files, or that spans multiple sessions, benefits from a live checkpoint as much as code work does.
+Required: `task.md`, `plan.md`, `progress.md`, `summary.md`.
 
 ### 2.4 Template sections specific to doc-update
 
@@ -56,9 +54,7 @@ The reasoning: code and docs change for different reasons, on different cadences
 
 ### 3.1 Artifacts
 
-Required: `task.md`, `plan.md`, `summary.md`.
-
-Recommended: `progress.md` for any non-trivial implementation. Code work has more failure modes than doc work — silent regressions, partial migrations, cascading test failures — and a live checkpoint makes resume and review meaningfully easier.
+Required: `task.md`, `plan.md`, `progress.md`, `summary.md`.
 
 ### 3.2 Template sections specific to code-update
 
@@ -88,9 +84,7 @@ The boundary with `code-update`: if the change introduces new behavior, it is a 
 
 ### 4.2 Artifacts
 
-Required: `task.md`, `plan.md`, `summary.md`.
-
-Recommended: `progress.md` — fixes often reveal sibling call sites with the same bug, and tracking per-defect verification in `progress.md` keeps the `summary.md` cleaner.
+Required: `task.md`, `plan.md`, `progress.md`, `summary.md`. `progress.md` is where per-defect verification lives; `summary.md` stays focused on the resulting diff.
 
 ### 4.3 Commit discipline
 
@@ -126,9 +120,7 @@ A common flow: an `investigate` issue concludes with a follow-up `doc-update` is
 
 ### 5.2 Artifacts
 
-Required: `task.md`, `report.md`.
-
-Optional: `plan.md` — only for non-trivial investigations where the approach itself deserves review (multiple stages, expensive experiments, controversial sources). For simple lookups, skip `plan.md`.
+Required: `task.md`, `plan.md`, `report.md`.
 
 Not used: `progress.md`, `summary.md`. Investigations are usually single-session; if an investigation genuinely spans multiple sessions, treat the first session as a sub-investigation and the second as a follow-up issue. And because there are no file changes, there is nothing for a `summary.md` to summarize — the `report.md` IS the artifact.
 

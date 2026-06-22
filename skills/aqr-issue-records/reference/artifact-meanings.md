@@ -83,16 +83,19 @@ Self-Review Notes capture the critique done before execution. They are not remov
 - `fix/plan.md` has `Per-Defect Fix Plan` — one subsection per defect from `task.md`.
 - `investigate/plan.md` has `Investigation Approach` — ordered steps that describe what will be checked.
 
-## 3. progress.md — where execution is (live log)
+## 3. progress.md — what was carried out (execution log)
 
-Optional. Created when execution begins. The **live operational log** for resumability. Used by doc-update, code-update, and fix; not used by investigate.
+Required for doc-update, code-update, and fix. The log of which planned steps (or per-defect fixes) were carried out, in order. Created when execution begins.
 
 `progress.md` answers:
 
 - What is the current status? (Status)
-- What is done so far? (Summary)
-- What has been verified? (Verification Notes)
+- Which planned steps were carried out, and in what order? (Execution Log)
+- Which commits landed, mapped to steps or defects? (Commits — included when multi-commit)
+- What has been verified during execution? (Verification Notes or Verification Log)
 - What deviated from the plan? (Notes)
+
+`progress.md` is the rolling log of execution against the plan. Update it as steps land — not just at completion. A resumed session or a reviewer picks it up cold and sees what was done, what is in flight, and what deviated.
 
 ### 3.1 Status line — machine-checked
 
@@ -110,28 +113,22 @@ or
 
 The exact format matters. Automation may use it to decide whether to resume an issue or skip it. Other status values (`paused`, `blocked`, `abandoned`) are not part of this skill's contract; if a project needs them, define them in project-local docs and update this skill's reference accordingly.
 
-### 3.2 When progress.md is not needed
+### 3.2 progress.md vs summary.md
 
-For short, atomic work — a doc update touching three files, a single-commit fix — `progress.md` is overhead. Skip it and write `summary.md` directly when execution completes.
+`progress.md` and `summary.md` serve different purposes:
 
-### 3.3 progress.md vs summary.md
+- `progress.md` is the **execution log**. It tracks which planned steps were carried out, in order. It answers "did you do what you planned?".
+- `summary.md` is the **diff and verification summary**. It tracks what files changed in the working tree, which commits landed, how each acceptance criterion was verified, what limitations were accepted, and what follow-ups surfaced. It answers "what shipped and how was it verified?".
 
-`progress.md` and `summary.md` are siblings: both describe the operational work, at different lifecycle stages.
+A reviewer reading `progress.md` wants to see execution unfold against the plan. A reviewer reading `summary.md` wants to see the resulting diff and its verification. Both are required for doc-update, code-update, and fix.
 
-- `progress.md` is the **live** log. It is honest about confusion, deviations, and false starts. Updated continuously during execution.
-- `summary.md` is the **final, curated** summary. It presents the work as it shipped — clean, stable,Reviewer-facing. Written once at completion.
+### 3.3 investigate does not use progress.md
 
-Splitting them lets each file do its job. The live log can be raw; the summary stays readable. Merging them tends to produce a file that is neither — either the summary inherits noise from the live log, or the live log gets over-curated and stops being useful for resumability.
+`investigate` work is single-session and produces no file changes. There is no plan to execute against and no diff to summarize. The deliverable is `report.md`. If an investigation genuinely spans multiple sessions, treat the first session as a sub-investigation whose `report.md` feeds into a follow-up issue.
 
-If both exist, `summary.md` is authoritative at completion. `progress.md` is kept for audit but does not override the summary.
+## 4. summary.md — what shipped (diff and verification)
 
-### 3.4 investigate does not use progress.md
-
-`investigate` work is usually single-session and produces no file changes. There is no operational phase to log and no `summary.md` to feed. If an investigation genuinely spans multiple sessions, the cleaner move is to treat the first session as a sub-investigation whose `report.md` feeds into a follow-up issue.
-
-## 4. summary.md — what shipped (operational)
-
-Written at completion for doc-update, code-update, and fix issues. The **final operational summary** that replaces `progress.md` as the human-facing record of what the issue produced.
+Written at completion for doc-update, code-update, and fix issues. The diff and verification summary: what files changed, which commits landed, how each acceptance criterion was verified, what was accepted but not fully resolved, and what follow-ups the work surfaced.
 
 `summary.md` answers:
 
@@ -220,8 +217,8 @@ For a cold reader picking up an issue:
 
 1. `task.md` — what is the issue?
 2. `plan.md` — what is the agreed approach? Any open questions?
-3. `progress.md` (if present, code/doc/fix) — where did execution get to?
-4. `summary.md` (if present, code/doc/fix) — what shipped, what was verified, what is left.
-   `report.md` (if present, investigate) — what was found, what is the answer.
+3. `progress.md` (doc/code/fix) — which planned steps were carried out, and what is still in flight?
+4. `summary.md` (doc/code/fix) — what shipped in the diff, what was verified, what is left.
+   `report.md` (investigate) — what was found, what is the answer.
 
-Conflict resolution: `task.md` wins for scope decisions. `plan.md` reflects current thinking. `progress.md` reflects live state. `summary.md` (or `report.md`) is the authoritative summary at completion.
+Conflict resolution: `task.md` wins for scope decisions. `plan.md` reflects current thinking. `progress.md` reflects execution state. `summary.md` (or `report.md`) is the authoritative summary at completion.
