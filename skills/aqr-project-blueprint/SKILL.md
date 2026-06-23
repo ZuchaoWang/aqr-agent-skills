@@ -96,7 +96,10 @@ docs/
     backend_jupyter.md    # code + test rules for a Jupyter backend
 ```
 
-Not every project needs every file above. The scaffolding step copies the full skeleton; the user deletes what does not apply. Under `implementation/`, copy the `{{module}}/` folder for each top-level source module and rename it; under `data/`, add one doc per dataset.
+Not every project needs every file above. The scaffolding step copies the full skeleton; the user deletes what does not apply. Two subtrees are **not** scaffolded with placeholder files — they are created on demand by the project author:
+
+- `implementation/{{module}}/` — one folder per top-level source module, each containing `design.md` and `interface.md`. The criteria for both files live in `docs/project_layout.md` §3.
+- `data/{{dataset}}.md` — one doc per dataset.
 
 See `reference/docs-layout.md` for the meaning of each directory and what belongs in each.
 
