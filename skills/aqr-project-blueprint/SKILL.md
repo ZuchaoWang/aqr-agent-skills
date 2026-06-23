@@ -80,9 +80,16 @@ docs/
     brainstorm.md         # discussion of possible designs
 
   implementation/
-    {{module}}/           # one folder per top-level source module; for multi-stack projects, nest under {{layer}}/ (frontend/, backend/, ...)
+    # Two layouts, picked at scaffolding time based on source-tree shape:
+
+    {{module_name}}/      # flat — single-stack projects
       design.md           # conceptual: submodules, interactions, data model, key algorithms, testing approach
       interface.md        # file structure + public surface signatures with one-line roles
+
+    {{layer}}/            # layered — multi-stack projects (e.g., frontend/, backend/)
+      {{module_name}}/    # one folder per top-level source module
+        design.md
+        interface.md
 
   data/
     {{dataset}}.md        # one per dataset
@@ -99,7 +106,7 @@ docs/
 
 Not every project needs every file above. The scaffolding step copies the full skeleton; the user deletes what does not apply. Two subtrees are **not** scaffolded with placeholder files — they are created on demand by the project author:
 
-- `implementation/{{module}}/` — one folder per top-level source module, each containing `design.md` and `interface.md`. Content criteria for both live in `docs/rules/doc_templates.md`.
+- The module folder under `implementation/` (path: `{{module_name}}/` or `{{layer}}/{{module_name}}/`) — one per top-level source module, each containing `design.md` and `interface.md`. Content criteria for both live in `docs/rules/doc_templates.md`.
 - `data/{{dataset}}.md` — one doc per dataset.
 
 See `reference/docs-layout.md` for the meaning of each directory and what belongs in each.

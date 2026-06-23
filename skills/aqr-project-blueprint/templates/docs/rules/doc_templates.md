@@ -2,9 +2,9 @@
 
 Templates for dynamic doc types — docs created on demand when a new module, dataset, or prior-project migration is introduced. Static one-off docs (`mission.md`, `tech_stack.md`, ...) are scaffolded once and have no entry here. Format conventions that apply to all docs live in `doc_markdown.md`; layout (which file goes where) lives in `project_layout.md`.
 
-**Module folder location.** Each module folder lives at `implementation/[{{layer}}/]{{module}}/`. The optional `{{layer}}/` (e.g., `frontend/`, `backend/`) is used when the project has multiple source trees; otherwise the path is flat. The criteria below apply at each leaf module folder regardless of nesting.
+**Module folder location.** Each module folder lives at `implementation/[{{layer}}/]{{module_name}}/` — the `{{layer}}/` level (e.g., `frontend/`, `backend/`) is included only for multi-stack projects. The criteria below apply at each leaf module folder regardless of nesting depth.
 
-## 1. Module design doc — `implementation/[{{layer}}/]{{module}}/design.md`
+## 1. Module design doc — `implementation/[{{layer}}/]{{module_name}}/design.md`
 
 Purpose: a reviewer reads it in ~10 minutes and understands the module's role, internal structure, data, algorithms, and testing approach.
 
@@ -18,7 +18,7 @@ Sections (omit any that do not apply):
 
 Constraints: target ~1 page. Conceptual only — implementation detail lives in code. Must be reviewable without reading the code.
 
-## 2. Module interface doc — `implementation/[{{layer}}/]{{module}}/interface.md`
+## 2. Module interface doc — `implementation/[{{layer}}/]{{module_name}}/interface.md`
 
 Purpose: a reviewer reads it in ~5 minutes and spots missing pieces, wrong shapes, unclear naming, over-coupling.
 

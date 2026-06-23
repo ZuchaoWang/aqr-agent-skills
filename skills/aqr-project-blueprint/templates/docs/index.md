@@ -17,7 +17,7 @@ This is the authoritative documentation map for the project. New readers start h
 
 ## Implementation
 
-- {{one entry per `implementation/[{{layer}}/]{{module}}/` folder, with a one-line role}}.
+- {{one entry per module folder under `implementation/` (path: `{{module_name}}/` or `{{layer}}/{{module_name}}/`), with a one-line role}}.
 
 ## Research
 

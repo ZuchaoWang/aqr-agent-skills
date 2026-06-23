@@ -2,7 +2,7 @@
 
 The recommended `docs/` structure. The SKILL.md tree is the canonical reference; this doc explains the role of each section so the scaffolding agent can answer "does this doc belong here or somewhere else?" without re-reading the tree.
 
-The skeleton ships a starter subset (a few files per section); the rest fill in as the project grows. Two subtrees — `implementation/[{{layer}}/]{{module}}/` and `data/{{dataset}}.md` — are created on demand, not scaffolded with placeholder files. Criteria for those live in `templates/docs/rules/doc_templates.md`.
+The skeleton ships a starter subset (a few files per section); the rest fill in as the project grows. Two subtrees — `implementation/[{{layer}}/]{{module_name}}/` and `data/{{dataset}}.md` — are created on demand, not scaffolded with placeholder files. Criteria for those live in `templates/docs/rules/doc_templates.md`.
 
 ## 1. Top-level files
 
@@ -30,21 +30,19 @@ Skeleton ships: `design.md`. Common additions: `interface.md` (external API cont
 
 Per-module implementation reference. One folder per top-level source module; each folder ships `design.md` (conceptual review) and `interface.md` (file and signature contract).
 
-For multi-stack projects (e.g., `frontend/` + `backend/` at the repo root), modules nest under an intermediate layer folder mirroring the source tree:
+Two layouts, picked at scaffolding time based on source-tree shape — both are first-class:
 
 ```
 implementation/
-  frontend/
-    {{module}}/
-      design.md
-      interface.md
-  backend/
-    {{module}}/
+  {{module_name}}/          # flat — single-stack projects
+    design.md
+    interface.md
+
+  {{layer}}/                # layered — multi-stack projects (e.g., frontend/, backend/)
+    {{module_name}}/
       design.md
       interface.md
 ```
-
-For single-stack projects, the layer is omitted and modules sit directly under `implementation/`.
 
 The criteria for both docs live in `rules/doc_templates.md` §§1–2. The skeleton ships the directory empty; the user adds a folder per module.
 
@@ -83,4 +81,4 @@ Default: do not. The sections above cover the common cases. If a project feels i
 
 - Issue records. Those live under `issues/`. `docs/` references issues by directory path when needed.
 - Scratch notes, drafts, half-formed ideas. Those go in `tmp/` or in a personal notes repo.
-- Generated API references. Those go in `implementation/[{{layer}}/]{{module}}/interface.md`, written by hand; do not commit generated HTML.
+- Generated API references. Those go in `implementation/[{{layer}}/]{{module_name}}/interface.md`, written by hand; do not commit generated HTML.

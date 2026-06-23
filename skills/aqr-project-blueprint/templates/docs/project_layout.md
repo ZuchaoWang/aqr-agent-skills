@@ -49,9 +49,16 @@ docs/
     related_works.md      # existing works related
 
   implementation/
-    {{module}}/           # one folder per top-level source module; for multi-stack projects, nest under {{layer}}/ (frontend/, backend/, ...) — see §3
+    # Two layouts, picked at scaffolding time based on source-tree shape — see §3:
+
+    {{module_name}}/      # flat — single-stack projects
       design.md
       interface.md
+
+    {{layer}}/            # layered — multi-stack projects (e.g., frontend/, backend/)
+      {{module_name}}/    # one folder per top-level source module
+        design.md
+        interface.md
 
   data/
     {{dataset}}.md        # one per dataset
@@ -67,7 +74,7 @@ docs/
 
 ## 3. Module doc criteria
 
-Each `implementation/{{module}}/` folder ships two docs — `design.md` (conceptual review) and `interface.md` (file and signature contract). Content criteria for both live in `rules/doc_templates.md`.
+Each module folder under `implementation/` (path: `{{module_name}}/` or `{{layer}}/{{module_name}}/`) ships two docs — `design.md` (conceptual review) and `interface.md` (file and signature contract). Content criteria for both live in `rules/doc_templates.md`.
 
 ## 4. Layout rules
 
