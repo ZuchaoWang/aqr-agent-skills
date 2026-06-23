@@ -6,7 +6,7 @@
 
 - Place a summary paragraph after the title and before subsections in technical docs.
 - Use numbered headings (`## 1. Overview`, `### 1.1 Motivation`) so cross-references are stable.
-- Group related docs under a directory with its own `overview.md` or `index.md` that serves as the section map.
+- Group related docs under a directory; use the top-level `docs/index.md` as the section map.
 
 ## 2. Markdown style
 

@@ -57,31 +57,43 @@ See `reference/root-files.md` for the role of each file and when to include or s
 ```
 docs/
   index.md                # documentation map
-  project-layout.md       # repo layout guide
+  project_layout.md
 
   project/
-    overview.md
+    mission.md
+    usage_scenario.md
     roadmap.md
+    client_docs/
+      {{date}}/
+    migration/
+      {{old_project_name}}.md
 
   architecture/
-    overview.md
-
-  implementation/
-    overview.md
+    design.md
+    interface.md
+    deploy.md
+    tech_stack.md
 
   research/
-    overview.md
+    background.md         # background knowledge for concepts and motivations
+    related_works.md      # existing works related
+    brainstorm.md         # discussion of possible designs
+
+  implementation/
+    {{module}}.md         # one per top-level source module
 
   data/
-    overview.md
+    {{dataset}}.md        # one per dataset
 
   rules/
-    code-style.md
-    documentation.md
-    frontend-react.md
-    backend-python.md
-    testing.md
+    doc_markdown.md
+    report_ppt.md
+    frontend_react.md     # include only when the project has a React frontend
+    backend_python.md     # include only when the project has a Python backend
+    backend_jupyter.md
 ```
+
+Not every project needs every file above. The scaffolding step copies the full skeleton; the user deletes what does not apply. `research/`, `implementation/`, and `data/` are empty in the skeleton and fill up as the project adds per-topic, per-module, and per-dataset docs.
 
 See `reference/docs-layout.md` for the meaning of each directory and what belongs in each.
 

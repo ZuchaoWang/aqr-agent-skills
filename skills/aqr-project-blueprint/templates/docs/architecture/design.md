@@ -1,4 +1,4 @@
-# Architecture overview
+# System design
 
 ## 1. Summary
 

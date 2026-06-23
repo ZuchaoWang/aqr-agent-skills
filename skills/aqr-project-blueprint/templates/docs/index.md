@@ -4,27 +4,28 @@ This is the authoritative documentation map for the project. New readers start h
 
 ## Project
 
-- `project/overview.md` — {{mission, problem statement, scope}}.
+- `project/mission.md` — {{mission, problem statement, scope}}.
 - `project/roadmap.md` — {{milestones, dates, owners}}.
 
 ## Architecture
 
-- `architecture/overview.md` — {{system-level design, module boundaries, data flow}}.
+- `architecture/design.md` — {{system-level design, module boundaries, data flow}}.
 
 ## Implementation
 
-- `implementation/overview.md` — {{per-module implementation reference; index of per-module docs}}.
+- {{one entry per `implementation/<module>.md`, with a one-line role}}.
 
 ## Research
 
-- `research/overview.md` — {{background research, related work, comparisons}}.
+- {{one entry per `research/<topic>.md`, with a one-line takeaway}}.
 
 ## Data
 
-- `data/overview.md` — {{datasets, schemas, processing notes, data quality}}.
+- {{one entry per `data/<dataset>.md`, with source and refresh cadence}}.
 
 ## Rules
 
+- `rules/project-layout.md` — {{top-level repo layout, one-line annotation per directory}}.
 - `rules/code-style.md` — {{language-agnostic code style; per-language rules in frontend-react.md / backend-python.md}}.
 - `rules/documentation.md` — {{doc status header, headings, list style, doc lifecycle}}.
 - `rules/testing.md` — {{test organization, what to test, what not to test}}.

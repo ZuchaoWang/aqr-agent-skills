@@ -60,7 +60,7 @@ Error responses:
 { "status": "error", "message": "..." }
 ```
 
-Pick the literal value (`"ok"` / `"error"` vs `"success"` / `"bad"`) once and use it everywhere. Document the choice in `docs/architecture/overview.md` or a dedicated API doc.
+Pick the literal value (`"ok"` / `"error"` vs `"success"` / `"bad"`) once and use it everywhere. Document the choice in `docs/architecture/design.md` or a dedicated API doc.
 
 ## 6. Tests
 
