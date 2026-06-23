@@ -12,7 +12,7 @@
 
 ## Context
 
-<!-- Where the work came from: audit, regression, user report, failed test, small feature request, cleanup. Cite the source — audit log path, screen, failing test name, spec section. The implementation docs and specs are ground truth; this issue is a focused change pass, not a redesign. -->
+<!-- Where the work came from: audit, regression, user report, failed test, small feature request, cleanup. Cite the source — audit log path, screen, failing test name, spec section. The implementation docs and specs are ground truth; this issue is a focused change pass, not a redesign. User-provided reference material (screenshots, PDFs, sample data) goes under `assets/`; reference it here. -->
 
 ## Scope
 

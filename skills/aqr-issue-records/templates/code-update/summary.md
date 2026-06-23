@@ -1,6 +1,6 @@
 # Summary
 
-## Summary
+## Overview
 
 <!-- One paragraph: what shipped, what was verified, what was deferred. Reference the issue directory (issues/YYYYMM/<id>/) so a reader can find the original task and plan. -->
 
@@ -30,7 +30,7 @@
 
 ## Verification Notes
 
-<!-- Per acceptance criterion from task.md: how it was checked. Include the actual commands used and pass/fail outcome. -->
+<!-- Per acceptance criterion from task.md AND per check from plan.md's Acceptance Checks: how it was checked and the outcome. Include the actual commands used and pass/fail outcome. Numbered to match task.md criteria first, then any extra plan.md checks. -->
 
 1. ...
 2. ...

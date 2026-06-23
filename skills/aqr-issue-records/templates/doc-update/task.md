@@ -12,7 +12,7 @@
 
 ## Context
 
-<!-- Why this doc work is needed now. Reference relevant code paths, prior issues (by directory name under issues/), client requirements, or external constraints. -->
+<!-- Why this doc work is needed now. Reference relevant code paths, prior issues (by directory name under issues/), client requirements, or external constraints. User-provided reference material (screenshots, PDFs, sample data) goes under `assets/`; reference it here. -->
 
 ## Scope
 

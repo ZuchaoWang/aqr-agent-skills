@@ -36,4 +36,4 @@
 
 ## Self-Review Notes
 
-<!-- Phase-3 critique. Check: over-engineering, unclear module boundaries, missing edge cases, weak interfaces, test gaps, undocumented forward references. -->
+<!-- Self-review before execution. Check: over-engineering, unclear module boundaries, missing edge cases, weak interfaces, test gaps, undocumented forward references. -->

@@ -12,11 +12,11 @@
 
 ## Context
 
-<!-- Why this question matters now. Reference a prior issue's open question, an external trigger (incident, new requirement, audit), or a design decision that depends on the answer. -->
+<!-- Why this question matters now. Reference a prior issue's open question, an external trigger (incident, new requirement, audit), or a design decision that depends on the answer. User-provided reference material (screenshots, PDFs, sample data) goes under `assets/`; reference it here. -->
 
 ## Scope
 
-<!-- Prose. What the investigation covers and what it explicitly does not. State boundaries clearly: "Will look at X, Y, Z. Will not look at P, Q." -->
+<!-- Prose. What the investigation covers. State boundaries clearly: "Will look at X, Y, Z." What is deliberately excluded goes in Out of Scope below. -->
 
 ## Out of Scope
 
@@ -26,9 +26,9 @@
 
 ## Acceptance Criteria
 
-<!-- What constitutes a sufficient answer. Each item should describe an observable property of the result, not a process step. -->
+<!-- What constitutes a sufficient answer. Each item should describe an observable property of the result, not a process step. A typical criterion 1: "The result states a clear answer to the question (or a clear 'cannot be answered yet, because <reason>')." -->
 
-1. The result states a clear answer to the question (or a clear "cannot be answered yet, because <reason>").
+1. ...
 2. ...
 3. ...
 

@@ -55,7 +55,7 @@ Every file the diff touched belongs in `Files Changed`, including dotfiles, conf
 
 Omitting the dotfile edits or the test fixture edits makes the summary harder to audit and harder to grep months later.
 
-## 3. Summary section
+## 3. Overview section
 
 One paragraph. Three sentences max in most cases:
 
@@ -128,7 +128,7 @@ If there are no follow-ups, write "None."
 
 Before flipping `progress.md` to `## Status: done`:
 
-- [ ] Summary section states what shipped, not what was attempted.
+- [ ] Overview section states what shipped, not what was attempted.
 - [ ] Every file the diff touched is listed under `Files Changed`.
 - [ ] Every Modified entry names a location (function, class, section, or line range).
 - [ ] Every acceptance criterion and every plan.md check has a matching verification note.

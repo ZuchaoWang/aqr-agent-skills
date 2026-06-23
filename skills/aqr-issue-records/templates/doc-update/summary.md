@@ -1,8 +1,16 @@
 # Summary
 
-## Summary
+## Overview
 
 <!-- One paragraph: what landed, what was deleted, what was verified. Reference the issue directory (issues/YYYYMM/<id>/) so a reader can find the original task and plan. -->
+
+## Commits
+
+<!-- Optional. Include if multi-commit and the mapping matters for review or audit. -->
+
+| # | SHA | Step |
+|---|-----|------|
+| 1 | `xxxxxxx` | one-line role |
 
 ## Files Changed
 
@@ -22,7 +30,7 @@
 
 ## Verification Notes
 
-<!-- Per acceptance criterion from task.md: how it was checked and what passed. Numbered to match the criteria. -->
+<!-- Per acceptance criterion from task.md AND per check from plan.md's Acceptance Checks: how it was checked and the outcome. Numbered to match task.md criteria first, then any extra plan.md checks. -->
 
 1. ...
 2. ...

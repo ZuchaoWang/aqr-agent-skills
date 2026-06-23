@@ -44,4 +44,4 @@
 
 ## Self-Review Notes
 
-<!-- Phase-3 critique. Check: over-engineering, missing edge cases, weak headings, drift from doc style, forward-looking references not flagged, broken cross-links. -->
+<!-- Self-review before execution. Check: over-engineering, missing edge cases, weak headings, drift from doc style, forward-looking references not flagged, broken cross-links. -->

@@ -1,10 +1,12 @@
 # Summary
 
-## Summary
+## Overview
 
 <!-- One paragraph: all items landed, all commits in, all checks green. Reference the issue directory so a reviewer can find the original task and plan. -->
 
 ## Commits
+
+<!-- Optional. Include if multi-commit and the mapping matters for review or audit. -->
 
 | # | SHA | Item |
 |---|-----|------|
@@ -28,7 +30,7 @@
 
 ## Verification Notes
 
-<!-- Per acceptance criterion from task.md: how it was checked. Include the actual commands used and pass/fail outcome. -->
+<!-- Per acceptance criterion from task.md AND per check from plan.md's Acceptance Checks: how it was checked and the outcome. Include the actual commands used and pass/fail outcome. Numbered to match task.md criteria first, then any extra plan.md checks. -->
 
 1. ...
 2. ...

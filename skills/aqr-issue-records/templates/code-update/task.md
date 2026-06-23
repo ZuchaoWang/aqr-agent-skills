@@ -12,7 +12,7 @@
 
 ## Context
 
-<!-- Why this change is needed. Reference relevant prior doc-update issues, approved design docs, client requirements, or external constraints. The plan should usually point at an approved doc rather than re-deriving design here. -->
+<!-- Why this change is needed. Reference relevant prior doc-update issues, approved design docs, client requirements, or external constraints. The plan should usually point at an approved doc rather than re-deriving design here. User-provided reference material (screenshots, PDFs, sample data) goes under `assets/`; reference it here. -->
 
 ## Scope
 

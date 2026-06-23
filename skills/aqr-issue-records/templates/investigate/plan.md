@@ -24,4 +24,4 @@
 
 ## Self-Review Notes
 
-<!-- Phase-3 critique. Check: are the sources authoritative? Are the experiments reproducible? Is the approach biased toward a pre-selected answer? Are there cheap disconfirming checks we should run before the expensive ones? -->
+<!-- Self-review before execution. Check: are the sources authoritative? Are the experiments reproducible? Is the approach biased toward a pre-selected answer? Are there cheap disconfirming checks we should run before the expensive ones? -->

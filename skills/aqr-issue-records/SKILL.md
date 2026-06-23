@@ -62,7 +62,7 @@ Five canonical file names. Each name describes its semantic role; the issue type
 | `task.md`     | all types                                     | at issue creation            | Semantic definition: type, goal, context, scope, out-of-scope, acceptance criteria. No file lists.                                                    |
 | `plan.md`     | all types                                     | during planning              | Investigation findings, planned changes with concrete file paths, open questions, execution steps, self-review notes.                                 |
 | `progress.md` | doc-update, code-update, fix                  | when execution begins        | Log of which planned steps were carried out. Starts `## Status: in-progress`; ends `## Status: done`. Distinct from `summary.md` (see below).         |
-| `summary.md`  | doc-update, code-update, fix                  | at completion                | What shipped in the diff: files changed (with per-location detail for modifications), commits made, verification notes, known limitations.            |
+| `summary.md`  | doc-update, code-update, fix                  | at completion                | What shipped in the diff: files changed (with per-location detail for modifications), commits (when multi-commit), verification notes mapped to plan.md's checks, known limitations, follow-up issues.            |
 | `report.md`   | investigate                                   | at completion                | Findings, answer, confidence. The deliverable itself, not a summary of deliverables produced elsewhere.                                                |
 
 See `templates/<type>/` for section structure and inline format. See `reference/<artifact>-guidelines.md` (one per artifact: task, plan, progress, summary, report) for how to write each artifact.
@@ -74,7 +74,7 @@ Both are completion-stage artifacts, but they have different semantic roles:
 - `summary.md` describes what was **operationally produced** — which files changed, where, and how the change was verified. Used by types that produce a diff (doc-update, code-update, fix).
 - `report.md` describes what was **discovered or concluded** — findings, the answer to the investigation's question, confidence in that answer. Used by the type that produces no diff (investigate). The report IS the deliverable, not a description of deliverables.
 
-A reader picking up `summary.md` expects file changes and verification. A reader picking up `report.md` expects findings and an answer. Mixing them under one name (as the previous `result.md` did) forced the reader to infer which kind of artifact they were looking at based on issue type.
+A reader picking up `summary.md` expects file changes and verification. A reader picking up `report.md` expects findings and an answer. Mixing them under one name would force the reader to infer which kind of artifact they were looking at based on issue type.
 
 ### task.md is semantic, plan.md is enumerative
 
