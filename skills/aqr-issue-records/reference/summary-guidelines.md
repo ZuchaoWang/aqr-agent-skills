@@ -73,11 +73,13 @@ See `templates/<type>/summary.md` for the table format. The "Item / Step" column
 
 ## 5. Verification Notes
 
-Map one-to-one to the acceptance criteria in `task.md`. Number them to match. For each criterion:
+Map one-to-one to the `Acceptance Checks` in `plan.md` (which in turn map to the `Acceptance Criteria` in `task.md`). Number them to match. For each entry:
 
-- State how it was checked.
+- Reference the criterion from `task.md` and the check from `plan.md`.
 - Paste the actual command if a command was run.
 - State the outcome (pass / fail / accepted-with-caveat).
+
+If `plan.md` includes checks beyond the `task.md` criteria (extra global checks, regression checks), verification notes must cover those too — every check in `plan.md` needs a result in `summary.md`.
 
 Bad verification note:
 
@@ -117,7 +119,7 @@ If there are no follow-ups, write "None."
 
 - **Mirroring progress.md.** `summary.md` is not a copy of `progress.md`. `progress.md` logs which planned steps were carried out; `summary.md` describes the resulting diff and verification. Step-by-step execution narrative does not belong in `summary.md` — only what shipped and how it was verified.
 - **No verification notes.** "Done" without evidence is not a summary. If verification was informal (manual check, visual inspection), say so explicitly.
-- **Hidden limitations.** A `summary.md` that claims everything works, with verification notes that only check half the acceptance criteria, is dishonest. State what was not checked.
+- **Hidden limitations.** A `summary.md` that claims everything works, with verification notes that only check half the acceptance criteria or half the plan.md checks, is dishonest. State what was not checked.
 - **Vague follow-ups.** "Refactor later" is noise. Either make it specific or drop it.
 - **Missing files.** Every touched file belongs in the file list. Omitting the dotfile edits or the test fixture edits makes the summary harder to audit.
 - **Modifications without locations.** "Updated `foo.py`" forces the reviewer to diff. Always name the function, class, or section.
@@ -129,7 +131,7 @@ Before flipping `progress.md` to `## Status: done`:
 - [ ] Summary section states what shipped, not what was attempted.
 - [ ] Every file the diff touched is listed under `Files Changed`.
 - [ ] Every Modified entry names a location (function, class, section, or line range).
-- [ ] Every acceptance criterion has a matching verification note.
+- [ ] Every acceptance criterion and every plan.md check has a matching verification note.
 - [ ] Every accepted-but-not-resolved item is in Known Limitations.
 - [ ] Every discovered next-step is in Follow-Up Issues, or the section says "None."
 - [ ] No reference to "TODO", "WIP", or "to be determined" remains.
