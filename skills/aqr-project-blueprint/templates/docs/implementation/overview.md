@@ -6,7 +6,7 @@ Per-module implementation reference. Each top-level directory or major module in
 
 - `path/to/module` — {{one-line role}}. See `{{module-name}}.md`.
 
-## 2. Conventions shared across modules
+## 2. Rules shared across modules
 
 {{What every module agrees on: error handling, logging, request/response envelope, testing pattern, naming. Anything a contributor adding a new module needs to know to fit in.}}
 

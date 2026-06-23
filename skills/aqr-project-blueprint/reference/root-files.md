@@ -15,8 +15,8 @@ First file a new reader opens. Two-paragraph max: what the project is, how to st
 Top-level instructions for AI coding agents working in the repo. Points at:
 
 - `docs/index.md` for the documentation map.
-- `docs/conventions/code-style.md` and `docs/conventions/testing.md` for code changes.
-- `docs/conventions/documentation.md` for doc changes.
+- `docs/rules/code-style.md` and `docs/rules/testing.md` for code changes.
+- `docs/rules/documentation.md` for doc changes.
 - The issue workflow doc (if the project uses `aqr-issue-records`).
 
 Also carries toolchain specifics — language versions, where the version file lives, anything that surprises a fresh agent (system Node being the wrong version, pyenv env name, required system packages). These notes go here, not in `docs/`, because they affect agent behavior directly.
@@ -63,5 +63,5 @@ Do not create these unless the project explicitly needs them:
 
 - `LICENSE` — added per-project based on the chosen license; do not scaffold a default.
 - `CHANGELOG.md` — only if the project commits to maintaining one.
-- `CONTRIBUTING.md` — only if the project expects external contributors. Otherwise the convention docs under `docs/conventions/` cover this.
+- `CONTRIBUTING.md` — only if the project expects external contributors. Otherwise the rule docs under `docs/rules/` cover this.
 - `.pre-commit-config.yaml` — only if the project uses pre-commit. The blueprint assumes linting happens at edit and commit time via editor / agent discipline, not via pre-commit hooks.

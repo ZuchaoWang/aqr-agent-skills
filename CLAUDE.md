@@ -31,7 +31,7 @@ disable-model-invocation: <true | false | omit>
 
 ## Skills currently in this repo
 
-- `aqr-project-blueprint` — Scaffolds or compares a project against the recommended project/doc/code convention blueprint. **Manual-only.** Defines project shape: root files, docs layout, code/doc conventions. Does not mention issues or workflow.
+- `aqr-project-blueprint` — Scaffolds or compares a project against the recommended project/doc/code rule blueprint. **Manual-only.** Defines project shape: root files, docs layout, code/doc rules. Does not mention issues or workflow.
 - `aqr-issue-records` — A disciplined way to make doc or code changes, ship fixes, or run investigations in a repo. Each issue lives under `issues/` and is recorded through five artifacts (`task.md` / `plan.md` / `progress.md` / `summary.md` / `report.md`) and one of four types (`doc-update`, `code-update`, `fix`, `investigate`). **Manual-only.** `summary.md` covers operational output for code/doc/fix; `report.md` covers findings for investigate.
 
 Both skills are manual-only. The host agent will not auto-invoke them based on context; the user must invoke them via slash command.

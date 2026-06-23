@@ -9,7 +9,7 @@ Include this doc only if the project has a Python backend. Otherwise delete it a
 - Pydantic version: {{v1 / v2}}.
 - Database / storage: {{PostgreSQL / MongoDB / in-memory / other}}.
 
-## 2. Conventions
+## 2. Rules
 
 - Use type annotations on all public surfaces.
 - Use `TypedDict` for structured data, not `dataclass` (unless the project has chosen otherwise — record the choice here).

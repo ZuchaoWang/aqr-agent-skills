@@ -23,10 +23,10 @@ This is the authoritative documentation map for the project. New readers start h
 
 - `data/overview.md` — {{datasets, schemas, processing notes, data quality}}.
 
-## Conventions
+## Rules
 
-- `conventions/code-style.md` — {{language-agnostic code style; per-language rules in frontend-react.md / backend-python.md}}.
-- `conventions/documentation.md` — {{doc status header, headings, list style, doc lifecycle}}.
-- `conventions/testing.md` — {{test organization, what to test, what not to test}}.
-- `conventions/frontend-react.md` — {{React / TypeScript conventions; include only if the project has a frontend}}.
-- `conventions/backend-python.md` — {{Python / FastAPI conventions; include only if the project has a Python backend}}.
+- `rules/code-style.md` — {{language-agnostic code style; per-language rules in frontend-react.md / backend-python.md}}.
+- `rules/documentation.md` — {{doc status header, headings, list style, doc lifecycle}}.
+- `rules/testing.md` — {{test organization, what to test, what not to test}}.
+- `rules/frontend-react.md` — {{React / TypeScript rules; include only if the project has a frontend}}.
+- `rules/backend-python.md` — {{Python / FastAPI rules; include only if the project has a Python backend}}.

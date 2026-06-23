@@ -8,16 +8,16 @@ Project documentation starts at `docs/index.md`.
 
 When modifying code, follow:
 
-- `docs/conventions/code-style.md`
-- `docs/conventions/testing.md`
+- `docs/rules/code-style.md`
+- `docs/rules/testing.md`
 
 When updating documentation, follow:
 
-- `docs/conventions/documentation.md`
+- `docs/rules/documentation.md`
 
 Issue workflow:
 
-- See `docs/conventions/issue-workflow.md` if this project uses `aqr-issue-records`, or whatever issue workflow doc the project ships.
+- See `docs/rules/issue-workflow.md` if this project uses `aqr-issue-records`, or whatever issue workflow doc the project ships.
 
 ## Toolchain
 

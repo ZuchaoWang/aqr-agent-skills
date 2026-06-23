@@ -12,7 +12,7 @@ Include this doc only if the project has a React frontend. Otherwise delete it a
 - State management: {{React Context / Redux / Zustand / other}}.
 - HTTP client: {{fetch wrapper / axios / TanStack Query / other}}.
 
-## 2. Conventions
+## 2. Rules
 
 - One component per file. Default-exported.
 - Co-locate component, styles, and tests in one directory.

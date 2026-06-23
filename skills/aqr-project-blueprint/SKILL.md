@@ -1,30 +1,29 @@
 ---
 name: aqr-project-blueprint
-description: Scaffold a new project or compare an existing repo against the recommended project/doc/code convention blueprint. Use only when explicitly invoked — this skill is opinionated and is not applied automatically.
+description: Scaffold a new project or compare an existing repo against the recommended project/doc/code rule blueprint. Use only when explicitly invoked — this skill is opinionated and is not applied automatically.
 disable-model-invocation: true
 ---
 
 # aqr-project-blueprint
 
-Provides a reusable project scaffold and alignment guide. Recommends root files, docs layout, convention docs, and code/doc style defaults. Used to scaffold a new project or compare an existing project against the recommended structure.
-
-After files are copied into a repo, the project-local files become ground truth. The global skill remains only a reference / default set.
+Provides a reusable project scaffold and alignment guide. Recommends root files, docs layout, rule docs, and code/doc style defaults. Used to scaffold a new project or compare an existing project against the recommended structure.
 
 ## Scope
 
-This skill defines **project shape and conventions only**. It does not mention issues, issue templates, or issue workflow. Issue record format is owned by the companion skill `aqr-issue-records`.
+This skill defines **project shape and rules only**. It does not define the development workflow.
 
 ## What this skill is for
 
 Use it when explicitly asked to:
 
 - Scaffold a new project from the recommended blueprint.
-- Add recommended project docs or conventions to an existing repo.
+- Add recommended project docs or rules to an existing repo.
 - Compare an existing repo against the recommended blueprint and report drift.
 - Propose a migration plan from an existing layout to the blueprint.
 
 ## What this skill does not do
 
+- Its files are **not** authoritative for any project. They are starter material; once copied into a project, the project-local copies are ground truth and may be edited, overridden, or deleted. The skill does not re-impose its defaults on a project that has diverged.
 - It does **not** rewrite existing project structure automatically. For existing projects, first produce a comparison and a proposal; the user decides what to apply.
 - It does **not** create technology-specific files without first asking or inferring. See "Inferring tech choices" below.
 - It does **not** define the development workflow. Pair with `aqr-issue-records` and an execution skill (e.g. Superpowers) for that.
@@ -76,7 +75,7 @@ docs/
   data/
     overview.md
 
-  conventions/
+  rules/
     code-style.md
     documentation.md
     frontend-react.md
@@ -103,8 +102,8 @@ Reference docs for the common stacks:
 
 - `reference/python-project.md` — `pyproject.toml`, `.python-version`, requirements files, ruff/pyright config
 - `reference/node-project.md` — `package.json`, `.nvmrc`, lockfiles, ESLint/Prettier config
-- `reference/backend-python.md` — FastAPI + Pydantic conventions
-- `reference/frontend-react.md` — React + TypeScript + Vite conventions
+- `reference/backend-python.md` — FastAPI + Pydantic rules
+- `reference/frontend-react.md` — React + TypeScript + Vite rules
 
 ## Scaffolding workflow
 
@@ -125,4 +124,8 @@ When invoked to compare an existing repo:
 
 ## After scaffolding
 
-The moment files land in the project repo, the **project copies** are ground truth. The global skill is only a reference for future scaffolding jobs or for comparing drift. Do not silently "sync" project files back to the skill templates; if the user wants to evolve the blueprint, they will edit the skill directly.
+Once scaffolding completes, the project-local files are ground truth. In practice this means:
+
+- Do not re-copy skill templates over existing project files.
+- Do not "fix" drift by editing project files to match the skill.
+- If the user later asks to compare against the blueprint, produce a drift report — do not apply changes unless asked.

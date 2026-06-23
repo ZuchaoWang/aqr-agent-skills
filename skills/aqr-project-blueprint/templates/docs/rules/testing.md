@@ -17,7 +17,7 @@ What the project tests, how it tests, and what it does not test.
 
 ## 3. Test organization
 
-- Tests live alongside the code they test, or under a parallel `tests/` tree mirroring the source layout. Pick one convention per project and stay consistent.
+- Tests live alongside the code they test, or under a parallel `tests/` tree mirroring the source layout. Pick one rule per project and stay consistent.
 - One test file per source module. Name the file after the module.
 - Test names describe the behavior, not the implementation: `test_<behavior>`, not `test_<function>`.
 

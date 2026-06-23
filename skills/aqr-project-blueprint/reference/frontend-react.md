@@ -1,6 +1,6 @@
 # Frontend (React + TypeScript) reference
 
-Defaults for a React + TypeScript frontend. Not prescriptive at the framework level — the blueprint recommends Vite + React + TypeScript as the starting point, but the conventions below apply regardless of the chosen framework.
+Defaults for a React + TypeScript frontend. Not prescriptive at the framework level — the blueprint recommends Vite + React + TypeScript as the starting point, but the rules below apply regardless of the chosen framework.
 
 ## 1. Stack defaults
 
@@ -12,7 +12,7 @@ Defaults for a React + TypeScript frontend. Not prescriptive at the framework le
 - HTTP: a thin `fetch` wrapper for simple apps; TanStack Query for cache-heavy apps.
 - Routing: React Router (`react-router-dom`) for SPAs; the framework's built-in router for Next.js.
 
-## 2. Component conventions
+## 2. Component rules
 
 - One component per directory. Directory name = component name in kebab-case.
 - Default-exported component. Named exports for utilities and hooks.
@@ -43,7 +43,7 @@ The frontend doc under `docs/implementation/frontend/` mirrors this structure: o
 
 For dashboards or fixed-viewport apps (large-screen displays, kiosks), do not rely on CSS media queries alone. Use viewport-relative helpers (`px2vw`, `px2vh`, `px2font`) so the layout scales with the target viewport. For consumer web with diverse viewports, use Tailwind breakpoints or CSS container queries instead.
 
-State the chosen approach in `docs/conventions/frontend-react.md`.
+State the chosen approach in `docs/rules/frontend-react.md`.
 
 ## 5. Tooling
 

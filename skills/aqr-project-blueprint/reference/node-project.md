@@ -1,6 +1,6 @@
 # Node project reference
 
-Defaults for a Node-based frontend or service following the blueprint. Adjust per project; record deviations in `docs/conventions/frontend-react.md` (frontend) or a project-specific backend doc.
+Defaults for a Node-based frontend or service following the blueprint. Adjust per project; record deviations in `docs/rules/frontend-react.md` (frontend) or a project-specific backend doc.
 
 ## 1. Versions
 
@@ -31,7 +31,7 @@ For monorepos, `pnpm` is the default recommendation due to workspace handling.
 
 ### 3.2 Backend (Node)
 
-For Node backends, the blueprint does not take a strong position. Pick Express, Fastify, Hono, or NestJS per project. Document the choice in `docs/conventions/backend-<framework>.md`.
+For Node backends, the blueprint does not take a strong position. Pick Express, Fastify, Hono, or NestJS per project. Document the choice in `docs/rules/backend-<framework>.md`.
 
 ## 4. Lint / format / type-check
 
@@ -52,7 +52,7 @@ Editor: configure format-on-save with Prettier; configure ESLint to fix on save.
 ## 5. Tests
 
 - Framework: Vitest (default) or Jest.
-- Layout: co-located `*.test.tsx` next to source, or a parallel `tests/` tree. Pick one convention per project.
+- Layout: co-located `*.test.tsx` next to source, or a parallel `tests/` tree. Pick one rule per project.
 - For component tests: Testing Library.
 - For end-to-end: Playwright.
 

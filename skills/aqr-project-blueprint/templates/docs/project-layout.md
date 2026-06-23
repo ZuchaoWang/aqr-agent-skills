@@ -18,13 +18,13 @@ docs/                   # Documentation — start with docs/index.md
   implementation/       # Per-module implementation reference
   research/             # Background research
   data/                 # Dataset docs
-  conventions/          # Code, doc, and test conventions
+  rules/                # Code, doc, and test rules
 issues/                 # Issue records (one directory per issue)
 tmp/                    # Scratch directory
 }}
 ```
 
-## Conventions
+## Rules
 
 - `docs/` is spec-driven: code is written to satisfy documented specifications, not the other way around.
 - `issues/` holds issue records in the `aqr-issue-records` format. One directory per issue, grouped by `YYYYMM`.

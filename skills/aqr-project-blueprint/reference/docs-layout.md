@@ -36,9 +36,9 @@ Background research, related-work comparisons, exploratory notes. Research docs 
 
 Per-dataset documentation. One `.md` per dataset, plus an `overview.md` listing them. Each dataset doc covers: source, schema, refresh cadence, known issues.
 
-### 1.8 docs/conventions/
+### 1.8 docs/rules/
 
-Code, doc, and test conventions. The project's standing rules. Includes:
+The project's standing rules for code, docs, and tests. Includes:
 
 - `code-style.md` — language-agnostic rules; per-language rules in `frontend-react.md` / `backend-python.md`.
 - `documentation.md` — doc style and lifecycle (headings, list style, archival, etc.).
@@ -46,7 +46,7 @@ Code, doc, and test conventions. The project's standing rules. Includes:
 - `frontend-react.md` — include only if the project has a React frontend.
 - `backend-python.md` — include only if the project has a Python backend.
 
-Projects add other per-language convention docs as needed.
+Projects add other per-language rule docs as needed.
 
 ## 2. When to add a new top-level section
 

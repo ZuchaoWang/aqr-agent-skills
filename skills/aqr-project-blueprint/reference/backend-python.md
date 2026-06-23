@@ -1,6 +1,6 @@
 # Backend (Python) reference
 
-Defaults for a Python backend service. The blueprint recommends FastAPI for new HTTP services; the conventions below cover the common case. Adjust per project; record deviations in `docs/conventions/backend-python.md`.
+Defaults for a Python backend service. The blueprint recommends FastAPI for new HTTP services; the rules below cover the common case. Adjust per project; record deviations in `docs/rules/backend-python.md`.
 
 ## 1. Stack defaults
 
