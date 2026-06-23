@@ -57,22 +57,22 @@ See `reference/root-files.md` for the role of each file and when to include or s
 ```
 docs/
   index.md                # documentation map
-  project_layout.md
+  project_layout.md       # top-level repo layout, one-line annotation per directory
 
   project/
-    mission.md
-    usage_scenario.md
-    roadmap.md
-    client_docs/
-      {{date}}/
-    migration/
-      {{old_project_name}}.md
+    mission.md            # what the project is for; problem statement and scope
+    usage_scenarios.md    # concrete user-facing scenarios the project must support
+    roadmap.md            # milestones, target dates, owners
+    client_docs/          # verbatim requirements and feedback from the client
+      {{date}}/           # snapshot of client materials received on that date
+    migration/            # notes for migrating from a prior project
+      {{old_project_name}}.md  # what carried over and what changed from the prior project
 
   architecture/
-    design.md
-    interface.md
-    deploy.md
-    tech_stack.md
+    design.md             # system-level design: components, data flow, key decisions
+    interface.md          # external API contract: endpoints, request/response, error envelope
+    deploy.md             # deployment topology, runtime environment, ops notes
+    tech_stack.md         # languages, frameworks, libraries, and rationale
 
   research/
     background.md         # background knowledge for concepts and motivations
@@ -80,20 +80,23 @@ docs/
     brainstorm.md         # discussion of possible designs
 
   implementation/
-    {{module}}.md         # one per top-level source module
+    {{module}}/           # one folder per top-level source module
+      design.md           # conceptual: submodules, interactions, data model, key algorithms, testing approach
+      interface.md        # file structure + public surface signatures with one-line roles
 
   data/
     {{dataset}}.md        # one per dataset
 
   rules/
-    doc_markdown.md
-    report_ppt.md
-    frontend_react.md     # include only when the project has a React frontend
-    backend_python.md     # include only when the project has a Python backend
-    backend_jupyter.md
+    code_general.md       # cross-language code rules; per-stack files layer on top
+    doc_markdown.md       # markdown doc style: headings, lists, lifecycle, archival
+    report_ppt.md         # conventions for PowerPoint reports the project produces
+    frontend_js.md        # code + test rules for a JS/TS frontend (any framework)
+    backend_python.md     # code + test rules for a Python backend
+    backend_jupyter.md    # code + test rules for a Jupyter backend
 ```
 
-Not every project needs every file above. The scaffolding step copies the full skeleton; the user deletes what does not apply. `research/`, `implementation/`, and `data/` are empty in the skeleton and fill up as the project adds per-topic, per-module, and per-dataset docs.
+Not every project needs every file above. The scaffolding step copies the full skeleton; the user deletes what does not apply. Under `implementation/`, copy the `{{module}}/` folder for each top-level source module and rename it; under `data/`, add one doc per dataset.
 
 See `reference/docs-layout.md` for the meaning of each directory and what belongs in each.
 
