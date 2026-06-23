@@ -80,7 +80,7 @@ docs/
     brainstorm.md         # discussion of possible designs
 
   implementation/
-    {{module}}/           # one folder per top-level source module
+    {{module}}/           # one folder per top-level source module; for multi-stack projects, nest under {{layer}}/ (frontend/, backend/, ...)
       design.md           # conceptual: submodules, interactions, data model, key algorithms, testing approach
       interface.md        # file structure + public surface signatures with one-line roles
 
@@ -90,6 +90,7 @@ docs/
   rules/
     code_general.md       # cross-language code rules; per-stack files layer on top
     doc_markdown.md       # markdown doc style: headings, lists, lifecycle, archival
+    doc_templates.md      # templates for dynamic doc types (module, dataset, migration)
     report_ppt.md         # conventions for PowerPoint reports the project produces
     frontend_js.md        # code + test rules for a JS/TS frontend (any framework)
     backend_python.md     # code + test rules for a Python backend
@@ -113,7 +114,7 @@ Before creating technology-specific files, confirm or infer each of the followin
 - Backend framework (default: FastAPI for Python services)
 - Package manager for Node (npm / pnpm / yarn)
 - Python package manager (pip / uv / poetry / conda)
-- Monorepo layout (single tree vs. `frontend/` + `backend/`)
+- Monorepo layout (single tree vs. `frontend/` + `backend/`); determines whether `implementation/` docs are flat or layered
 - Lint / format / type-check tools
 
 Reference docs for the common stacks:
