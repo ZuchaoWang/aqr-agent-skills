@@ -14,14 +14,29 @@ The bar is "a reader who never met the user can pick up this `task.md` and execu
 
 `task.md` should faithfully record all useful details and hints the user mentions. If the user points to specific files, functions, or line numbers, capture them verbatim as scope hints or context (e.g. "the bug is in `foo.py:_calculate_total`", "update the schema table in `docs/data.md`"). What does NOT belong is the agent deriving a complete file list — that enumeration is `plan.md`'s job.
 
-## 3. What does NOT belong in task.md
+## 3. Bugfix content: capture wrong and expected behavior
+
+Bugfix content can appear in any issue type — a focused `fix`, a `code-update` that bundles several related bugfixes, or a `doc-update` that corrects wrong documentation. Whenever the work includes fixing wrong behavior, the agent must capture both:
+
+- **Wrong behavior (current)** — what happens now, concretely. Restate in the agent's own words and have the user confirm.
+- **Expected behavior** — what should happen instead. Restate and confirm.
+
+For visual bugs (CSS, layout, rendering), prose is sometimes enough ("the button is red, should be blue"). When prose is not enough — the agent's understanding of the wrong behavior is fuzzy or incomplete — a screenshot is needed. Only the user can provide it, because only the user is observing the actual rendering. Pattern when a screenshot is needed:
+
+- User provides a screenshot of the current wrong behavior, filed under `assets/`.
+- User may annotate the screenshot (arrows, circles) to mark what should change.
+- Agent captures the expected behavior as prose in `task.md`, referencing the screenshot file.
+
+If a screenshot is needed and the user has not provided one, ask for it during clarification rather than guessing.
+
+## 4. What does NOT belong in task.md
 
 - A complete file-by-file bullet list of every file that will change. The user's mentioned specifics are fine as context; what does not belong is the agent's derived full-file-list.
 - Implementation steps. Those belong in `plan.md`'s `Execution Steps`.
 - Test names. Those belong in `plan.md`'s `Planned Test Changes`.
 - Commit discipline. That is execution-time and lives in `progress.md` / `summary.md`.
 
-## 4. Acceptance criteria
+## 5. Acceptance criteria
 
 Acceptance criteria are typically drafted by the agent based on the goal and context, then confirmed or revised by the user. Users rarely specify criteria unprompted — the agent sees the structure of the work and is better placed to enumerate checkable outcomes. Draft them, show them to the user, and do not proceed to execution until the user accepts them.
 
@@ -37,7 +52,7 @@ Bad criteria:
 - "Tests pass." (too broad — be specific about which tests)
 - "Docs are good."
 
-## 5. When task.md changes
+## 6. When task.md changes
 
 `task.md` is not updated during execution. If scope changes mid-flight:
 
@@ -45,19 +60,22 @@ Bad criteria:
 - **Type-changing scope change.** Open a new issue of the correct type. Do not relabel this one.
 - **Out-of-scope discovery.** Note it under `Follow-Up Issues` in `summary.md` (or `report.md` for investigate); do not expand `task.md` scope.
 
-## 6. Anti-patterns
+## 7. Anti-patterns
 
 - **Enumerating every file that will change.** Belongs in `plan.md`. `task.md` is semantic.
 - **Vague acceptance criteria.** "Tests pass" is not checkable. Name the test suite, the command, the expected outcome.
+- **Bugfix without wrong/expected captured.** A bugfix that does not state both the current wrong behavior and the expected behavior is underspecified — the agent will guess at what to fix.
 - **Resolving open questions by assumption.** Open Questions surfaces ambiguity; it does not bury it.
 - **Rewriting scope mid-flight.** `task.md` is not edited during execution. Use an addendum or open a new issue.
 - **Abstracting away user-mentioned specifics.** If the user pointed to a file or function, record it verbatim.
 
-## 7. Quick checklist before planning
+## 8. Quick checklist before planning
 
 - [ ] Goal restated in the agent's own words and confirmed by the user.
 - [ ] Context section explains why now.
 - [ ] Scope is prose, not a file list.
 - [ ] All user-mentioned specifics captured verbatim.
+- [ ] If the work includes bugfix content: wrong behavior and expected behavior captured, restated, and confirmed.
+- [ ] For visual bugs: screenshot filed under `assets/`, expected behavior described in prose.
 - [ ] Acceptance criteria are numbered, specific, and checkable.
 - [ ] Open Questions is "None." or every item is genuinely unresolved.
