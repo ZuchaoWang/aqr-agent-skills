@@ -40,7 +40,7 @@ If a screenshot is needed and the user has not provided one, ask for it during c
 
 Acceptance criteria are typically drafted by the agent based on the goal and context, then confirmed or revised by the user. Users rarely specify criteria unprompted — the agent sees the structure of the work and is better placed to enumerate checkable outcomes. Draft them, show them to the user, and do not proceed to execution until the user accepts them.
 
-Acceptance criteria are the most important part of `task.md`. They are what `summary.md` checks against. Good criteria:
+Acceptance criteria are the most important part of `task.md`. They are what `summary.md` checks against. `plan.md`'s `Acceptance Checks` section operationalizes each criterion (one concrete check per criterion) — see `reference/plan-guidelines.md`. Good criteria:
 
 - Checkable from the diff or from a single command.
 - Numbered so verification notes can refer to them by number.

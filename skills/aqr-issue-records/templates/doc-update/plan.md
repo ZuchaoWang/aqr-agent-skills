@@ -24,6 +24,13 @@
   - Sections: ...
   - Forward-looking references: ...
 
+## Acceptance Checks
+
+<!-- One entry per acceptance criterion from task.md. Name the concrete command, file path, or observable to check. Even if the criterion is already operational in task.md, restate it here so plan.md is self-contained for execution. -->
+
+1. <criterion 1> — check: ...
+2. <criterion 2> — check: ...
+
 ## Open Questions
 
 <!-- "None." if empty. Each open question must be resolved before execution starts. -->

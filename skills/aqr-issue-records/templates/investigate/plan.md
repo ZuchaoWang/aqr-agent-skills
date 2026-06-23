@@ -11,6 +11,13 @@
 1. ...
 2. ...
 
+## Acceptance Checks
+
+<!-- One entry per acceptance criterion from task.md. For investigate, checks are usually self-checks on report.md (e.g. "Summary section in report.md states the answer directly"). -->
+
+1. <criterion 1> — check: ...
+2. <criterion 2> — check: ...
+
 ## Open Questions
 
 <!-- "None." if empty. -->

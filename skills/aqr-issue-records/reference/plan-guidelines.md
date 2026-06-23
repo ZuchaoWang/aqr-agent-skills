@@ -8,17 +8,23 @@ For the task-vs-plan distinction, see `SKILL.md`. For section structure, see `te
 
 Unlike `task.md`, the plan is expected to be updated as the work progresses — investigation findings get refined, execution steps get reordered or split, open questions get answered. `task.md` stays stable; `plan.md` reflects current thinking.
 
-## 2. Open Questions is the gate
+## 2. Acceptance Checks: one per criterion
+
+`plan.md` must include an `Acceptance Checks` section with one entry per acceptance criterion from `task.md`. Each entry names the concrete command, file path, or observable to check. Always include one per criterion — even if the criterion is already operational in `task.md`, restate it here so `plan.md` is self-contained for execution.
+
+This is the bridge between `task.md` (conceptual: what should be true) and `summary.md` (result: what we ran and what we got). Without it, the executor gets to `summary.md` and has to invent the check on the fly.
+
+## 3. Open Questions is the gate
 
 If `Open Questions` has unresolved items, execution must not start. Resolve each question, then write "None." in this section before proceeding.
 
 Open Questions is where ambiguity is surfaced, not where it is buried. If the answer is not known, leave the question open and resolve it through clarification, an `investigate` sub-issue, or an explicit assumption documented as a follow-up.
 
-## 3. Self-Review Notes are part of the record
+## 4. Self-Review Notes are part of the record
 
 Self-Review Notes capture the critique done before execution. They are not removed when execution starts — a reviewer should be able to see what concerns were considered, even if those concerns were ultimately accepted.
 
-## 4. Per-type section differences
+## 5. Per-type section differences
 
 The `Planned Changes` shape varies by issue type:
 
@@ -27,17 +33,21 @@ The `Planned Changes` shape varies by issue type:
 - `fix/plan.md` has `Per-Item Change Plan` — one subsection per item from `task.md`.
 - `investigate/plan.md` has `Investigation Approach` — ordered steps that describe what will be checked.
 
-## 5. Anti-patterns
+`Acceptance Checks` appears in all four types.
 
+## 6. Anti-patterns
+
+- **Missing acceptance checks.** Every criterion in `task.md` needs a concrete check in `plan.md`. Don't make the executor invent the check during execution.
 - **Starting execution with unresolved Open Questions.** The gate exists for a reason. Resolve first.
 - **Removing Self-Review Notes once execution starts.** They are part of the record.
 - **Re-deriving the file list during execution.** If the list changes, update `plan.md` — do not keep it in your head.
 - **Mixing doc changes into a code-update plan.** Open a separate `doc-update` issue.
 - **Vague execution steps.** Each step should be checkable from the diff alone.
 
-## 6. Quick checklist before execution
+## 7. Quick checklist before execution
 
 - [ ] Planned Changes sections match the type's template.
+- [ ] Acceptance Checks has one entry per criterion in `task.md`.
 - [ ] Every modification names where (file + function/section).
 - [ ] Open Questions is "None." or execution has not started.
 - [ ] Self-Review Notes captured, not stripped.
