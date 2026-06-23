@@ -1,67 +1,86 @@
 # Docs layout
 
-The recommended `docs/` structure. Six sections, each with its own role. Projects add per-section docs as the project grows; they do not create new top-level sections without good reason. The skeleton ships a minimal starter set (one or two docs per section); the rest fill up as the project grows.
+The recommended `docs/` structure. The SKILL.md tree is the canonical reference; this doc explains the role of each section so the scaffolding agent can answer "does this doc belong here or somewhere else?" without re-reading the tree.
 
-## 1. Sections
+The skeleton ships a starter subset (a few files per section); the rest fill in as the project grows. Two subtrees — `implementation/[{{layer}}/]{{module}}/` and `data/{{dataset}}.md` — are created on demand, not scaffolded with placeholder files. Criteria for those live in `templates/docs/rules/doc_templates.md`.
+
+## 1. Top-level files
 
 ### 1.1 docs/index.md
 
 Documentation map. One section per top-level `docs/` subdirectory, listing each doc with a one-line role. New readers start here. Update this file whenever a doc is added, removed, or moves.
 
-Treat the index as live from the moment the project has more than one doc. An empty index is worse than no index because it implies there is nothing to read.
+### 1.2 docs/project_layout.md
 
-### 1.2 docs/project/
+Top-level repo layout (one-line annotation per directory) plus a pointer to the module-doc criteria in `rules/doc_templates.md`. Update when the top-level shape changes.
 
-Project-level docs: mission, problem statement, scope, roadmap, milestones, client requirements. The "what and why" of the project as a whole, not any individual feature or issue.
+## 2. docs/project/
 
-Skeleton ships: `mission.md`, `roadmap.md`. Add per-project docs (`usage_scenarios.md`, `result.md`, `workflow.md`, ...) as the project grows.
+Project-level docs: mission, problem statement, scope, roadmap, milestones, client requirements, migration notes from prior projects. The "what and why" of the project as a whole, not any individual feature or issue.
 
-### 1.3 docs/architecture/
+Skeleton ships: `mission.md`, `roadmap.md`. Add per-project docs (`usage_scenarios.md`, ...) as the project grows. Verbatim client materials live under `client_docs/{{date}}/`; notes for migrating from a prior project live under `migration/{{old_project_name}}.md` (criteria in `rules/doc_templates.md` §4).
+
+## 3. docs/architecture/
 
 System-level architecture: component boundaries, data flow, major design decisions. The shape of the system, not the shape of any single module. Per-module implementation detail lives under `implementation/`.
 
-Skeleton ships: `design.md`. Add per-concern docs (`api.md`, `tech_stack.md`, `deploy.md`, ...) as the project grows.
+Skeleton ships: `design.md`. Common additions: `interface.md` (external API contract), `deploy.md` (deployment topology), `tech_stack.md` (language / framework / library rationale).
 
-### 1.4 docs/implementation/
+## 4. docs/implementation/
 
-Per-module implementation reference. One `.md` per top-level source module. Each module doc covers: description, files and folders, public surface (with full type signatures), and tests.
+Per-module implementation reference. One folder per top-level source module; each folder ships `design.md` (conceptual review) and `interface.md` (file and signature contract).
 
-This is the layer that "guides implementation by removing ambiguity" — the layer the executing agent reaches for when writing code in a specific module. The skeleton ships the directory empty; the user adds a doc per module.
+For multi-stack projects (e.g., `frontend/` + `backend/` at the repo root), modules nest under an intermediate layer folder mirroring the source tree:
 
-### 1.5 docs/research/
+```
+implementation/
+  frontend/
+    {{module}}/
+      design.md
+      interface.md
+  backend/
+    {{module}}/
+      design.md
+      interface.md
+```
+
+For single-stack projects, the layer is omitted and modules sit directly under `implementation/`.
+
+The criteria for both docs live in `rules/doc_templates.md` §§1–2. The skeleton ships the directory empty; the user adds a folder per module.
+
+## 5. docs/research/
 
 Background research, related-work comparisons, exploratory notes. Research docs inform decisions; they are not specs. Once a research note's conclusions are folded into `architecture/` or `implementation/`, move the note under `docs/archived/research/` and have the new doc reference it.
 
-The skeleton ships the directory empty; the user adds a doc per topic (`background.md`, `related_work.md`, `approach_rationale.md`, ...).
+The skeleton ships the directory empty; the user adds a doc per topic (`background.md`, `related_works.md`, `brainstorm.md`, ...).
 
-### 1.6 docs/data/
+## 6. docs/data/
 
-Per-dataset documentation. One `.md` per dataset. Each dataset doc covers: source, schema, refresh cadence, known issues.
+Per-dataset documentation. One `.md` per dataset. Criteria in `rules/doc_templates.md` §3. The skeleton ships the directory empty; the user adds a doc per dataset.
 
-The skeleton ships the directory empty; the user adds a doc per dataset.
+## 7. docs/rules/
 
-### 1.7 docs/rules/
+The project's standing rules. Files at scaffold time:
 
-The project's standing rules for code, docs, and tests. Includes:
+- `code_general.md` — cross-language code rules; per-stack files layer on top.
+- `doc_markdown.md` — markdown doc style: headings, lists, lifecycle, archival.
+- `doc_templates.md` — content criteria for dynamic doc types (module, dataset, migration).
+- `report_ppt.md` — conventions for PowerPoint reports. Include only if the project ships decks.
+- `frontend_js.md` — code + test rules for a JS / TS frontend (any framework). Include only if the project has a frontend.
+- `backend_python.md` — code + test rules for a Python backend. Include only if the project has a Python service.
+- `backend_jupyter.md` — code + test rules for a Jupyter backend. Include only if the project ships notebooks as a backend.
 
-- `project-layout.md` — top-level repo layout, one-line annotation per directory.
-- `code-style.md` — language-agnostic rules; per-language rules in `frontend-react.md` / `backend-python.md`.
-- `documentation.md` — doc style and lifecycle (headings, list style, archival, etc.).
-- `testing.md` — what to test, what not to test, test organization, test commands.
-- `frontend-react.md` — include only if the project has a React frontend.
-- `backend-python.md` — include only if the project has a Python backend.
+Projects add other per-stack rule docs as needed (e.g., `backend_go.md`, `mobile_rn.md`).
 
-Projects add other per-language rule docs as needed.
+## 8. When to add a new top-level section
 
-## 2. When to add a new top-level section
-
-Default: do not. The six sections cover the common cases. If a project feels it needs a seventh (e.g. `docs/security/`, `docs/operations/`), the right move is usually:
+Default: do not. The sections above cover the common cases. If a project feels it needs another (e.g., `docs/security/`, `docs/operations/`), the right move is usually:
 
 1. Check whether the content actually belongs under an existing section (security notes often belong under `architecture/`; runbooks often belong under `implementation/`).
-2. If it genuinely does not fit, add the new section, update `index.md`, and add an entry to this doc explaining the rationale.
+2. If it genuinely does not fit, add the new section, update `index.md` and `project_layout.md`, and add an entry here explaining the rationale.
 
-## 3. What does not belong in docs/
+## 9. What does not belong in docs/
 
 - Issue records. Those live under `issues/`. `docs/` references issues by directory path when needed.
 - Scratch notes, drafts, half-formed ideas. Those go in `tmp/` or in a personal notes repo.
-- Generated API references. Those go in `docs/implementation/<module>.md`, written by hand; do not commit generated HTML.
+- Generated API references. Those go in `implementation/[{{layer}}/]{{module}}/interface.md`, written by hand; do not commit generated HTML.

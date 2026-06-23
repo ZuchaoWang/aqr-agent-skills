@@ -1,6 +1,6 @@
 # Python project reference
 
-Defaults for a Python service or library following the blueprint. Adjust per project; record deviations in `docs/rules/backend-python.md`.
+Defaults for a Python service or library following the blueprint. Adjust per project; record deviations in `docs/rules/backend_python.md`.
 
 ## 1. Versions
 
@@ -16,7 +16,7 @@ Default to `uv` for new projects. `poetry` and `pip` are both acceptable; `conda
 - `pip` + `requirements.txt` — simplest; lock by pinning in the requirements file.
 - `conda` — only when binary dependencies make `uv` / `poetry` impractical.
 
-State the choice in `CLAUDE.md` and `docs/rules/backend-python.md`.
+State the choice in `CLAUDE.md` and `docs/rules/backend_python.md`.
 
 ## 3. Project metadata: pyproject.toml
 
@@ -77,6 +77,6 @@ For libraries, the layout follows the library's nature — but the same principl
 ## 7. Common pitfalls
 
 - `__init__.py` files are empty package markers — do not put code in them.
-- Pydantic v1 and v2 have incompatible APIs. Pin the major version explicitly and write the choice in `docs/rules/backend-python.md`.
+- Pydantic v1 and v2 have incompatible APIs. Pin the major version explicitly and write the choice in `docs/rules/backend_python.md`.
 - FastAPI `Depends()` is the right way to share query models; do not hand-roll a request-parsing layer.
 - For async I/O, prefer `httpx` over `aiohttp` for new code. Pin the choice and document why.

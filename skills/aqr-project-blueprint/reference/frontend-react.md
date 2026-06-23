@@ -43,7 +43,7 @@ The frontend doc under `docs/implementation/frontend/` mirrors this structure: o
 
 For dashboards or fixed-viewport apps (large-screen displays, kiosks), do not rely on CSS media queries alone. Use viewport-relative helpers (`px2vw`, `px2vh`, `px2font`) so the layout scales with the target viewport. For consumer web with diverse viewports, use Tailwind breakpoints or CSS container queries instead.
 
-State the chosen approach in `docs/rules/frontend-react.md`.
+State the chosen approach in `docs/rules/frontend_js.md`.
 
 ## 5. Tooling
 

@@ -1,6 +1,6 @@
-# Code style
+# Code rules (cross-language)
 
-Language-agnostic rules apply project-wide. Per-language rules live in `frontend-react.md` and `backend-python.md` (include only the language-specific docs that apply to this project).
+Language-agnostic rules apply project-wide. Per-stack rules live in `frontend_js.md`, `backend_python.md`, and `backend_jupyter.md` (include only the stack-specific docs that apply to this project).
 
 ## 1. Shared rules
 
@@ -16,9 +16,9 @@ Language-agnostic rules apply project-wide. Per-language rules live in `frontend
 
 Run the project's linters and formatters on touched files before commit. The exact tools depend on the stack — see the per-language rule docs.
 
-## 3. What goes in per-language docs
+## 3. What goes in per-stack docs
 
-Each per-language doc covers:
+Each per-stack doc covers:
 
 - Language version and runtime.
 - Type system rules (e.g. `TypedDict` vs `dataclass`).

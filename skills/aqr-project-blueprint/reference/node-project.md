@@ -1,6 +1,6 @@
 # Node project reference
 
-Defaults for a Node-based frontend or service following the blueprint. Adjust per project; record deviations in `docs/rules/frontend-react.md` (frontend) or a project-specific backend doc.
+Defaults for a Node-based frontend or service following the blueprint. Adjust per project; record deviations in `docs/rules/frontend_js.md` (frontend) or a project-specific backend doc.
 
 ## 1. Versions
 

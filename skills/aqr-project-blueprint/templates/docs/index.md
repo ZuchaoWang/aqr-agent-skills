@@ -1,6 +1,10 @@
-# Documentation Index
+# Documentation index
 
 This is the authoritative documentation map for the project. New readers start here. Update this file whenever a doc is added, removed, or moves between sections.
+
+## Top level
+
+- `project_layout.md` — top-level repo layout and module-doc criteria.
 
 ## Project
 
@@ -13,7 +17,7 @@ This is the authoritative documentation map for the project. New readers start h
 
 ## Implementation
 
-- {{one entry per `implementation/<module>.md`, with a one-line role}}.
+- {{one entry per `implementation/[{{layer}}/]{{module}}/` folder, with a one-line role}}.
 
 ## Research
 
@@ -25,9 +29,10 @@ This is the authoritative documentation map for the project. New readers start h
 
 ## Rules
 
-- `rules/project-layout.md` — {{top-level repo layout, one-line annotation per directory}}.
-- `rules/code-style.md` — {{language-agnostic code style; per-language rules in frontend-react.md / backend-python.md}}.
-- `rules/documentation.md` — {{doc status header, headings, list style, doc lifecycle}}.
-- `rules/testing.md` — {{test organization, what to test, what not to test}}.
-- `rules/frontend-react.md` — {{React / TypeScript rules; include only if the project has a frontend}}.
-- `rules/backend-python.md` — {{Python / FastAPI rules; include only if the project has a Python backend}}.
+- `rules/code_general.md` — cross-language code rules; per-stack files layer on top.
+- `rules/doc_markdown.md` — markdown doc style: headings, lists, lifecycle, archival.
+- `rules/doc_templates.md` — content criteria for dynamic doc types (module, dataset, migration).
+- `rules/frontend_js.md` — JS / TS frontend rules; include only if the project has a frontend.
+- `rules/backend_python.md` — Python backend rules; include only if the project has a Python backend.
+- `rules/backend_jupyter.md` — Jupyter backend rules; include only if the project ships notebooks as a backend.
+- `rules/report_ppt.md` — PowerPoint report conventions; include only if the project ships decks.
