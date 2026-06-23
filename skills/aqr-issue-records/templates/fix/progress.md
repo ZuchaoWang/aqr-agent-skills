@@ -4,17 +4,7 @@
 
 ## Execution Log
 
-<!-- Per-item progress: which items from plan.md are done, which are in verification, which are still open. Update after each item lands. -->
-
-## Commits
-
-| # | SHA | Item |
-|---|-----|------|
-| 1 | `xxxxxxx` | 1 — one-line role |
-
-## Verification Notes
-
-<!-- Per-item verification. Concrete commands run and their results. Include grep checks, test output, lint output, manual reproduction steps. -->
+<!-- Per-item progress: which items from plan.md are done, which are in verification, which are still open. Each entry can include the commit SHA, what was verified (concrete commands + outcome: grep, test, lint, manual repro), and any deviation from the plan. Update after each item lands. -->
 
 ## Notes
 
