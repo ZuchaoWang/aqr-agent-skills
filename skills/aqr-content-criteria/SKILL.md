@@ -10,18 +10,18 @@ Defines **what good content looks like** for common documentation types and for 
 
 ## Reference files to look at
 
-Identify what you are writing or reviewing, load the matching reference doc(s), apply their criteria. A task may match several.
+A task may match several files; load the ones whose doc type fits.
 
-- **Design doc** → `reference/design.md`. Any doc describing how a system or unit is structured. §1 picks the section list by case — system architecture, non-visual module, UI/frontend, or visualization — and §2 gives the criteria. A single design doc may combine cases.
+- **Design doc** → `reference/design.md`. A doc describing how something is structured: the system's components and data flow, a backend module's submodules and algorithms, a frontend's component tree and state ownership, or a single chart's visual encoding.
 
-- **Interface doc** → `reference/interface.md`. A contract between a system/module and its callers: external API (endpoints, shapes, error envelope, versioning, pagination, idempotency) or module public surface (files, signatures, what is hidden). Reuses the decision-record format from `reference/design.md` §2.4.
+- **Interface doc** → `reference/interface.md`. A contract between a system/module and its callers: an external HTTP API's endpoints and error envelope, or a module's exported functions and what it keeps private.
 
-- **Usage scenarios** → `reference/usage-scenarios.md`. Concrete user-facing situations as observable behavior, one per scenario: situation, what the user does, what the system does in response.
+- **Usage scenarios** → `reference/usage-scenarios.md`. Concrete user-facing situations as observable behavior — e.g. "a researcher uploads a 500 MB CSV and expects row-level validation errors within 30 seconds."
 
-- **Project docs** → `reference/project.md`. Lighter what-and-why docs: mission, roadmap, tech stack, migration, and active concepts (the complement to background).
+- **Project docs** → `reference/project.md`. The lighter what-and-why docs: a mission's goal and scope, a roadmap's milestones, a tech-stack rationale, a migration's old→new mapping, or the project's active domain concepts.
 
-- **Research docs** → `reference/research.md`. Docs that inform decisions, not specs: background (full), related works (minimal), brainstorm (minimal). Archive once conclusions fold into a design or implementation doc.
+- **Research docs** → `reference/research.md`. Docs that inform decisions but are not specs: domain background, related-work comparisons, or a brainstorm of design options.
 
-- **Dataset doc** → `reference/dataset.md`. One per dataset: contents, source and provenance, schema, format, quality notes, usage — enough to decide use without opening it.
+- **Dataset doc** → `reference/dataset.md`. One per dataset: what it contains, where it came from, its schema, format, and known quality gaps.
 
-- **Code** → `reference/code-criteria.md`. Universal code-quality floor for any language. Apply first, then layer the project's per-stack style rules.
+- **Code** → `reference/code-criteria.md`. Universal code-quality floor for any language: typing, naming, error handling, hygiene, testing.
