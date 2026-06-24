@@ -196,6 +196,8 @@ Not:
 
 The first form keeps each child's plan and execute together, so a child is planned and executed as one coherent unit before the next child is touched. The second form front-loads all planning and defers all execution, which breaks the per-child cohesion and the dependency order in `index.md`.
 
+This rule governs the order in which rows are written and worked, not when clarification happens. Clarification stays front-loaded: when more than one child is being planned and any child's plan is ambiguous, resolve all the ambiguous plans up front (001's and 002's together) before writing any rows or executing, then generate and work the queue in the order above. Planning does not always need clarification — only clarify what is genuinely ambiguous. This is the group special case of the general Clarification stance in `SKILL.md`.
+
 ## 9. Recovery Rule — filesystem is the source of truth
 
 Agents must not rely on memory. After long execution, context compression, or a session restart, reconstruct state from:

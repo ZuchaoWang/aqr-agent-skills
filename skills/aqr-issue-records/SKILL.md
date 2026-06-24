@@ -104,70 +104,45 @@ Issue groups reuse `progress.md` with a different body: instead of a step log, t
 
 See `templates/<type>/` for section structure and inline format. See `reference/<artifact>-guidelines.md` (one per artifact: task, plan, progress, summary, report) for how to write each artifact. See `templates/issue-group/` and `reference/issue-groups.md` for issue groups.
 
-### Why summary.md and report.md are different files
+### Distinguishing the artifacts
 
-Both are completion-stage artifacts, but they have different semantic roles:
+Three pairs are easy to conflate; each is kept separate for a distinct reason:
 
-- `summary.md` describes what was **operationally produced** — which files changed, where, and how the change was verified. Used by types that produce a diff (doc-update, code-update, fix).
-- `report.md` describes what was **discovered or concluded** — findings, the answer to the investigation's question, confidence in that answer. Used by the type that produces no diff (investigate). The report IS the deliverable, not a description of deliverables.
+- **`task.md` vs `plan.md`** — `task.md` is semantic (what behavior or knowledge changes), `plan.md` is enumerative (which files change). Splitting them keeps `task.md` stable while `plan.md` evolves; scope changes update `plan.md`, not `task.md`.
+- **`progress.md` vs `summary.md`** — `progress.md` is the execution log ("did you do what you planned?"), `summary.md` is the diff-and-verification summary ("what shipped and how was it verified?"). Both are required for doc-update, code-update, and fix; they are not the same file at different lifecycle stages.
+- **`summary.md` vs `report.md`** — `summary.md` records what was operationally produced (used by diff-producing types), `report.md` records what was discovered or concluded (investigate). The report IS the deliverable, not a description of deliverables.
 
-A reader picking up `summary.md` expects file changes and verification. A reader picking up `report.md` expects findings and an answer. Mixing them under one name would force the reader to infer which kind of artifact they were looking at based on issue type.
+### Conflict resolution between artifacts
 
-### task.md is semantic, plan.md is enumerative
+When two artifacts disagree, resolve by domain:
 
-`task.md` describes the issue at the level of "what behavior or knowledge changes" — not "which files change". The exact file list lives in `plan.md`. Keeping these separate means:
+- **Scope** (what is and is not in the issue): `task.md` wins — it is the source of truth for scope. `plan.md` reflects current thinking and yields to it.
+- **Group intent vs execution** (issue group): `index.md` is the intended plan; `progress.md` is what actually happened. `progress.md` wins.
 
-- A reader can understand the issue from `task.md` without getting bogged down in implementation detail.
-- The implementer can lift the file list directly from `plan.md` without re-deriving it.
-- Scope changes (a new file added to the work) update `plan.md`, not `task.md` — so `task.md` stays stable as the plan evolves.
-
-### progress.md vs summary.md
-
-These two files serve different purposes, not the same purpose at different lifecycle stages:
-
-- `progress.md` is the **execution log**. It tracks which planned steps (from `plan.md`'s Execution Steps) or per-item changes (from `plan.md`'s Per-Item Change Plan) were carried out, in order. It answers "did you do what you planned?".
-- `summary.md` is the **diff and verification summary**. It tracks what files changed, which commits landed, how each acceptance criterion was verified, what limitations were accepted, and what follow-ups surfaced. It answers "what shipped and how was it verified?".
-
-A reviewer reading `progress.md` wants to see the work unfold against the plan. A reviewer reading `summary.md` wants to see the resulting diff and its verification. Both are required for doc-update, code-update, and fix.
+Everything else is a record at a different stage, not a competing claim: `plan.md` is current thinking, `progress.md` is execution state, `summary.md` (or `report.md`) is the authoritative summary at completion.
 
 ## When the user invokes this skill
 
-There are two cases. The same verbs apply to both, but at the group level they drive the children rather than drafting a single issue's artifacts. Each verb names the artifact to create or update; the methodology skill (e.g. Superpowers) drives the actual work.
+The skill activates only on explicit slash invocation. Once activated, the verb is read from the user's prose, inferred, or asked for if unclear. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
+
+Each verb names the artifact to create or update; the methodology skill (e.g. Superpowers) drives the actual work. The same verbs apply to both cases below, but at the group level they drive the children rather than drafting a single issue's artifacts.
 
 **Standalone issue.**
 
 - **create** — draft `task.md`; set up the issue directory if it does not already exist, otherwise update in place.
 - **plan** — draft `plan.md`.
 - **execute** — carry out `plan.md`; writes `progress.md` as work lands and `summary.md` (or `report.md`) at completion.
-- **revise** — update an existing `task.md` or `plan.md` when something surfaces mid-execution.
+- **revise** — update an existing `task.md` or `plan.md`. The user must specify which file to revise. Revise that file only, then stop: do not cascade into other artifacts, do not continue into planning or execution.
 
 **Issue group.** The decomposition must already be available before the group is created (see `reference/issue-groups.md` §10):
 
-- **create** group — write `index.md` (purpose, execution order, dependencies) and create the child issue directories; queue one `create` row per child in the group `progress.md`. Do not queue `plan` or `execute` rows yet.
-- **plan** group — drive each child's `plan` in execution order, following the Ordering Rule (outer loop = child, inner loop = verbs); queue and work the `plan` rows.
-- **execute** group — drive each child's `execute` the same way; queue and work the `execute` rows.
+- **create** group — write `index.md` and create the child issue directories; queue one `create` row per child in the group `progress.md`. Do not queue `plan` or `execute` rows yet.
+- **plan** group — drive each child's `plan`; queue and work the `plan` rows.
+- **execute** group — drive each child's `execute`; queue and work the `execute` rows.
 - **revise** is not a queued group verb. A child issue may be revised on demand during its own execution; that revision stays inside the child and is not a separate row in the group's Execution Log.
 
-The skill activates only on explicit slash invocation. Once activated, the verb is read from the user's prose, inferred, or asked for if unclear. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
+**Order (multiple verbs only).** When the user specifies more than one verb for the group, apply the Ordering Rule: outer loop = child, inner loop = verbs — plan and execute each child as a complete unit before moving to the next (e.g. "plan and execute" → `001 plan` / `001 execute` / `002 plan` / `002 execute` / …). This rule applies only when multiple verbs are requested; for a single verb, work the children in `index.md`'s execution order. See `reference/issue-groups.md` §8.
 
-**Clarification stance.** Front-load clarification at the start of each invocation — one round covers the whole chain of verbs the user named, not per verb. Ask a few targeted questions to make the work unambiguous. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.
+**Clarification stance.** Front-load clarification at the start of each invocation — one round covers the whole chain of verbs the user named, not per verb. Ask a few targeted questions only where the work is genuinely ambiguous; if a verb or artifact is already unambiguous, skip it. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.
 
-## Reading order
-
-There are two cases.
-
-**Standalone issue.**
-
-1. `task.md` — what is the issue?
-2. `plan.md` — what is the agreed approach? Any open questions?
-3. `progress.md` (doc/code/fix) — which planned steps were carried out? What is still in flight?
-4. `summary.md` (doc/code/fix) — what shipped, what was verified, what is left.
-   `report.md` (investigate) — what was found, what is the answer, how confident.
-
-**Issue group.**
-
-1. `index.md` — what is the group for, in what order do the children run, and what depends on what?
-2. `progress.md` — which `(child, verb)` rows are pending, in-progress, or done?
-3. Each in-flight child's own artifacts, in the issue reading order above.
-
-Conflict resolution: `task.md` wins for scope decisions. `plan.md` reflects current thinking. `progress.md` reflects execution state. `summary.md` (or `report.md`) is the authoritative summary at completion. For a group, `index.md` is the intended plan and `progress.md` is what actually happened; on conflict between them, `progress.md` is the execution state of record.
+The Ordering Rule governs the order in which rows are written and worked, not when clarification happens — so this front-loading applies across the queue too: when a group invocation plans more than one child and any child's plan is ambiguous, resolve all the ambiguous plans up front (001's and 002's together) before writing any rows or executing, then generate and work the queue in the ordered sequence. Planning does not always need clarification; only clarify what is genuinely ambiguous.
