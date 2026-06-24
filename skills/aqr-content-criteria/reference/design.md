@@ -41,7 +41,7 @@ Apply when the design describes a frontend — a whole app or a single module.
 Apply when the design describes a single chart or visualization component.
 
 - **Data shape and chart type** — field types (quantitative / ordinal / nominal / temporal) and the chart chosen; which fields map to which marks and channels.
-- **Visual encoding** — marks and channels in use (see §2.3).
+- **Visual encoding** — explicitly state how each visual property is decided: x, y, z (z-index), color, size, width, and the rest. For each, name the data field (or constant) it encodes and why (see §2.3).
 - **Axes, scales, legends, labels** — scale choices, ranges, zero-baselines for length encodings.
 - **Interaction** — hover, filter, zoom, drill; what each reveals.
 - **Performance** — aggregation, sampling, canvas vs. SVG, for large datasets.
@@ -55,6 +55,7 @@ Apply §2.1 to every design doc; apply §2.2 or §2.3 when the case matches; app
 - Reviewable without reading code; a reader can reproduce the design's shape from the text.
 - Explicit boundaries — every unit states what is inside and outside its responsibility.
 - Conceptual only; implementation detail lives in code.
+- Be concise. Do not write code when a list of items will do — describe what and why, not how it is implemented.
 
 Decomposition and responsibility (when the design splits into units):
 
@@ -70,7 +71,7 @@ Decomposition and responsibility (when the design splits into units):
 - Lift shared state to the nearest common ancestor that needs it.
 - Props are the boundary contract; avoid prop drilling past one level — if it recurs, that is a state-ownership decision.
 - Split on a second use site, an unreadable prop list, or a stateful concern leaking into a presentational component.
-- Framework mechanics (hooks, stores) belong in the project's frontend style rules, not here.
+- A component does not define its own absolute position; that is set by its parent's layout. The component only sizes and lays out its own children.
 
 ### 2.3 Visualization criteria
 
@@ -82,7 +83,6 @@ Adapt marks-and-channels theory (Munzner, *Visualization Analysis and Design*): 
 Further:
 
 - No double-encoding one variable across two redundant channels without a reason.
-- Use colorblind-safe palettes; do not rely on hue alone.
 - A table is the better encoding when the reader needs precise values or row comparison.
 
 ### 2.4 Recording design decisions
