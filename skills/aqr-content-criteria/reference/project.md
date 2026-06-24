@@ -33,7 +33,7 @@ Purpose: a reviewer reads it and understands what tools are in use and why those
 Sections:
 
 1. **Languages and runtimes** — one line per language: version, where the pin lives.
-2. **Frameworks and libraries** — one line per key dependency: what it does here, why it was chosen over alternatives.
+2. **Frameworks and libraries** — one line per key dependency: what it does here, why it was chosen over alternatives. When a library was chosen over custom code (library-first), say so and name the custom code it replaces — e.g. "cockatiel — retry logic, chosen over hand-rolled retry."
 3. **Toolchain** — linters, formatters, type checkers, test runners, build tools.
 4. **Rationale note** — any non-obvious choice that would confuse a reader without explanation.
 
