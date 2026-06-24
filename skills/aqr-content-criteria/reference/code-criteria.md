@@ -4,14 +4,7 @@ Universal code quality principles that apply regardless of language, framework, 
 
 How to decompose code into components and modules, assign responsibility, and own state is a design concern — see `reference/design.md` §2.1. This doc covers the code-level floor that any decomposition must still meet.
 
-## 1. Public surface integrity
-
-- Type-annotate all public surfaces. Untyped internal helpers are acceptable; untyped public APIs are not.
-- Prefix module-private helpers with `_` (Python) or use do-not-export patterns (TypeScript) to keep the public surface honest.
-- Do not expose implementation details through the public surface. If a caller needs to know about an internal type or mechanism, that is a design problem, not a documentation problem.
-- The public surface is a contract. It is cheap to propose and expensive to retract — default to exposing less.
-
-## 2. Library-first
+## 1. Library-first approach
 
 Search for an existing solution before writing custom code. Check the language's package registry (npm, PyPI, …), existing services or SaaS, and third-party APIs for the functionality needed. Prefer a library over a hand-rolled utility for cross-cutting concerns — use a retry library instead of writing retry logic, a validation library instead of hand-rolled checks.
 
@@ -25,6 +18,13 @@ Custom code is justified only when:
 Avoid NIH ("not invented here"): do not build custom auth when an identity provider exists, custom state management when a store library exists, or custom form validation when an established library exists. Every line of custom code is a liability that needs maintenance, testing, and documentation.
 
 Record the chosen library and the reason in the project's tech-stack doc; the manifest (`package.json`, `requirements.txt`, …) holds the version pin, not the rationale.
+
+## 2. Public surface integrity
+
+- Type-annotate all public surfaces. Untyped internal helpers are acceptable; untyped public APIs are not.
+- Prefix module-private helpers with `_` (Python) or use do-not-export patterns (TypeScript) to keep the public surface honest.
+- Do not expose implementation details through the public surface. If a caller needs to know about an internal type or mechanism, that is a design problem, not a documentation problem.
+- The public surface is a contract. It is cheap to propose and expensive to retract — default to exposing less.
 
 ## 3. Naming and constants
 
