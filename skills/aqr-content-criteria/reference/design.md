@@ -14,8 +14,15 @@ A design doc may combine cases (e.g. a frontend module that is also a visualizat
 
 ### 1.2 System architecture
 
-- **Overall pattern** — name the well-known pattern the system follows (e.g. B/S, C/S, MVC, MVVM, microservices, event-driven) and the key interfaces between its parts. Do not re-explain the pattern; the pattern already implies its components, data flow, and control flow.
-- Describe **components**, **data flow**, or **control and workflow flow** only where this system deviates from or extends the pattern — e.g. a non-standard component, an unusual data path, a custom request lifecycle, failure/retry behavior. If the system follows the pattern straight, these sections stay empty.
+Two cases:
+
+- **Well-known pattern** (B/S, C/S, MVC, MVVM, microservices, event-driven, …) — just name it and state the key interfaces between its parts. Do not re-explain the pattern; it already implies its components, data flow, and control flow.
+- **Otherwise** — describe the system directly as bullets:
+  - **Components** — one per major component: role, public surface, dependencies, boundaries.
+  - **Data flow** — how data enters, is transformed, is stored, and leaves.
+  - **Control and workflow flow** — request lifecycle, state transitions, concurrency, failure and retry paths.
+
+Even when a pattern is named, add a bullet only where this system deviates from or extends it.
 
 ### 1.3 Non-visual module
 
