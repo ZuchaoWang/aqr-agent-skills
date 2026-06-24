@@ -8,7 +8,7 @@ Project documentation starts at `docs/index.md`. Layout reference: `docs/project
 
 When modifying code, follow `docs/rules/code_general.md` plus the per-stack rule files that apply (e.g. `frontend_js.md`, `backend_python.md`, `backend_jupyter.md`).
 
-When updating documentation, follow `docs/rules/doc_markdown.md` for format and `docs/rules/doc_templates.md` for content criteria on dynamic doc types.
+When updating documentation, follow `docs/rules/doc_markdown.md` for format. For content criteria on dynamic doc types (module design/interface, dataset, migration), see the `aqr-content-criteria` skill.
 
 Issue records (if the project uses `aqr-issue-records`) live under `issues/`, grouped by `YYYYMM`.
 

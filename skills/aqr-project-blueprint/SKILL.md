@@ -10,7 +10,12 @@ Provides a reusable project scaffold and alignment guide. Recommends root files,
 
 ## Scope
 
-This skill defines **project shape and rules only**. It does not define the development workflow.
+This skill defines **project shape and rules only**. It does not define the development workflow, and it does not define what good content looks like inside the docs it scaffolds.
+
+## Companion skills
+
+- `aqr-content-criteria` — content criteria for every doc type in this layout, and universal code quality principles. Reference it when writing or reviewing docs and code; its criteria are not copied into the project.
+- `aqr-issue-records` — development workflow: how to record and ship changes.
 
 ## What this skill is for
 
@@ -97,7 +102,6 @@ docs/
   rules/
     code_general.md       # cross-language code rules; per-stack files layer on top
     doc_markdown.md       # markdown doc style: headings, lists, lifecycle, archival
-    doc_templates.md      # templates for dynamic doc types (module, dataset, migration)
     report_ppt.md         # conventions for PowerPoint reports the project produces
     frontend_js.md        # code + test rules for a JS/TS frontend (any framework)
     backend_python.md     # code + test rules for a Python backend
@@ -106,7 +110,7 @@ docs/
 
 Not every project needs every file above. The scaffolding step copies the full skeleton; the user deletes what does not apply. Two subtrees are **not** scaffolded with placeholder files — they are created on demand by the project author:
 
-- The module folder under `implementation/` (path: `{{module_name}}/` or `{{layer}}/{{module_name}}/`) — one per top-level source module, each containing `design.md` and `interface.md`. Content criteria for both live in `docs/rules/doc_templates.md`.
+- The module folder under `implementation/` (path: `{{module_name}}/` or `{{layer}}/{{module_name}}/`) — one per top-level source module, each containing `design.md` and `interface.md`. Content criteria for both live in `aqr-content-criteria`.
 - `data/{{dataset}}.md` — one doc per dataset.
 
 See `reference/docs-layout.md` for the meaning of each directory and what belongs in each.

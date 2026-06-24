@@ -74,7 +74,7 @@ docs/
 
 ## 3. Module doc criteria
 
-Each module folder under `implementation/` (path: `{{module_name}}/` or `{{layer}}/{{module_name}}/`) ships two docs — `design.md` (conceptual review) and `interface.md` (file and signature contract). Content criteria for both live in `rules/doc_templates.md`.
+Each module folder under `implementation/` (path: `{{module_name}}/` or `{{layer}}/{{module_name}}/`) ships two docs — `design.md` (conceptual review) and `interface.md` (file and signature contract). Content criteria for both live in the `aqr-content-criteria` skill.
 
 ## 4. Layout rules
 

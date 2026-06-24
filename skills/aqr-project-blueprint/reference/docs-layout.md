@@ -2,7 +2,7 @@
 
 The recommended `docs/` structure. The SKILL.md tree is the canonical reference; this doc explains the role of each section so the scaffolding agent can answer "does this doc belong here or somewhere else?" without re-reading the tree.
 
-The skeleton ships a starter subset (a few files per section); the rest fill in as the project grows. Two subtrees — `implementation/[{{layer}}/]{{module_name}}/` and `data/{{dataset}}.md` — are created on demand, not scaffolded with placeholder files. Criteria for those live in `templates/docs/rules/doc_templates.md`.
+The skeleton ships a starter subset (a few files per section); the rest fill in as the project grows. Two subtrees — `implementation/[{{layer}}/]{{module_name}}/` and `data/{{dataset}}.md` — are created on demand, not scaffolded with placeholder files. Criteria for those live in the `aqr-content-criteria` skill.
 
 ## 1. Top-level files
 
@@ -12,13 +12,13 @@ Documentation map. One section per top-level `docs/` subdirectory, listing each 
 
 ### 1.2 docs/project_layout.md
 
-Top-level repo layout (one-line annotation per directory) plus a pointer to the module-doc criteria in `rules/doc_templates.md`. Update when the top-level shape changes.
+Top-level repo layout (one-line annotation per directory) plus a pointer to the `aqr-content-criteria` skill for module-doc criteria. Update when the top-level shape changes.
 
 ## 2. docs/project/
 
 Project-level docs: mission, problem statement, scope, roadmap, milestones, client requirements, migration notes from prior projects. The "what and why" of the project as a whole, not any individual feature or issue.
 
-Skeleton ships: `mission.md`, `roadmap.md`. Add per-project docs (`usage_scenarios.md`, ...) as the project grows. Verbatim client materials live under `client_docs/{{date}}/`; notes for migrating from a prior project live under `migration/{{old_project_name}}.md` (criteria in `rules/doc_templates.md` §4).
+Skeleton ships: `mission.md`, `roadmap.md`. Add per-project docs (`usage_scenarios.md`, ...) as the project grows. Verbatim client materials live under `client_docs/{{date}}/`; notes for migrating from a prior project live under `migration/{{old_project_name}}.md` (criteria in `aqr-content-criteria` §1.4).
 
 ## 3. docs/architecture/
 
@@ -44,7 +44,7 @@ implementation/
       interface.md
 ```
 
-The criteria for both docs live in `rules/doc_templates.md` §§1–2. The skeleton ships the directory empty; the user adds a folder per module.
+The criteria for both docs live in `aqr-content-criteria` §§4.1–4.2. The skeleton ships the directory empty; the user adds a folder per module.
 
 ## 5. docs/research/
 
@@ -54,7 +54,7 @@ The skeleton ships the directory empty; the user adds a doc per topic (`backgrou
 
 ## 6. docs/data/
 
-Per-dataset documentation. One `.md` per dataset. Criteria in `rules/doc_templates.md` §3. The skeleton ships the directory empty; the user adds a doc per dataset.
+Per-dataset documentation. One `.md` per dataset. Criteria in `aqr-content-criteria` §5. The skeleton ships the directory empty; the user adds a doc per dataset.
 
 ## 7. docs/rules/
 
@@ -62,13 +62,12 @@ The project's standing rules. Files at scaffold time:
 
 - `code_general.md` — cross-language code rules; per-stack files layer on top.
 - `doc_markdown.md` — markdown doc style: headings, lists, lifecycle, archival.
-- `doc_templates.md` — content criteria for dynamic doc types (module, dataset, migration).
 - `report_ppt.md` — conventions for PowerPoint reports. Include only if the project ships decks.
 - `frontend_js.md` — code + test rules for a JS / TS frontend (any framework). Include only if the project has a frontend.
 - `backend_python.md` — code + test rules for a Python backend. Include only if the project has a Python service.
 - `backend_jupyter.md` — code + test rules for a Jupyter backend. Include only if the project ships notebooks as a backend.
 
-Projects add other per-stack rule docs as needed (e.g., `backend_go.md`, `mobile_rn.md`).
+Content criteria for dynamic doc types (module design/interface, dataset, migration) live in the `aqr-content-criteria` skill — not in a project-local file.
 
 ## 8. When to add a new top-level section
 
