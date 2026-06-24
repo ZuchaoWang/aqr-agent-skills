@@ -12,16 +12,16 @@ Defines **what good content looks like** for common documentation types and for 
 
 A task may match several files; load the ones whose doc type fits.
 
-- **Design doc** → `reference/design.md`. A doc describing how something is structured: the system's components and data flow, a backend module's submodules and algorithms, a frontend's component tree and state ownership, or a single chart's visual encoding.
+- **Design doc**: module decomposition, workflow, style, visual encoding, key algorithm, database schema → `reference/design.md`.
 
-- **Interface doc** → `reference/interface.md`. A contract between a system/module and its callers: an external HTTP API's endpoints and error envelope, or a module's exported functions and what it keeps private.
+- **Interface doc**: frontend/backend API, module's public functions and classes → `reference/interface.md`.
 
-- **Usage scenarios** → `reference/usage-scenarios.md`. Concrete user-facing situations as observable behavior — e.g. "a researcher uploads a 500 MB CSV and expects row-level validation errors within 30 seconds."
+- **Usage scenarios**: user goal, steps, system response, observable behavior → `reference/usage-scenarios.md`.
 
-- **Project docs** → `reference/project.md`. The lighter what-and-why docs: a mission's goal and scope, a roadmap's milestones, a tech-stack rationale, a migration's old→new mapping, or the project's active domain concepts.
+- **Project docs**: mission goal and scope, roadmap milestones, tech-stack rationale, migration old→new mapping, active domain concepts → `reference/project.md`.
 
-- **Research docs** → `reference/research.md`. Docs that inform decisions but are not specs: domain background, related-work comparisons, or a brainstorm of design options.
+- **Research docs**: domain background, related-work comparison, design-option brainstorm → `reference/research.md`.
 
-- **Dataset doc** → `reference/dataset.md`. One per dataset: what it contains, where it came from, its schema, format, and known quality gaps.
+- **Dataset doc**: contents, source and provenance, schema, format, quality gaps → `reference/dataset.md`.
 
-- **Code** → `reference/code-criteria.md`. Universal code-quality floor for any language: typing, naming, error handling, hygiene, testing.
+- **Code**: typing, naming, error handling, hygiene, testing → `reference/code-criteria.md`.
