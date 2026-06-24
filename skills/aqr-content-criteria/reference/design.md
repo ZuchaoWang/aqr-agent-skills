@@ -63,8 +63,8 @@ Apply §2.1 to every design doc; apply §2.2 or §2.3 when the case matches; app
 
 Decomposition and responsibility (when the design splits into units):
 
-- One clear responsibility per unit; if its name needs "and", it is a candidate to split.
 - Keep business logic independent of frameworks, UI, and data access: do not mix business logic into UI components or put database queries in controllers. Separate domain from infrastructure.
+- One clear responsibility per unit; if its name needs "and", it is a candidate to split.
 - A unit owns its state and hides its internals; callers depend on the contract, not the implementation.
 - State lives with the unit that mutates it; lift shared state to the nearest common ancestor.
 - Separate what a unit *is* (pure transformation) from what it *does* (owns state and side effects); mixing both is a smell.
