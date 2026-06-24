@@ -1,48 +1,30 @@
 # Interface content criteria
 
-Criteria for every interface doc — the external API contract or a module's public surface. An interface doc sits **between design and code**: the design above it and the code below it must both honor the contract it states. Where the doc lives in the project is a layout choice; this skill covers content only.
+Criteria for interface docs — a module's public surface or an external API contract. An interface doc sits **between design and code**: both must honor the contract it states. Where the doc lives is a layout choice; this skill covers content only.
 
-An interface doc carries two things: **contract criteria** (this doc) and **recorded interface decisions** — using the same decision-record format as `design.md` §2.4 (Context / Current decision / Alternatives), because interface choices (cursor vs. offset pagination, error-envelope shape, what to hide) are design decisions.
+Keep it reviewable. The core is a flat list of what is exposed, each item with a one-line description; more detail than that is hard to review and tends to drift into a spec. Add finer detail only when it is genuinely necessary, and expect that a human may not review it.
 
-## 1. What every interface.md must contain
+Interface choices (what to expose vs. hide, envelope shape, pagination style) are design decisions — record them with the format in `design.md` §2.4.
 
-Regardless of scope, an interface doc states what is exposed and what is deliberately hidden, and gives every public element a one-sentence role.
+## 1. Module public surface
 
-1. **Summary** — one paragraph: what this interface exposes and who consumes it.
-2. **Public surface** — for each public function, class, type, or endpoint: the signature on one line, and a one-sentence role on the next. The one-sentence role is the load-bearing piece — a signature without a role forces the reader to read code.
-3. **What is hidden** — the internals deliberately kept out of the public surface. Stating the boundary explicitly keeps callers from depending on implementation detail.
-4. **Non-obvious field notes** — any field, parameter, or return value whose semantics are non-obvious gets an inline note (units, allowed values, nullability, lifecycle). Do not point readers at the code for things that should be documented here.
-5. **Key interface decisions** — decision records (same format as `design.md` §2.4) for the choices that shaped the contract: what was exposed vs. hidden, envelope shape, versioning approach, pagination style.
+- **File list** — one line per file: name and its role.
+- **Public surface** — for each public class or function: the file it lives in, the signature on one line, and a one-line description of what it does.
 
-Constraints: reviewable without reading code. Skip internal helpers, trivial accessors, and full type bodies — point at the file instead.
+Skip internal helpers, trivial accessors, and full type bodies — point at the file. If the public surface will not fit on roughly a page, the module is probably doing too much.
 
-## 2. External API addendum
+## 2. External API
 
-Purpose: a reviewer reads it and understands the full external API contract without reading code. Adapt the Google API Improvement Proposals conventions for the standard concerns.
+- **Endpoints** — one line per endpoint: method, path, one-line purpose.
+- **Input format** — for each endpoint, the request fields (name, type, required/optional).
+- **Output format** — for each endpoint, the response fields (name, type, meaning) and the error response shape.
 
-Sections:
+## 3. Optional detail (add only when necessary)
 
-1. **Endpoints and entry points** — one subsection per endpoint or entry point: method, path, one-line purpose.
-2. **Request and response shapes** — for each endpoint: request fields (name, type, required/optional, constraints) and response fields (name, type, meaning).
-3. **Error envelope** — the standard error response shape and the error codes or messages the API produces. A consistent shape (`code`, `message`, `details`) across all errors; codes are stable and documented. State retryability — which errors a caller may retry and which it may not.
-4. **Versioning** — how the API is versioned (URL path, header, media type) and the compatibility contract a version implies. What changes are breaking.
-5. **Pagination** — the pagination style (cursor/page-token vs. offset) and why it was chosen. Cursor is correct for large or changing datasets; offset is simpler but unstable under inserts. State the contract a caller follows to page through results.
-6. **Idempotency** — which operations are idempotent and how a caller makes a non-idempotent operation safe (idempotency key, request deduplication). State the idempotency window.
-7. **Naming conventions** — resource and field naming (plural resources, snake_case vs. camelCase), and any project-wide convention.
-8. **Authentication and authorization** — how callers authenticate and what access controls apply.
-9. **Key interface decisions** — §1 decision records for the envelope, versioning, pagination, and idempotency choices.
+The following are not part of the reviewable core. Include a section only when it carries information a caller cannot get from the input/output formats, and mark it as detail a human may not review:
 
-Constraints: target ~2–3 pages. The contract must be complete enough that two independent implementations of it interoperate.
-
-## 3. Module public-surface addendum
-
-Purpose: a reviewer reads it in ~5 minutes and spots missing pieces, wrong shapes, unclear naming, over-coupling.
-
-Sections:
-
-1. **Files** — one-line role per file in the module.
-2. **Public surface** — for each public function, class, type: signature on one line, one-sentence role on the next. Skip internal helpers, trivial accessors, and full type bodies (point at the file).
-3. **What is hidden** — the module-private helpers and types deliberately kept out of the surface (prefixed `_` in Python, do-not-export patterns in TypeScript).
-4. **Key interface decisions** — §1 decision records for what was exposed vs. hidden.
-
-Constraints: target ~1 page for the whole module. If the public surface will not fit on a page, the module is probably doing too much — record that as a decision or split the module.
+- Error codes and their retryability.
+- Versioning and what counts as a breaking change.
+- Pagination style (cursor vs. offset) and the contract for paging.
+- Idempotency rules and keys.
+- Authentication and authorization.
