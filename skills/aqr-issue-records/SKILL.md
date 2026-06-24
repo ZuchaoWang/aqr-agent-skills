@@ -14,10 +14,6 @@ The skill specifies the artifacts, their roles, and the type taxonomy. The surro
 
 The artifacts are text files written in the user's project documentation style. Anyone — the user, a reviewer, a future agent — can read them cold and understand what was attempted, what was decided, what was verified, and what is still open.
 
-## Invocation
-
-This skill is manual-only. The user invokes it explicitly via slash command (e.g. `/aqr-issue-records`). It is not auto-applied based on project state, because the issue format is opinionated and not every project wants it.
-
 ## Where issues and issue groups live
 
 There are two cases — a standalone issue and an issue group. Both live under `issues/<YYYYMM>/`:
@@ -123,7 +119,7 @@ Everything else is a record at a different stage, not a competing claim: `plan.m
 
 ## When the user invokes this skill
 
-The skill activates only on explicit slash invocation. Once activated, the verb is read from the user's prose, inferred, or asked for if unclear. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
+The skill activates only on explicit slash invocation (e.g. `/aqr-issue-records`); it is not auto-applied based on project state, because the issue format is opinionated and not every project wants it. Once activated, the verb is read from the user's prose, inferred, or asked for if unclear. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
 
 Each verb names the artifact to create or update; the methodology skill (e.g. Superpowers) drives the actual work. The same verbs apply to both cases below, but at the group level they drive the children rather than drafting a single issue's artifacts.
 
