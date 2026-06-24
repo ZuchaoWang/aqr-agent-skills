@@ -22,6 +22,8 @@ Custom code is justified only when:
 - It is security-sensitive code requiring full control.
 - Existing solutions fail a thorough evaluation against the requirements.
 
+Avoid NIH ("not invented here"): do not build custom auth when an identity provider exists, custom state management when a store library exists, or custom form validation when an established library exists. Every line of custom code is a liability that needs maintenance, testing, and documentation.
+
 Record the chosen library and the reason in the project's tech-stack doc; the manifest (`package.json`, `requirements.txt`, …) holds the version pin, not the rationale.
 
 ## 3. Naming and constants
@@ -30,6 +32,7 @@ Record the chosen library and the reason in the project's tech-stack doc; the ma
 - Name things for what they are, not how they are implemented. `user_store` over `user_dict`; `is_active` over `flag`.
 - Function names are verbs or verb phrases. Data names are nouns. Booleans answer a yes/no question (`is_`, `has_`, `can_`).
 - Names are consistent across the boundary: a concept called `invoice` in the design keeps that name in code unless there is a recorded reason not to.
+- Avoid generic dumping-ground names — `utils`, `helpers`, `common`, `shared` — that collect unrelated functions. Name by domain responsibility (`OrderCalculator`, `UserAuthenticator`) so a file's purpose is clear from its name.
 
 ## 4. Comments
 
@@ -55,6 +58,7 @@ Record the chosen library and the reason in the project's tech-stack doc; the ma
 - Do not create empty files. The only exception is `__init__.py`, which may be empty to mark a Python package.
 - If a module file is growing past ~300 lines, reconsider its scope before adding more — the responsibility split is a design call (see `reference/design.md` §2.1).
 - Co-locate what changes together. A component, its styles, and its tests that change together live together.
+- Prefer early returns over nested conditionals, and avoid deep nesting (roughly more than three levels). Exact thresholds are a project-style choice.
 
 ## 8. Testing
 

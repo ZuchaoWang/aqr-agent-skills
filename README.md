@@ -30,3 +30,4 @@ External sources adapted by `aqr-content-criteria`:
 - *Visualization Analysis and Design* (T. Munzner, CRC Press) — the marks-and-channels, expressiveness, and effectiveness principles adapted in `reference/design.md` §2.3.
 - [Google API Improvement Proposals](https://google.aip.dev) — API design conventions (error envelope, versioning, pagination, idempotency) adapted in `reference/interface.md`.
 - [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) (D. Abramov) — the presentational/container distinction adapted in `reference/design.md` §2.2.
+- [Software Architecture skill](https://github.com/davila7/claude-code-templates/blob/main/cli-tool/components/skills/development/software-architecture/SKILL.md) (claude-code-templates) — the library-first / NIH guidance and code-quality rules adapted in `reference/code-criteria.md` and `reference/design.md` §2.1.
