@@ -91,6 +91,6 @@ Record each significant decision as a short entry with three fields:
 
 - **Context** — the forces that forced the choice.
 - **Current decision** — what was chosen, in one line.
-- **Alternatives** — the options considered and why they were not picked.
+- **Alternatives** — options considered (including past decisions since reversed) and why they were not picked.
 
-One decision per entry. When a decision is reversed, add a new entry rather than rewriting the old one; the history is the point.
+One decision per entry. When a decision is reversed, update Current decision and move the old one into Alternatives with a one-line reason.
