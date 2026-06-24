@@ -68,9 +68,9 @@ Decomposition and responsibility (when the design splits into units):
 ### 2.2 UI criteria
 
 - Presentational vs. container: presentational components are stateless (props in, UI out, reusable); containers are stateful (own data and logic, pass props down). Mixing both is a smell.
-- Lift shared state to the nearest common ancestor that needs it.
-- Props are the boundary contract; avoid prop drilling past one level — if it recurs, that is a state-ownership decision.
-- Split on a second use site, an unreadable prop list, or a stateful concern leaking into a presentational component.
+- Locally-shared state lives at the nearest common ancestor of its consumers; drilling it through layers that don't use it signals it is owned too high.
+- Broadly-shared or persistent state (auth, theme, session, cached data) lives in a store or context and is read directly by the components that need it — never drilled down through intermediaries as props.
+- Extract a component when the same UI is needed a second time (to avoid copy-paste); also split on an unreadable prop list or a stateful concern leaking into a presentational component.
 - A component does not define its own absolute position; that is set by its parent's layout. The component only sizes and lays out its own children.
 
 ### 2.3 Visualization criteria
