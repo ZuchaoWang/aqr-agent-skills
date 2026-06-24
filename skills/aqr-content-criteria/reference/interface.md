@@ -1,10 +1,6 @@
 # Interface content criteria
 
-Criteria for interface docs — a module's public surface or an external API contract. An interface doc sits **between design and code**: both must honor the contract it states. Where the doc lives is a layout choice; this skill covers content only.
-
-Keep it reviewable. The core is a flat list of what is exposed, each item with a one-line description; more detail than that is hard to review and tends to drift into a spec. Add finer detail only when it is genuinely necessary, and expect that a human may not review it.
-
-Interface choices (what to expose vs. hide, envelope shape, pagination style) are design decisions — record them with the format in `design.md` §2.4.
+Criteria for interface docs — a module's public surface or an external API contract, sitting between design and code. Keep it reviewable: a flat list of what is exposed, each item with a one-line description. Finer detail is hard to review and drifts into a spec; add it only when necessary, and expect a human may not review it. Record interface choices (what to expose, envelope shape, pagination style) with the format in `design.md` §2.4.
 
 ## 1. Module public surface
 
