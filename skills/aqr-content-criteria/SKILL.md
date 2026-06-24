@@ -1,16 +1,14 @@
 ---
 name: aqr-content-criteria
-description: Criteria for writing source code and common documentation types (design, interface, usage scenarios, project, research, dataset). Use when writing or reviewing any such code for doc.
+description: Criteria for writing common documentation types (design, interface, usage scenarios, project, research, dataset) and source code. Use when writing or reviewing any such doc or code.
 disable-model-invocation: false
 ---
 
 # aqr-content-criteria
 
-Defines **what good content looks like** for code and for common documentation types. Criteria the agent applies when writing or reviewing.
+Defines **what good content looks like** for common documentation types and source code. When writing or reviewing doc or code, load the corresponding references and follow the criteria they define.
 
 ## Reference files to look at
-
-A task may match several files; load the ones whose doc type fits.
 
 | Doc / code type | What it covers | Reference |
 | - | - | - |
