@@ -64,7 +64,6 @@ docs/
     {{dataset}}.md        # one per dataset
 
   rules/
-    code_general.md       # cross-language code rules; per-stack files layer on top
     doc_markdown.md       # markdown doc style: headings, lists, lifecycle, archival
     report_ppt.md         # conventions for PowerPoint reports the project produces
     frontend_js.md        # code + test rules for a JS/TS frontend (any framework)

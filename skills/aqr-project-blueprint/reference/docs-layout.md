@@ -60,7 +60,6 @@ Per-dataset documentation. One `.md` per dataset. Criteria in `aqr-content-crite
 
 The project's standing rules. Files at scaffold time:
 
-- `code_general.md` — cross-language code rules; per-stack files layer on top.
 - `doc_markdown.md` — markdown doc style: headings, lists, lifecycle, archival.
 - `report_ppt.md` — conventions for PowerPoint reports. Include only if the project ships decks.
 - `frontend_js.md` — code + test rules for a JS / TS frontend (any framework). Include only if the project has a frontend.

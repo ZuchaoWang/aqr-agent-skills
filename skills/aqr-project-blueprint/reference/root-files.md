@@ -15,7 +15,7 @@ First file a new reader opens. Two-paragraph max: what the project is, how to st
 Top-level instructions for AI coding agents working in the repo. Points at:
 
 - `docs/index.md` for the documentation map.
-- `docs/rules/code_general.md` (plus per-stack rule files) for code changes.
+- the per-stack rule files for code changes (e.g. `docs/rules/frontend_js.md`, `docs/rules/backend_python.md`); for universal code quality principles, see the `aqr-content-criteria` skill.
 - `docs/rules/doc_markdown.md` for doc format; for content criteria on dynamic doc types, see the `aqr-content-criteria` skill.
 - The issue workflow doc (if the project uses `aqr-issue-records`).
 

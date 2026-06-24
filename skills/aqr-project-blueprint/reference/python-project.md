@@ -46,37 +46,11 @@ pyright path/to/file.py
 
 Do not reformat the whole tree as part of an unrelated change — that creates noise in review and conflicts with in-flight branches.
 
-## 5. Module layout
-
-For services (FastAPI, Flask), recommend router-per-module:
-
-```
-backend/src/
-  module_name/
-    __init__.py
-    views.py        # route handlers
-    models.py       # Pydantic models
-    services.py     # business logic and transformations
-  utils/
-    __init__.py
-    misc.py
-    request.py      # shared Pydantic query mixins
-  app.py            # FastAPI factory
-  config.py         # Settings, get_config()
-```
-
-For libraries, the layout follows the library's nature — but the same principle: one module per concern, `utils/` for shared helpers, no orphan files at the root.
-
-## 6. Tests
+## 5. Tests
 
 - Framework: `pytest`.
 - Layout: mirror the source tree under `tests/`. One test file per source module.
 - Naming: `test_<behavior>`, not `test_<function>`.
 - Run one test: `pytest path/to/test_file.py::test_name`.
 
-## 7. Common pitfalls
-
-- `__init__.py` files are empty package markers — do not put code in them.
-- Pydantic v1 and v2 have incompatible APIs. Pin the major version explicitly and write the choice in `docs/rules/backend_python.md`.
-- FastAPI `Depends()` is the right way to share query models; do not hand-roll a request-parsing layer.
-- For async I/O, prefer `httpx` over `aiohttp` for new code. Pin the choice and document why.
+See `reference/backend-python.md` for FastAPI-specific module layout, config, startup, and test patterns.

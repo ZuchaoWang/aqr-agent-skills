@@ -29,7 +29,6 @@ This is the authoritative documentation map for the project. New readers start h
 
 ## Rules
 
-- `rules/code_general.md` — cross-language code rules; per-stack files layer on top.
 - `rules/doc_markdown.md` — markdown doc style: headings, lists, lifecycle, archival.
 - `rules/frontend_js.md` — JS / TS frontend rules; include only if the project has a frontend.
 - `rules/backend_python.md` — Python backend rules; include only if the project has a Python backend.

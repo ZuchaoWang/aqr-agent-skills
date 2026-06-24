@@ -12,11 +12,6 @@ Provides a reusable project scaffold and alignment guide. Recommends root files,
 
 This skill defines **project shape and rules only**. It does not define the development workflow, and it does not define what good content looks like inside the docs it scaffolds.
 
-## Companion skills
-
-- `aqr-content-criteria` — content criteria for every doc type in this layout, and universal code quality principles. Reference it when writing or reviewing docs and code; its criteria are not copied into the project.
-- `aqr-issue-records` — development workflow: how to record and ship changes.
-
 ## What this skill is for
 
 Use it when explicitly asked to:
@@ -30,7 +25,7 @@ Use it when explicitly asked to:
 
 - Its files are **not** authoritative for any project. They are starter material; once copied into a project, the project-local copies are ground truth and may be edited, overridden, or deleted. The skill does not re-impose its defaults on a project that has diverged.
 - It does **not** rewrite existing project structure automatically. For existing projects, first produce a comparison and a proposal; the user decides what to apply.
-- It does **not** create technology-specific files without first asking or inferring. See "Inferring tech choices" below.
+- It does **not** create technology-specific files without first asking or inferring. See "Scaffolding workflow" below.
 - It does **not** define the development workflow. Pair with `aqr-issue-records` and an execution skill (e.g. Superpowers) for that.
 
 ## Recommended root files
@@ -88,8 +83,8 @@ docs/
     # Two layouts, picked at scaffolding time based on source-tree shape:
 
     {{module_name}}/      # flat — single-stack projects
-      design.md           # conceptual: submodules, interactions, data model, key algorithms, testing approach
-      interface.md        # file structure + public surface signatures with one-line roles
+      design.md
+      interface.md
 
     {{layer}}/            # layered — multi-stack projects (e.g., frontend/, backend/)
       {{module_name}}/    # one folder per top-level source module
@@ -100,7 +95,6 @@ docs/
     {{dataset}}.md        # one per dataset
 
   rules/
-    code_general.md       # cross-language code rules; per-stack files layer on top
     doc_markdown.md       # markdown doc style: headings, lists, lifecycle, archival
     report_ppt.md         # conventions for PowerPoint reports the project produces
     frontend_js.md        # code + test rules for a JS/TS frontend (any framework)
@@ -115,35 +109,30 @@ Not every project needs every file above. The scaffolding step copies the full s
 
 See `reference/docs-layout.md` for the meaning of each directory and what belongs in each.
 
-## Inferring tech choices
-
-Before creating technology-specific files, confirm or infer each of the following. Default to **asking** when starting from a blank slate; default to **inferring from existing files** when extending an existing repo.
-
-- Python version (write to `.python-version` and `pyproject.toml`)
-- Node version (write to `.nvmrc` and `package.json` `engines`)
-- Frontend framework (default: React + TypeScript)
-- Backend framework (default: FastAPI for Python services)
-- Package manager for Node (npm / pnpm / yarn)
-- Python package manager (pip / uv / poetry / conda)
-- Monorepo layout (single tree vs. `frontend/` + `backend/`); determines whether `implementation/` docs are flat or layered
-- Lint / format / type-check tools
-
-Reference docs for the common stacks:
-
-- `reference/python-project.md` — `pyproject.toml`, `.python-version`, requirements files, ruff/pyright config
-- `reference/node-project.md` — `package.json`, `.nvmrc`, lockfiles, ESLint/Prettier config
-- `reference/backend-python.md` — FastAPI + Pydantic rules
-- `reference/frontend-react.md` — React + TypeScript + Vite rules
-
 ## Scaffolding workflow
 
 When invoked to scaffold a new project:
 
-1. Ask the user the tech-choice questions above (or accept their stated answers).
+1. Ask the user the tech-choice questions below (or accept their stated answers), then add the relevant technology-specific root files.
 2. Copy the root files from `templates/` to the project root.
 3. Copy the docs skeleton from `templates/docs/` to `<project>/docs/`.
-4. Add technology-specific files for each confirmed stack.
-5. Stop. Do not populate the docs skeleton with substantive content — that is later doc-update work, not scaffolding.
+4. Stop. Do not populate the docs skeleton with substantive content — that is later doc-update work, not scaffolding.
+
+**Tech choices to confirm** — default to asking on a blank slate; infer from existing files when extending:
+
+- Python version → `.python-version` and `pyproject.toml`. Python package manager (uv / poetry / pip / conda).
+- Node version → `.nvmrc` and `package.json engines`. Node package manager (npm / pnpm / yarn).
+- Frontend framework (default: React + TypeScript).
+- Backend framework (default: FastAPI for Python services).
+- Monorepo layout (single tree vs. `frontend/` + `backend/`) — determines whether `implementation/` docs are flat or layered.
+- Lint / format / type-check tools.
+
+**Reference docs for common stacks:**
+
+- `reference/python-project.md` — Python version, package manager, `pyproject.toml`, ruff/pyright config.
+- `reference/node-project.md` — Node version, package manager, `package.json`, ESLint/Prettier config.
+- `reference/backend-python.md` — FastAPI + Pydantic application patterns (module layout, config, startup, request/response envelope, tests).
+- `reference/frontend-react.md` — React + TypeScript + Vite patterns.
 
 When invoked to compare an existing repo:
 

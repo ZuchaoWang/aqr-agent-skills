@@ -6,7 +6,7 @@
 
 Project documentation starts at `docs/index.md`. Layout reference: `docs/project_layout.md`.
 
-When modifying code, follow `docs/rules/code_general.md` plus the per-stack rule files that apply (e.g. `frontend_js.md`, `backend_python.md`, `backend_jupyter.md`).
+When modifying code, follow the per-stack rule files that apply (e.g. `docs/rules/frontend_js.md`, `docs/rules/backend_python.md`, `docs/rules/backend_jupyter.md`). For universal code quality principles, see the `aqr-content-criteria` skill.
 
 When updating documentation, follow `docs/rules/doc_markdown.md` for format. For content criteria on dynamic doc types (module design/interface, dataset, migration), see the `aqr-content-criteria` skill.
 
