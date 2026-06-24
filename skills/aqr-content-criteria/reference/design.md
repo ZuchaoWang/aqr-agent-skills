@@ -87,12 +87,10 @@ Further:
 
 ### 2.4 Recording design decisions
 
-Record each significant decision so a future reader need not blindly accept or reverse it. Adapt the ADR format (Nygard, *Documenting Architecture Decisions*): one record per decision, a few lines each, with four fields:
+Record each significant decision as a short entry with three fields:
 
-- **Context** — value-neutral; the forces that forced the choice.
-- **Decision** — active voice: "We will …".
-- **Status** — Proposed, Accepted, or Superseded (point to the replacement).
-- **Consequences** — what follows: positive, negative, neutral.
+- **Context** — the forces that forced the choice.
+- **Current decision** — what was chosen, in one line.
+- **Alternatives** — the options considered and why they were not picked.
 
-- Supersede, do not delete; the dated history is the point.
-- Cross-link the research note that informed it; archive the note once conclusions fold in.
+One decision per entry. When a decision is reversed, add a new entry rather than rewriting the old one; the history is the point.

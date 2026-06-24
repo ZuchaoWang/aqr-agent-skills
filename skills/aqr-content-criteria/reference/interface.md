@@ -2,7 +2,7 @@
 
 Criteria for every interface doc — the external API contract or a module's public surface. An interface doc sits **between design and code**: the design above it and the code below it must both honor the contract it states. Where the doc lives in the project is a layout choice; this skill covers content only.
 
-An interface doc carries two things: **contract criteria** (this doc) and **recorded interface decisions** — using the same decision-record format as `design.md` §2.4 (Context → Decision → Status → Consequences), because interface choices (cursor vs. offset pagination, error-envelope shape, what to hide) are design decisions.
+An interface doc carries two things: **contract criteria** (this doc) and **recorded interface decisions** — using the same decision-record format as `design.md` §2.4 (Context / Current decision / Alternatives), because interface choices (cursor vs. offset pagination, error-envelope shape, what to hide) are design decisions.
 
 ## 1. What every interface.md must contain
 
