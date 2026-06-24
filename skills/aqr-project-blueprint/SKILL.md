@@ -120,8 +120,8 @@ When invoked to scaffold a new project:
 
 **Tech choices to confirm** — default to asking on a blank slate; infer from existing files when extending:
 
-- Python version → `.python-version` and `pyproject.toml`. Python package manager (uv / poetry / pip / conda).
-- Node version → `.nvmrc` and `package.json engines`. Node package manager (npm / pnpm / yarn).
+- Python version → `.python-version` and `pyproject.toml`. Python package manager (default: pip).
+- Node version → `.nvmrc` and `package.json engines`. Node package manager (default: npm).
 - Frontend framework (default: React + TypeScript).
 - Backend framework (default: FastAPI for Python services).
 - Monorepo layout (single tree vs. `frontend/` + `backend/`) — determines whether `implementation/` docs are flat or layered.
