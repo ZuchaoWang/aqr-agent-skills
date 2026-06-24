@@ -12,16 +12,12 @@ Defines **what good content looks like** for common documentation types and for 
 
 A task may match several files; load the ones whose doc type fits.
 
-- **Design doc**: module decomposition, workflow, style, visual encoding, key algorithm, database schema → `reference/design.md`.
-
-- **Interface doc**: frontend/backend API, module's public functions and classes → `reference/interface.md`.
-
-- **Usage scenarios**: user goal, steps, system response, observable behavior → `reference/usage-scenarios.md`.
-
-- **Project docs**: mission goal and scope, roadmap milestones, tech-stack rationale, migration old→new mapping, active domain concepts → `reference/project.md`.
-
-- **Research docs**: domain background, related-work comparison, design-option brainstorm → `reference/research.md`.
-
-- **Dataset doc**: contents, source and provenance, schema, format, quality gaps → `reference/dataset.md`.
-
-- **Code**: typing, naming, error handling, hygiene, testing → `reference/code-criteria.md`.
+| Doc / code type | What it covers | Reference |
+| - | - | - |
+| Design doc | module decomposition, workflow, style, visual encoding, key algorithm, database schema | `reference/design.md` |
+| Interface doc | frontend/backend API, module's public functions and classes | `reference/interface.md` |
+| Usage scenarios | user goal, steps, system response, observable behavior | `reference/usage-scenarios.md` |
+| Project docs | mission goal and scope, roadmap milestones, tech-stack rationale, migration old→new mapping, active domain concepts | `reference/project.md` |
+| Research docs | domain background, related-work comparison, design-option brainstorm | `reference/research.md` |
+| Dataset doc | data acquisition, processing and description | `reference/dataset.md` |
+| Code | general coding style regardless of language | `reference/code-criteria.md` |
