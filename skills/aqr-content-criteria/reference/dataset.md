@@ -1,6 +1,6 @@
 # Dataset doc content criteria
 
-Criteria for `data/{{dataset}}.md` — one doc per dataset. Layout lives in `aqr-project-blueprint`; markdown format lives in the project's `docs/rules/doc_markdown.md`.
+Criteria for dataset docs — one doc per dataset. Where the doc lives in the project is a layout choice; this skill covers content only.
 
 ## 1. Purpose
 

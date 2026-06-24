@@ -1,6 +1,6 @@
 # Usage scenarios content criteria
 
-Criteria for `project/usage_scenarios.md`. Layout lives in `aqr-project-blueprint`; markdown format lives in the project's `docs/rules/doc_markdown.md`.
+Criteria for usage scenarios docs. Where the doc lives in the project is a layout choice; this skill covers content only.
 
 ## 1. Purpose
 

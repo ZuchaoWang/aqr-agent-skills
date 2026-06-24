@@ -1,8 +1,8 @@
 # Design content criteria
 
-Criteria for every `design.md` in the blueprint: `architecture/design.md` (system-level) and `implementation/[{{layer}}/]{{module_name}}/design.md` (per-module). Layout (which file goes where) lives in `aqr-project-blueprint`; markdown format lives in the project's `docs/rules/doc_markdown.md`.
+Criteria for every design doc. §1 lists the contents to include by case (system architecture, non-visual module, UI/frontend, visualization); §2 gives the design criteria. Where the doc lives in the project is a layout choice; this skill covers content only.
 
-A design.md is governed by two things: **what it contains** (§1, by case) and **how well it is designed and recorded** (§2, criteria). When writing or reviewing one, find the case in §1 for the section list, then apply the universal criteria in §2.1, the subject criteria in §2.2 or §2.3 if they apply, and record decisions per §2.4.
+A design doc is governed by two things: **what it contains** (§1, by case) and **how well it is designed and recorded** (§2, criteria). When writing or reviewing one, find the case in §1 for the section list, then apply the universal criteria in §2.1, the subject criteria in §2.2 or §2.3 if they apply, and record decisions per §2.4.
 
 ## 1. Contents by case
 
@@ -14,7 +14,7 @@ What sections a design.md contains depends on what it describes. The four cases 
 - **Key design decisions** — the decision records, format in §2.4. The load-bearing section for "why".
 - **Diagrams** — welcome, but describe them in prose first so the doc reads without rendering.
 
-### 1.2 System architecture (`architecture/design.md`)
+### 1.2 System architecture
 
 A reviewer reads it in ~15 minutes and understands the system shape, component boundaries, data flow, and control/workflow flow, without reading code.
 
@@ -22,7 +22,7 @@ A reviewer reads it in ~15 minutes and understands the system shape, component b
 - **Data flow** — how data enters, is transformed, is stored, and leaves. Trace one representative request end to end.
 - **Control and workflow flow** — the dynamic shape: request lifecycle, state transitions, concurrency and ordering, async/sync boundaries, failure and retry paths. The part most often missing; without it a reader can reason about structure, not behavior.
 
-### 1.3 Non-visual module (`implementation/.../design.md`)
+### 1.3 Non-visual module
 
 A reviewer reads it in ~10 minutes and understands the module's role, internal structure, data, algorithms, and testing approach. This is the default case for `implementation/.../design.md`; use §1.5 instead when the module is itself a visualization.
 
@@ -33,7 +33,7 @@ A reviewer reads it in ~10 minutes and understands the module's role, internal s
 
 ### 1.4 UI / frontend (overlay)
 
-Apply when the design describes a frontend — at the system level (`architecture/design.md` for a frontend app) or a single frontend module.
+Apply when the design describes a frontend — whether a whole frontend app or a single frontend module.
 
 - **Component tree and decomposition** — the component hierarchy; a reader should be able to draw the tree from the text. State the unit of decomposition (route, feature, UI element).
 - **Responsibility boundaries** — for each significant component, whether it is presentational or container (see §2.2).
@@ -85,7 +85,7 @@ Specialize §2.1 for a component tree.
 - State ownership: distinguish local, shared, and server/cache state. Lift shared state to the nearest common ancestor that needs it; the owner should be the component that mutates it.
 - Prop discipline: props are the boundary contract. Avoid prop drilling past one level — if it recurs, that is a state-ownership decision, not a forwarding task.
 - When to split: a second use site, a prop list growing past readability, or a stateful concern leaking into a presentational component.
-- Framework mechanics (which hooks, which store) belong in the project's `docs/rules/frontend_js.md`, not in the design.
+- Framework mechanics (which hooks, which store) belong in the project's frontend style rules, not in the design.
 
 ### 2.3 Visualization criteria
 
@@ -118,4 +118,4 @@ Rules:
 - Context is value-neutral — do not argue here; that belongs in Decision/Consequences.
 - Supersede, do not delete. When the context changes and a decision no longer holds, mark it Superseded and add the new one; the dated history is the point.
 - Write each as a short conversation with a future developer: complete sentences. Bullets are for layout, not an excuse for fragments.
-- Cross-link the research note (`docs/research/`) that informed it, if one exists. When that note's conclusions are folded in, archive it under `docs/archived/research/`.
+- Cross-link the research note that informed it, if one exists. When that note's conclusions are folded in, archive it and have the new doc reference it.

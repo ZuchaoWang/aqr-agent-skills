@@ -1,8 +1,8 @@
 # Project doc content criteria
 
-Criteria for the project-level docs: `project/mission.md`, `project/roadmap.md`, `architecture/tech_stack.md`, `project/migration/{{old_project_name}}.md`, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how. Layout lives in `aqr-project-blueprint`; markdown format lives in the project's `docs/rules/doc_markdown.md`.
+Criteria for the project-level docs: mission, roadmap, tech stack, migration, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how. Where the docs live in the project is a layout choice; this skill covers content only.
 
-## 1. `mission.md`
+## 1. Mission
 
 Purpose: a new team member reads it and immediately understands what problem is being solved and for whom.
 
@@ -15,18 +15,18 @@ Sections:
 
 Constraints: target ~1 page. Scope must be explicit.
 
-## 2. `roadmap.md`
+## 2. Roadmap
 
 Purpose: a reviewer reads it and understands what has been decided, what is coming, and roughly when.
 
 Sections:
 
-1. **Milestones** — one subsection per milestone: name, target date, what is included (referenced by issue group or feature name, not re-described).
+1. **Milestones** — one subsection per milestone: name, target date, what is included (referenced by work item or feature name, not re-described).
 2. **Decisions log** — key decisions that shaped the roadmap, each with a one-line rationale and date.
 
 Constraints: milestone entries reference work rather than re-describe it. Keep it current — a stale roadmap misleads more than no roadmap.
 
-## 3. `architecture/tech_stack.md`
+## 3. Tech stack
 
 Purpose: a reviewer reads it and understands what tools are in use and why those choices were made.
 
@@ -39,7 +39,7 @@ Sections:
 
 Constraints: target ~1 page. If a tool is standard and the reason is obvious ("pytest because it's the Python default"), omit the rationale.
 
-## 4. `project/migration/{{old_project_name}}.md`
+## 4. Migration
 
 Purpose: a reviewer who knew the prior project reads it and understands what carried over, what was dropped, and why.
 
@@ -55,11 +55,11 @@ Constraints: target ~1–2 pages. A reader who knew the old project should navig
 
 ## 5. Concepts (active)
 
-The domain concepts the project **actively uses**. Distinguished from `research/background.md` (see `research.md`): this section holds only concepts in active use; background knowledge, motivations, and concepts considered but **not** used live there.
+The domain concepts the project **actively uses**. Distinguished from the background doc (see `reference/research.md`): this section holds only concepts in active use; background knowledge, motivations, and concepts considered but **not** used live there.
 
 For each concept:
 
 - **Definition** — a one- or two-sentence definition precise enough that two team members would agree on it.
-- **How it is used here** — where the concept shows up in this project (a component, a data model, an algorithm, a user-facing term). If a concept has no use site, it does not belong here — it belongs in `background.md`.
+- **How it is used here** — where the concept shows up in this project (a component, a data model, an algorithm, a user-facing term). If a concept has no use site, it does not belong here — it belongs in the background doc.
 
-Constraints: a concept appears here only if the project acts on it. Writing a glossary of every related term defeats the purpose; this is the active vocabulary, not a dictionary. Target length scales with the domain — keep it to the concepts a reader needs to understand the rest of `docs/`.
+Constraints: a concept appears here only if the project acts on it. Writing a glossary of every related term defeats the purpose; this is the active vocabulary, not a dictionary. Target length scales with the domain — keep it to the concepts a reader needs to understand the rest of the project's documentation.

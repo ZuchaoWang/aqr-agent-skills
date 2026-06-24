@@ -1,8 +1,8 @@
 # Code content criteria
 
-Universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Project-specific style rules (`docs/rules/frontend_js.md`, `docs/rules/backend_python.md`, `docs/rules/backend_jupyter.md`) layer on top and may be stricter; framework mechanics live there, not here.
+Universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Project-specific style rules (per-stack formatting, linting, framework mechanics) layer on top and may be stricter; those live in the project's own rule files, not here.
 
-How to decompose code into components and modules, assign responsibility, and own state is a design concern — see `design.md` §3. This doc covers the code-level floor that any decomposition must still meet.
+How to decompose code into components and modules, assign responsibility, and own state is a design concern — see `reference/design.md` §2.1. This doc covers the code-level floor that any decomposition must still meet.
 
 ## 1. Public surface integrity
 
@@ -40,7 +40,7 @@ How to decompose code into components and modules, assign responsibility, and ow
 ## 6. File and module hygiene
 
 - Do not create empty files. The only exception is `__init__.py`, which may be empty to mark a Python package.
-- If a module file is growing past ~300 lines, reconsider its scope before adding more — the responsibility split is a design call (see `design.md` §3).
+- If a module file is growing past ~300 lines, reconsider its scope before adding more — the responsibility split is a design call (see `reference/design.md` §2.1).
 - Co-locate what changes together. A component, its styles, and its tests that change together live together.
 
 ## 7. Testing
@@ -52,6 +52,6 @@ How to decompose code into components and modules, assign responsibility, and ow
 
 ## 8. Before committing
 
-- Run the project's linters, formatters, and type checker on touched files. See the project's per-stack rule docs for the exact tools. Run on touched files only — do not reformat the whole tree as part of an unrelated change.
+- Run the project's linters, formatters, and type checker on touched files. See the project's per-stack style rules for the exact tools. Run on touched files only — do not reformat the whole tree as part of an unrelated change.
 - Ensure new public functions are covered by at least one test that exercises a realistic input.
-- If the change affects a public surface or a documented contract, update the corresponding `interface.md` or `design.md` in the same change.
+- If the change affects a public surface or a documented contract, update the corresponding interface doc or design doc in the same change.

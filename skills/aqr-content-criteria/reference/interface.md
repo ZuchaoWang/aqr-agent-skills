@@ -1,6 +1,6 @@
 # Interface content criteria
 
-Criteria for every `interface.md` in the blueprint: `architecture/interface.md` (the external API contract) and `implementation/[{{layer}}/]{{module_name}}/interface.md` (a module's public surface). An interface doc sits **between design and code**: the design above it and the code below it must both honor the contract it states. Layout lives in `aqr-project-blueprint`; markdown format lives in the project's `docs/rules/doc_markdown.md`.
+Criteria for every interface doc — the external API contract or a module's public surface. An interface doc sits **between design and code**: the design above it and the code below it must both honor the contract it states. Where the doc lives in the project is a layout choice; this skill covers content only.
 
 An interface doc carries two things: **contract criteria** (this doc) and **recorded interface decisions** — using the same decision-record format as `design.md` §2.4 (Context → Decision → Status → Consequences), because interface choices (cursor vs. offset pagination, error-envelope shape, what to hide) are design decisions.
 
@@ -16,7 +16,7 @@ Regardless of scope, an interface doc states what is exposed and what is deliber
 
 Constraints: reviewable without reading code. Skip internal helpers, trivial accessors, and full type bodies — point at the file instead.
 
-## 2. External API addendum (`architecture/interface.md`)
+## 2. External API addendum
 
 Purpose: a reviewer reads it and understands the full external API contract without reading code. Adapt the Google API Improvement Proposals conventions for the standard concerns.
 
@@ -34,7 +34,7 @@ Sections:
 
 Constraints: target ~2–3 pages. The contract must be complete enough that two independent implementations of it interoperate.
 
-## 3. Module public-surface addendum (`implementation/.../interface.md`)
+## 3. Module public-surface addendum
 
 Purpose: a reviewer reads it in ~5 minutes and spots missing pieces, wrong shapes, unclear naming, over-coupling.
 
