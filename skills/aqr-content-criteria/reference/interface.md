@@ -2,7 +2,7 @@
 
 Criteria for every `interface.md` in the blueprint: `architecture/interface.md` (the external API contract) and `implementation/[{{layer}}/]{{module_name}}/interface.md` (a module's public surface). An interface doc sits **between design and code**: the design above it and the code below it must both honor the contract it states. Layout lives in `aqr-project-blueprint`; markdown format lives in the project's `docs/rules/doc_markdown.md`.
 
-An interface doc carries two things: **contract criteria** (this doc) and **recorded interface decisions** — using the same decision-record format as `design.md` §1 (Context → Decision → Status → Consequences), because interface choices (cursor vs. offset pagination, error-envelope shape, what to hide) are design decisions.
+An interface doc carries two things: **contract criteria** (this doc) and **recorded interface decisions** — using the same decision-record format as `design.md` §2.4 (Context → Decision → Status → Consequences), because interface choices (cursor vs. offset pagination, error-envelope shape, what to hide) are design decisions.
 
 ## 1. What every interface.md must contain
 
@@ -12,7 +12,7 @@ Regardless of scope, an interface doc states what is exposed and what is deliber
 2. **Public surface** — for each public function, class, type, or endpoint: the signature on one line, and a one-sentence role on the next. The one-sentence role is the load-bearing piece — a signature without a role forces the reader to read code.
 3. **What is hidden** — the internals deliberately kept out of the public surface. Stating the boundary explicitly keeps callers from depending on implementation detail.
 4. **Non-obvious field notes** — any field, parameter, or return value whose semantics are non-obvious gets an inline note (units, allowed values, nullability, lifecycle). Do not point readers at the code for things that should be documented here.
-5. **Key interface decisions** — decision records (same format as `design.md` §1) for the choices that shaped the contract: what was exposed vs. hidden, envelope shape, versioning approach, pagination style.
+5. **Key interface decisions** — decision records (same format as `design.md` §2.4) for the choices that shaped the contract: what was exposed vs. hidden, envelope shape, versioning approach, pagination style.
 
 Constraints: reviewable without reading code. Skip internal helpers, trivial accessors, and full type bodies — point at the file instead.
 

@@ -27,19 +27,20 @@ This skill is a router. Identify what you are writing or reviewing, then load th
 
 Map the doc path to a reference file:
 
-- `architecture/design.md` and `implementation/[{{layer}}/]{{module_name}}/design.md` → `reference/design.md`. Then route by subject within it:
-  - System-level, multiple components, cross-cutting data and workflow → the system architecture section.
-  - A backend or source module (submodules, data model, algorithms) → the module section. This is the default for `implementation/.../design.md`.
-  - A frontend (component tree, state, rendering boundaries) → the frontend component responsibility section.
-  - A single chart or visualization component → the visualization section.
-  - A given `design.md` may combine subjects — apply the relevant sections together. When an `implementation/.../design.md` describes a visualization, use the visualization section instead of the module section.
+- `architecture/design.md` and `implementation/[{{layer}}/]{{module_name}}/design.md` → `reference/design.md`. Find the case in §1 for the section list, then apply the criteria in §2:
+  - System-level, multiple components, cross-cutting data and workflow → §1.2 system architecture. Apply §2.1.
+  - A backend or source module (submodules, data model, algorithms) → §1.3 non-visual module. This is the default for `implementation/.../design.md`. Apply §2.1.
+  - A frontend (component tree, state, rendering boundaries) → §1.4 UI. Apply §2.1 and §2.2.
+  - A single chart or visualization component → §1.5 visualization. Apply §2.1 and §2.3.
+  - A given `design.md` may combine cases — include the sections from each case that applies. When an `implementation/.../design.md` describes a visualization, use §1.5 instead of §1.3.
+  - Record decisions per §2.4 in every design.md.
 - `architecture/interface.md` and `implementation/[{{layer}}/]{{module_name}}/interface.md` → `reference/interface.md`. Use the external API addendum for `architecture/interface.md` and the module public-surface addendum for `implementation/.../interface.md`.
 - `project/usage_scenarios.md` → `reference/usage-scenarios.md`.
 - `project/mission.md`, `project/roadmap.md`, `architecture/tech_stack.md`, `project/migration/{{old_project_name}}.md`, and the project's active concept set → `reference/project.md`.
 - `research/background.md`, `research/related_works.md`, `research/brainstorm.md` → `reference/research.md`.
 - `data/{{dataset}}.md` → `reference/dataset.md`.
 
-Every `design.md` and `interface.md` must carry two things: the criteria of good design/contract, and a recorded set of the decisions behind it (the decision-record format defined in `reference/design.md` §1, reused by `interface.md`).
+Every `design.md` and `interface.md` must carry two things: the criteria of good design/contract, and a recorded set of the decisions behind it (the decision-record format defined in `reference/design.md` §2.4, reused by `interface.md`).
 
 ### Code
 
@@ -48,7 +49,7 @@ Every `design.md` and `interface.md` must carry two things: the criteria of good
 
 ## Reference docs
 
-- `reference/design.md` — criteria for every `design.md`, plus a decision-record format, with subject sections for system architecture, module, frontend component responsibility, and visualization.
+- `reference/design.md` — contents by case (system architecture, non-visual module, UI, visualization) in §1, and design criteria (universal decomposition, UI, visualization, decision recording) in §2.
 - `reference/interface.md` — criteria for every `interface.md` (the contract between design and code), with an external API addendum and a module public-surface addendum.
 - `reference/usage-scenarios.md` — criteria for `project/usage_scenarios.md`.
 - `reference/project.md` — criteria for `mission.md`, `roadmap.md`, `tech_stack.md`, `migration/{{old_project_name}}.md`, and the project's active concept set.
