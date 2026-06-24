@@ -9,7 +9,7 @@
 <!-- Ordering Rule: when multiple verbs are requested for the group, group rows by child — outer loop = child, inner loop = verbs. "Plan and execute the group" becomes 001 plan / 001 execute / 002 plan / 002 execute / ..., NOT 001 plan / 002 plan / ... / 001 execute. -->
 <!-- Update a row's Status to in-progress when the work starts and to done when it lands, so a resumed session or reviewer can pick up cold. -->
 
-| Subissue | Verb | Status |
+| Child | Verb | Status |
 | --- | --- | --- |
 | 001-... | create | pending |
 

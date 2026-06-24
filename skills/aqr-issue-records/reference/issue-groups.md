@@ -103,12 +103,12 @@ Group status lifecycle:
 
 ### 5.2 Execution Log
 
-The Execution Log is an ordered queue of requested work. Each row is a tuple `(Subissue, Verb, Status)`:
+The Execution Log is an ordered queue of requested work. Each row is a tuple `(child, verb, status)`:
 
-| Subissue | Verb | Status |
+| Child | Verb | Status |
 | --- | --- | --- |
 
-See `templates/issue-group/progress.md` for the section structure. The rules the template cannot enforce are below.
+Rows are always carried out sequentially in the order listed — one row at a time, top to bottom. See `templates/issue-group/progress.md` for the section structure. The rules the template cannot enforce are below.
 
 ## 6. Execution Log fields
 

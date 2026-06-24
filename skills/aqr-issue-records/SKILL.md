@@ -74,11 +74,12 @@ issues/<YYYYMM>/<YYYYMMDD>-<group-name>/
 ├── progress.md         # Execution Log queue + machine-checked status line
 └── children/
     └── <index>-<issue-name>/  # a child issue — full issue with its own type and artifacts
-        ├── task.md
-        ├── plan.md
-        ├── progress.md
-        ├── summary.md   # or report.md for investigate
-        └── assets/      # optional
+        ├── task.md            # all types
+        ├── plan.md            # all types
+        ├── progress.md        # doc-update, code-update, fix
+        ├── summary.md         # doc-update, code-update, fix
+        ├── report.md          # investigate
+        └── assets/            # optional
 ```
 
 A group has only `index.md` and `progress.md` of its own; it has no type, no `task.md`, and no `summary.md`/`report.md`. The group is an execution container — each child issue carries its own type and summarizes itself. See `reference/issue-groups.md`.
@@ -127,12 +128,12 @@ Each verb names the artifact to create or update; the methodology skill (e.g. Su
 
 - **create** — draft `task.md`; set up the issue directory if it does not already exist, otherwise update in place.
 - **plan** — draft `plan.md`.
-- **execute** — carry out `plan.md`; writes `progress.md` as work lands and `summary.md` (or `report.md`) at completion.
+- **execute** — carry out `plan.md`; writes `progress.md` as work lands (doc-update, code-update, fix) and `summary.md` — or `report.md` for investigate — at completion.
 - **revise** — update an existing `task.md` or `plan.md`. The user must specify which file to revise. Revise that file only, then stop: do not cascade into other artifacts, do not continue into planning or execution.
 
 **Issue group.** The decomposition must already be available before the group is created (see `reference/issue-groups.md` §10):
 
-- **create** group — write `index.md` and create the child issue directories; queue one `create` row per child in the group `progress.md`. Do not queue `plan` or `execute` rows yet.
+- **create** group — write `index.md` and create the child issue directories; queue one `create` row per child in the group `progress.md`, then clarify all children's intent before working the `create` rows sequentially to draft their `task.md`. Do not queue `plan` or `execute` rows yet.
 - **plan** group — drive each child's `plan`; queue and work the `plan` rows.
 - **execute** group — drive each child's `execute`; queue and work the `execute` rows.
 - **revise** is not a queued group verb. A child issue may be revised on demand during its own execution; that revision stays inside the child and is not a separate row in the group's Execution Log.
