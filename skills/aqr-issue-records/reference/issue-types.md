@@ -4,6 +4,8 @@ Four issue types: `doc-update`, `code-update`, `fix`, `investigate`. Pick the ty
 
 For the per-type artifact sets, see the table in `SKILL.md`. For how to write each artifact, see `reference/<artifact>-guidelines.md`. This doc covers type choice only.
 
+An **issue group** is not a fifth type — it is a container that batches issues, and it has no type of its own. Child issues inside a group each pick one of the four types above, following the same decision tree. See `reference/issue-groups.md`.
+
 ## 1. Decision tree
 
 ```text
