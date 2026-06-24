@@ -18,7 +18,7 @@ Top-level repo layout (one-line annotation per directory) plus a pointer to the 
 
 Project-level docs: mission, problem statement, scope, roadmap, milestones, client requirements, migration notes from prior projects. The "what and why" of the project as a whole, not any individual feature or issue.
 
-Skeleton ships: `mission.md`, `roadmap.md`. Add per-project docs (`usage_scenarios.md`, ...) as the project grows. Verbatim client materials live under `client_docs/{{date}}/`; notes for migrating from a prior project live under `migration/{{old_project_name}}.md` (criteria in `aqr-content-criteria` §1.4).
+Skeleton ships: `mission.md`, `roadmap.md`. Add per-project docs (`usage_scenarios.md`, ...) as the project grows. Verbatim client materials live under `client_docs/{{date}}/`; notes for migrating from a prior project live under `migration/{{old_project_name}}.md` (criteria in `aqr-content-criteria` `reference/project.md`).
 
 ## 3. docs/architecture/
 
@@ -44,7 +44,7 @@ implementation/
       interface.md
 ```
 
-The criteria for both docs live in `aqr-content-criteria` §§4.1–4.2. The skeleton ships the directory empty; the user adds a folder per module.
+The criteria for both docs live in `aqr-content-criteria` (`reference/design.md` and `reference/interface.md`). The skeleton ships the directory empty; the user adds a folder per module.
 
 ## 5. docs/research/
 
@@ -54,7 +54,7 @@ The skeleton ships the directory empty; the user adds a doc per topic (`backgrou
 
 ## 6. docs/data/
 
-Per-dataset documentation. One `.md` per dataset. Criteria in `aqr-content-criteria` §5. The skeleton ships the directory empty; the user adds a doc per dataset.
+Per-dataset documentation. One `.md` per dataset. Criteria in `aqr-content-criteria` `reference/dataset.md`. The skeleton ships the directory empty; the user adds a doc per dataset.
 
 ## 7. docs/rules/
 

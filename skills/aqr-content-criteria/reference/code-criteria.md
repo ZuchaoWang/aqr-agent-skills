@@ -1,18 +1,22 @@
 # Code content criteria
 
-Universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Project-specific style rules (`docs/rules/code_general.md` and per-stack files) layer on top and may be stricter.
+Universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Project-specific style rules (`docs/rules/frontend_js.md`, `docs/rules/backend_python.md`, `docs/rules/backend_jupyter.md`) layer on top and may be stricter; framework mechanics live there, not here.
+
+How to decompose code into components and modules, assign responsibility, and own state is a design concern — see `design.md` §3. This doc covers the code-level floor that any decomposition must still meet.
 
 ## 1. Public surface integrity
 
 - Type-annotate all public surfaces. Untyped internal helpers are acceptable; untyped public APIs are not.
 - Prefix module-private helpers with `_` (Python) or use do-not-export patterns (TypeScript) to keep the public surface honest.
 - Do not expose implementation details through the public surface. If a caller needs to know about an internal type or mechanism, that is a design problem, not a documentation problem.
+- The public surface is a contract. It is cheap to propose and expensive to retract — default to exposing less.
 
 ## 2. Naming and constants
 
 - Use named constants instead of magic numbers and magic strings.
 - Name things for what they are, not how they are implemented. `user_store` over `user_dict`; `is_active` over `flag`.
-- Function names are verbs or verb phrases. Data names are nouns.
+- Function names are verbs or verb phrases. Data names are nouns. Booleans answer a yes/no question (`is_`, `has_`, `can_`).
+- Names are consistent across the boundary: a concept called `invoice` in the design keeps that name in code unless there is a recorded reason not to.
 
 ## 3. Comments
 
@@ -24,19 +28,30 @@ Universal code quality principles that apply regardless of language, framework, 
 
 - Do not hardcode secrets, passwords, or tokens. Read them from environment variables or a config file outside version control.
 - Do not hardcode environment-specific paths or hosts. Parameterize them.
+- Distinguish config that changes per environment (read at runtime) from constants that do not (defined in code). Mixing the two makes deployments fragile.
 
 ## 5. Error handling
 
 - Handle errors at the boundary where you can do something meaningful. Do not swallow exceptions silently. Do not re-raise exceptions that add no information.
 - Validate at system boundaries (user input, external API responses, config values). Trust internal code and framework guarantees — do not add defensive checks for states that cannot occur.
+- Errors are part of the contract. A function that can fail states how it fails (exception type, error code, null) and a caller can branch on it. Surprising failure modes are bugs.
+- Prefer errors that fail loudly and early over silent defaults that mask a mistake.
 
 ## 6. File and module hygiene
 
 - Do not create empty files. The only exception is `__init__.py`, which may be empty to mark a Python package.
-- One clear responsibility per module. If a module file is growing past ~300 lines, reconsider its scope before adding more.
-- Do not introduce an abstraction for fewer than three call sites. Duplication is cheaper than a premature abstraction that does not fit.
+- If a module file is growing past ~300 lines, reconsider its scope before adding more — the responsibility split is a design call (see `design.md` §3).
+- Co-locate what changes together. A component, its styles, and its tests that change together live together.
 
-## 7. Before committing
+## 7. Testing
 
-- Run the project's linters, formatters, and type checker on touched files. See the project's per-stack rule docs for the exact tools.
+- New public functions are covered by at least one test that exercises a realistic input, not just the happy path.
+- Test behavior, not implementation. A test that breaks on a harmless refactor is testing the wrong thing.
+- Boundary tests for system boundaries: invalid input, missing fields, empty collections, off-by-one, large inputs.
+- What to mock vs. use real: mock external dependencies that are slow, nondeterministic, or stateful; use real implementations for pure logic. Over-mocking tests the mocks, not the code.
+
+## 8. Before committing
+
+- Run the project's linters, formatters, and type checker on touched files. See the project's per-stack rule docs for the exact tools. Run on touched files only — do not reformat the whole tree as part of an unrelated change.
 - Ensure new public functions are covered by at least one test that exercises a realistic input.
+- If the change affects a public surface or a documented contract, update the corresponding `interface.md` or `design.md` in the same change.

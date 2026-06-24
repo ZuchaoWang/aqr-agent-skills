@@ -1,6 +1,6 @@
 ---
 name: aqr-content-criteria
-description: Provides content criteria for project documentation and universal code quality principles. Use when writing or reviewing any doc in the standard blueprint layout (design, interface, usage_scenarios, research, dataset, migration) or when applying baseline code quality rules that are not project-style choices. Companion to aqr-project-blueprint (layout) and aqr-issue-records (workflow).
+description: Provides content criteria for project documentation and universal code quality principles. Use when writing or reviewing any doc in the standard blueprint layout (design, interface, usage_scenarios, mission, roadmap, tech_stack, migration, background, dataset) or when applying baseline code quality rules that are not project-style choices. Companion to aqr-project-blueprint (layout) and aqr-issue-records (workflow).
 disable-model-invocation: false
 ---
 
@@ -16,16 +16,42 @@ Defines **what good content looks like** for the standard doc types and for code
 This skill does **not** define:
 
 - Project layout or which files to create — see `aqr-project-blueprint`.
-- Project-specific style choices (formatting tools, linting config) — those live in the project's `docs/rules/` files.
+- Project-specific style choices (formatting tools, linting config, framework mechanics) — those live in the project's `docs/rules/` files.
 - Development workflow — see `aqr-issue-records`.
 
 ## When to apply
 
-- When writing or updating any doc in `docs/`: use `reference/doc-criteria.md` for the relevant doc type.
-- When writing or reviewing code: use `reference/code-criteria.md` for baseline principles before applying project-specific style rules.
-- When reviewing docs or code written by others: use both reference docs as the checklist.
+This skill is a router. Identify what you are writing or reviewing, then load the matching reference doc. Markdown format rules live in the project's `docs/rules/doc_markdown.md`; layout (which file goes where) lives in `aqr-project-blueprint`.
+
+### Docs
+
+Map the doc path to a reference file:
+
+- `architecture/design.md` and `implementation/[{{layer}}/]{{module_name}}/design.md` → `reference/design.md`. Then route by subject within it:
+  - System-level, multiple components, cross-cutting data and workflow → the system architecture section.
+  - A backend or source module (submodules, data model, algorithms) → the module section. This is the default for `implementation/.../design.md`.
+  - A frontend (component tree, state, rendering boundaries) → the frontend component responsibility section.
+  - A single chart or visualization component → the visualization section.
+  - A given `design.md` may combine subjects — apply the relevant sections together. When an `implementation/.../design.md` describes a visualization, use the visualization section instead of the module section.
+- `architecture/interface.md` and `implementation/[{{layer}}/]{{module_name}}/interface.md` → `reference/interface.md`. Use the external API addendum for `architecture/interface.md` and the module public-surface addendum for `implementation/.../interface.md`.
+- `project/usage_scenarios.md` → `reference/usage-scenarios.md`.
+- `project/mission.md`, `project/roadmap.md`, `architecture/tech_stack.md`, `project/migration/{{old_project_name}}.md`, and the project's active concept set → `reference/project.md`.
+- `research/background.md`, `research/related_works.md`, `research/brainstorm.md` → `reference/research.md`.
+- `data/{{dataset}}.md` → `reference/dataset.md`.
+
+Every `design.md` and `interface.md` must carry two things: the criteria of good design/contract, and a recorded set of the decisions behind it (the decision-record format defined in `reference/design.md` §1, reused by `interface.md`).
+
+### Code
+
+- When writing or reviewing code: load `reference/code-criteria.md` for baseline principles first, then apply the project's per-stack rule files (`docs/rules/frontend_js.md`, `docs/rules/backend_python.md`, `docs/rules/backend_jupyter.md`) on top.
+- When reviewing docs or code written by others: use the matching reference doc as the checklist.
 
 ## Reference docs
 
-- `reference/doc-criteria.md` — content criteria for every standard doc type.
+- `reference/design.md` — criteria for every `design.md`, plus a decision-record format, with subject sections for system architecture, module, frontend component responsibility, and visualization.
+- `reference/interface.md` — criteria for every `interface.md` (the contract between design and code), with an external API addendum and a module public-surface addendum.
+- `reference/usage-scenarios.md` — criteria for `project/usage_scenarios.md`.
+- `reference/project.md` — criteria for `mission.md`, `roadmap.md`, `tech_stack.md`, `migration/{{old_project_name}}.md`, and the project's active concept set.
+- `reference/research.md` — criteria for `background.md` (full) and minimal stubs for `related_works.md` and `brainstorm.md`.
+- `reference/dataset.md` — criteria for `data/{{dataset}}.md`.
 - `reference/code-criteria.md` — universal code quality principles.
