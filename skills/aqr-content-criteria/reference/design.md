@@ -14,9 +14,11 @@ A design doc may combine cases (e.g. a frontend module that is also a visualizat
 
 ### 1.2 System architecture
 
+Design at the system layer: treat each module as a black box, define only its public interface, and put the effort into how the modules work together. Do not open a module's internals here — that belongs in the module's own design.
+
 If the system follows a well-known pattern (B/S, C/S, MVC, MVVM, microservices, event-driven, …), just name it and state the key interfaces between its parts. Do not re-explain the pattern; it already implies its components, data flow, and control flow. Otherwise, describe the system directly:
 
-- **Components** — one per major component: role, public surface, dependencies, boundaries.
+- **Modules** — one per major module: role, public interface, dependencies, boundaries.
 - **Data flow** — how data enters, is transformed, is stored, and leaves.
 - **Control and workflow flow** — request lifecycle, state transitions, concurrency, failure and retry paths.
 
@@ -24,11 +26,17 @@ Even when a pattern is named, add a bullet only where this system deviates from 
 
 ### 1.3 Non-visual module
 
-The default for a per-module design; use §1.5 instead when the module is itself a visualization.
+The default for a per-module design; use §1.5 instead when the module is itself a visualization. Design at this module's layer: if it has submodules, treat each as a black box, define only its public interface, and focus on how they compose. Give implementation detail only for a leaf module — one with no further submodules to delegate to — and even then, not all detail. The same layering rule applies recursively.
 
-- **Submodules and interactions** — one-line role each, how they interact. Omit if flat.
+For a leaf module:
+
 - **Data model** — persistent structures at a conceptual level, not a full DDL. Omit if stateless.
-- **Key algorithms** — brief pseudocode for non-obvious ones. Omit if straightforward.
+- **Algorithms and implementation** — for each non-trivial part, choose by how familiar it is:
+  - A well-known algorithm or design pattern → just name it.
+  - Other non-trivial logic → brief pseudocode.
+  - Trivial → write nothing.
+- If a part requires choosing among several strategies, record it as a decision (§2.4), not as prose.
+- For a non-trivial single-path implementation, leave an implementation hint — one or two lines on the intended approach.
 - **Testing approach** — behaviors and edge cases to cover, what to mock vs. use real.
 
 ### 1.4 UI / frontend (overlay)
@@ -56,6 +64,7 @@ Apply §2.1 to every design doc; apply §2.2 or §2.3 when the case matches; app
 
 ### 2.1 Universal design criteria
 
+- Design one layer at a time. Treat units at the next layer as black boxes: define their public interface and design how they compose; do not open their internals in this doc. Give implementation detail only for a leaf unit with no further sub-units, and not all of it.
 - Reviewable without reading code; a reader can reproduce the design's shape from the text.
 - Explicit boundaries — every unit states what is inside and outside its responsibility.
 - Conceptual only; implementation detail lives in code.
