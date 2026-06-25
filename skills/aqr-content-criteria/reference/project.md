@@ -44,11 +44,9 @@ Constraints: target ~1 page. If a tool is standard and the reason is obvious ("p
 
 ## 4. Concepts (active)
 
-The domain concepts the project **actively uses**. Distinguished from the background doc (see `reference/research.md`): this section holds only concepts in active use; background knowledge, motivations, and concepts considered but **not** used live there.
+The domain concepts the project actively uses. Concepts considered but not used go in the background doc (`reference/research.md`), not here. For each concept:
 
-For each concept:
+- **Definition** — one or two sentences precise enough that two team members would agree on it.
+- **Used here** — where it shows up (a component, data model, algorithm, or user-facing term). If it has no use site, it belongs in background, not here.
 
-- **Definition** — a one- or two-sentence definition precise enough that two team members would agree on it.
-- **How it is used here** — where the concept shows up in this project (a component, a data model, an algorithm, a user-facing term). If a concept has no use site, it does not belong here — it belongs in the background doc.
-
-Constraints: a concept appears here only if the project acts on it. Writing a glossary of every related term defeats the purpose; this is the active vocabulary, not a dictionary. Target length scales with the domain — keep it to the concepts a reader needs to understand the rest of the project's documentation.
+This is the active vocabulary, not a dictionary — list only what a reader needs to understand the rest of the docs.
