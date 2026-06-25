@@ -1,6 +1,6 @@
 # Project doc content criteria
 
-Criteria for the project-level docs: mission, roadmap, tech stack, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how. Where the docs live in the project is a layout choice; this skill covers content only.
+Criteria for the project-level docs: mission, usage scenarios, roadmap, tech stack, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how. Where the docs live in the project is a layout choice; this skill covers content only.
 
 ## 1. Mission
 
@@ -15,7 +15,24 @@ Sections:
 
 Constraints: target ~1 page. Scope must be explicit.
 
-## 2. Roadmap
+## 2. Usage scenarios
+
+Purpose: a reviewer reads it and understands the concrete user-facing situations the project must handle, without reading code. Scenarios bridge the mission (what the project is for) and the design (how it is built) by pinning down observable behavior the system must produce.
+
+Sections:
+
+1. **Overview** — one paragraph: the user population and the range of situations this doc covers.
+2. **Scenarios** — one subsection per scenario. Each: a short title, a one-paragraph description of the situation, what the user does, and what the system must do in response — described as observable behavior, not implementation.
+
+Frame each scenario around a user and a goal; state the situation and the required response, not how the system achieves it.
+
+Constraints:
+
+- Scenarios must be concrete, not abstract feature lists. "A researcher uploads a 500 MB CSV and expects row-level validation errors within 30 seconds" is a scenario; "support large files" is not.
+- Describe observable behavior, not implementation — "the system returns invalid rows within 30 seconds," not "the system spawns a worker that streams the file."
+- One scenario per situation; keep divergent responses as separate scenarios so each is testable.
+
+## 3. Roadmap
 
 Purpose: a reviewer reads it and understands where the project is heading, what is in flight now, and what comes next.
 
@@ -29,7 +46,7 @@ Sections:
 
 Constraints: reference work by name rather than re-describing it. For a date-driven project, swap Now/Next/Later for dated milestones (name, target date, what is included). Keep it current — a stale roadmap misleads more than no roadmap.
 
-## 3. Tech stack
+## 4. Tech stack
 
 Purpose: a reviewer reads it and understands what tools are in use and why those choices were made.
 
@@ -42,9 +59,9 @@ Sections:
 
 Constraints: target ~1 page. If a tool is standard and the reason is obvious ("pytest because it's the Python default"), omit the rationale.
 
-## 4. Concepts (active)
+## 5. Concepts
 
-The domain concepts the project actively uses. Concepts considered but not used go in the background doc (`reference/research.md`), not here. For each concept:
+The domain concepts the project actively uses. Concepts considered but not go here. For each concept:
 
 - **Definition** — one or two sentences precise enough that two team members would agree on it.
 - **Used here** — where it shows up (a component, data model, algorithm, or user-facing term). If it has no use site, it belongs in background, not here.
