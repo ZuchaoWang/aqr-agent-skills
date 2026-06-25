@@ -17,14 +17,16 @@ Constraints: target ~1 page. Scope must be explicit.
 
 ## 2. Roadmap
 
-Purpose: a reviewer reads it and understands what has been decided, what is coming, and roughly when.
+Purpose: a reviewer reads it and understands where the project is heading, what is in flight now, and what comes next.
 
 Sections:
 
-1. **Milestones** — one subsection per milestone: name, target date, what is included (referenced by work item or feature name, not re-described).
-2. **Decisions log** — key decisions that shaped the roadmap, each with a one-line rationale and date.
+1. **Far goal** — the long-run destination; where the project is heading qualitatively.
+2. **Near goal** — the current milestone; what is in flight now.
+3. **Next goal** — the milestone queued after the near goal lands.
+4. **Decisions log** — key decisions that shaped the roadmap, each with a one-line rationale and date.
 
-Constraints: milestone entries reference work rather than re-describe it. Keep it current — a stale roadmap misleads more than no roadmap.
+Constraints: reference work by name rather than re-describing it. For a date-driven project, swap the three goals for dated milestones (name, target date, what is included). Keep it current — a stale roadmap misleads more than no roadmap.
 
 ## 3. Tech stack
 
