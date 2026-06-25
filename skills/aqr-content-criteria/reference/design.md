@@ -1,6 +1,6 @@
 # Design content criteria
 
-Criteria for common design docs. §1 lists the contents to include by case; §2 gives the design criteria. Where the doc lives in the project is a layout choice; this skill covers content only.
+Criteria for common design docs. §1 lists the contents to include by case; §2 gives the design criteria.
 
 ## 1. Contents by case
 

@@ -1,6 +1,6 @@
 # Project doc content criteria
 
-Criteria for the project-level docs: mission, usage scenarios, roadmap, tech stack, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how. Where the docs live in the project is a layout choice; this skill covers content only.
+Criteria for the project-level docs: mission, usage scenarios, roadmap, tech stack, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how.
 
 ## 1. Mission
 

@@ -1,6 +1,6 @@
 # Dataset doc content criteria
 
-Criteria for dataset docs — one doc per dataset. Where the doc lives in the project is a layout choice; this skill covers content only.
+Criteria for dataset docs — one doc per dataset.
 
 ## 1. Purpose
 
