@@ -33,7 +33,7 @@ disable-model-invocation: <true | false | omit>
 
 - `aqr-project-blueprint` — Scaffolds or compares a project against the recommended project/doc/code rule blueprint. **Manual-only.** Defines project shape: root files, docs layout, code/doc rules. Does not mention issues or workflow.
 - `aqr-content-criteria` — Content criteria for every standard doc type in the blueprint layout, and universal code quality principles. **Auto-invocable.** Applied when writing or reviewing docs and code; criteria are not copied into the project.
-- `aqr-issue-records` — A disciplined way to make doc or code changes, ship fixes, or run investigations in a repo. Each issue lives under `issues/` and is recorded through five artifacts (`task.md` / `plan.md` / `progress.md` / `summary.md` / `report.md`) and one of four types (`doc-update`, `code-update`, `fix`, `investigate`). Related issues can also be batched in an issue group (`index.md` + `progress.md` + `children/`). **Manual-only.** `summary.md` covers operational output for code/doc/fix; `report.md` covers findings for investigate.
+- `aqr-issue-records` — A lightweight way to make doc or code changes, ship fixes, or run investigations in a repo. Each issue lives under `issues/<YYYY-MM-DD>-<name>/` and is recorded through `task.md`, `progress.md`, and one completion artifact (`summary.md` for a change, `report.md` for an investigation). No `plan.md` (planning is an agent behavior, not a repo artifact), no issue types, no issue groups. **Manual-only.**
 
 `aqr-project-blueprint` and `aqr-issue-records` are manual-only. The host agent will not auto-invoke them based on context; the user must invoke them via slash command.
 
@@ -71,6 +71,6 @@ Copy the skill directory verbatim. The host agent reads `SKILL.md` to decide whe
 There is no test suite. Verification is by inspection:
 
 - `find skills -type f | sort` — check the file tree is intact.
-- `grep -rn "^Status:" skills/` — should return nothing (Status header convention is retired). The only legitimate Status reference is the machine-checked `## Status: pending` / `## Status: in-progress` / `## Status: done` line inside `progress.md` templates (`pending` is issue-group-only).
+- `grep -rn "^Status:" skills/` — should return nothing. The retired convention is a bare `Status:` header; the legitimate machine-checked `## Status: in-progress` / `## Status: done` line in `progress.md` templates starts with `##`, so this grep does not match it.
 - `grep -n "^---$" skills/*/SKILL.md` — confirm every SKILL.md has YAML frontmatter (two `---` lines).
 - Read each `SKILL.md` end-to-end before considering the skill ready.

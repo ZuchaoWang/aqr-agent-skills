@@ -1,145 +1,148 @@
 ---
 name: aqr-issue-records
-description: Disciplined doc and code changes, fixes, and investigations in a repo. Each issue lives in its own directory under issues/<YYYYMM>/ with task / plan / progress / summary / report artifacts, typed as doc-update, code-update, fix, or investigate. Related issues can be batched in an issue group (index.md + progress.md + children/). Manual-only — invoke via slash command.
+description: A lightweight issue-record format for doc or code changes, fixes, and investigations in a repo. Each issue lives in its own directory under issues/<YYYY-MM-DD>-<name>/ with task.md, progress.md, and one completion artifact — summary.md for a change, report.md for an investigation. No plan.md, no issue types, no issue groups. Manual-only — invoke via slash command.
 disable-model-invocation: true
 ---
 
 # aqr-issue-records
 
-A disciplined way to make doc or code changes, ship fixes, or run investigations in a repo. The system has two object types: an **issue** — a single executable unit of work — and an **issue group** — a batch-execution container that holds related issues under a `children/` subdirectory. An issue lives in its own directory under `issues/`, follows one of four types (`doc-update`, `code-update`, `fix`, `investigate`), and is recorded through five canonical artifacts: `task.md`, `plan.md`, `progress.md`, `summary.md`, `report.md`. An issue group is recorded through two artifacts of its own (`index.md`, `progress.md`) plus its child issues. Templates and reference docs are provided for each.
+A lightweight way to record doc or code changes, ship fixes, or run investigations in a repo. Each issue lives in its own directory under `issues/` and is recorded through `task.md`, `progress.md`, and one completion artifact: `summary.md` for a change, `report.md` for an investigation.
+
+The guiding distinction:
+
+- **Project docs are durable.** They live under `docs/` and are the real review artifacts.
+- **Issue docs are disposable coordination.** They exist only to help recovery, review, or accountability — not to capture every agent thought.
+- **Agent plans are temporary cognition.** Planning is an agent behavior, not a repo artifact.
+
+So there is no `plan.md`. The agent plans privately; the repo only holds what a human would actually want to read: what was asked, what was decided, what is done. You do not need to review an agent's plan document when the real review artifact is the updated documentation.
 
 ## Scope
 
-The skill specifies the artifacts, their roles, and the type taxonomy. The surrounding workflow (clarification, planning, execution, review) is owned by the user's methodology skill (such as Superpowers), not by this one.
+The skill specifies the artifacts, their roles, and when an issue is warranted. The surrounding workflow (clarification, planning, execution, review) is owned by the user's methodology skill (such as Superpowers), not by this one.
 
-The artifacts are text files written in the user's project documentation style. Anyone — the user, a reviewer, a future agent — can read them cold and understand what was attempted, what was decided, what was verified, and what is still open.
+The artifacts are text files written in the user's project documentation style. Anyone — the user, a reviewer, a future agent — can read them cold and understand what was asked, what was decided, what shipped, and what is still open.
 
-## Where issues and issue groups live
+## When to create an issue
 
-There are two cases — a standalone issue and an issue group. Both live under `issues/<YYYYMM>/`:
+Not every change needs an issue. Use judgment; the goal is the lightest record that still helps.
+
+No issue needed:
+
+- typo fixes
+- small doc edits
+- local refactors
+- one-file changes
+- obvious bug fixes
+
+Issue needed:
+
+- multi-session work
+- risky refactor
+- changes touching architecture or contracts
+- tasks you may need to resume
+- anything you want future-you to understand
+
+If you are unsure, ask: will this issue help recovery, review, or accountability? If not, do not create it.
+
+## Where issues live
 
 ```
-issues/<YYYYMM>/<YYYYMMDD>-<issue-name>/   # a standalone issue
-issues/<YYYYMM>/<YYYYMMDD>-<group-name>/   # an issue group
+issues/<YYYY-MM-DD>-<issue-name>/
 ```
 
-`<YYYYMM>` is the year-month the issue was opened, using the project's local date at creation time. The `issues/<YYYYMM>/` grouping is for human navigation and bulk review; it carries no semantic meaning beyond that.
-
-**Standalone issue.** The directory is `<YYYYMMDD>-<issue-name>`, where `<issue-name>` is a short kebab-case name, using today's date for the prefix; if the user already supplied a name, use it directly.
-
-**Issue group.** The directory has the same shape, `<YYYYMMDD>-<group-name>`, and holds a `children/` subdirectory where its child issues live:
-
-```
-issues/<YYYYMM>/<YYYYMMDD>-<group-name>/
-  children/
-    <index>-<issue-name>/                  # a child issue
-```
-
-Child issues are regular issues that live under `children/`, each in its own directory `<index>-<issue-name>` (for example `001-update-architecture`). `<index>` is a one-based, zero-padded three-digit sequence (`001`, `002`, `003`, …) that fixes the order among siblings. Child issues drop the date prefix because the parent group already carries the date and ordering context. See `reference/issue-groups.md` for the full group structure and rules.
-
-## Issue types
-
-Types are an issue concept: every issue — standalone or a child inside a group — has exactly one of four types. An issue group is not a type; it is a container that batches issues and has no type of its own. Each type has its own template set under `templates/`.
-
-- **doc-update** — Docs-only issue. Used for product specs, architecture docs, implementation docs, research notes that get a permanent home under `docs/`, design decisions, data notes, and convention updates.
-- **code-update** — Code and test change issue. Code-only — if a doc needs to change to stay consistent with the new code, open a separate `doc-update` issue rather than expanding this issue's scope.
-- **fix** — Any small, atomic change. Can span code, tests, docs, config, infra, and data in one issue, as long as it is one cohesive change with no subtasks. Large work follows the non-fix branch of the decision tree (`code-update` or `doc-update`, split if it touches both).
-- **investigate** — Pure investigation, feasibility check, or lookup. Produces findings but no file changes. Findings live in `report.md`. If findings deserve a permanent home under `docs/`, follow up with a `doc-update` issue.
-
-See `reference/issue-types.md` for the full decision tree and the per-type artifact sets. See `reference/issue-groups.md` for issue groups.
+`<YYYY-MM-DD>` is the project's local date when the issue was opened. `<issue-name>` is a short kebab-case name. If the user already supplied a name, use it directly.
 
 ## Inside the directory
 
-There are two cases. A standalone issue directory holds the issue's own artifacts. An issue group directory holds `index.md`, `progress.md`, and a `children/` subdirectory of child issues.
-
-### Standalone issue
-
 ```text
-issues/<YYYYMM>/<YYYYMMDD>-<issue-name>/
-├── task.md            # all types
-├── plan.md            # all types
-├── progress.md        # doc-update, code-update, fix
-├── summary.md         # doc-update, code-update, fix
-├── report.md          # investigate
-└── assets/            # optional, user-provided inputs
+issues/<YYYY-MM-DD>-<issue-name>/
+├── task.md          # required, at creation
+├── progress.md      # required, when work begins
+├── summary.md       # at completion — for a change (code, docs, fix)
+├── report.md        # at completion — for an investigation
+└── assets/          # optional, user-provided inputs
 ```
 
-The `.md` files at the directory root are the canonical artifacts — see Artifacts below for their roles. `assets/` is an optional subdirectory for reference material the user provided as input: a screenshot of a bug, a PDF spec, sample data, an excerpt of discussion with another AI used to guide the issue, anything the user pasted in to shape the issue's scope.
+An issue ends with exactly one of `summary.md` or `report.md`: `summary.md` when the issue produced file changes, `report.md` when it was a pure investigation.
 
-### Issue group
-
-```text
-issues/<YYYYMM>/<YYYYMMDD>-<group-name>/
-├── index.md            # static description: purpose, execution order, dependencies
-├── progress.md         # Execution Log queue + machine-checked status line
-└── children/
-    └── <index>-<issue-name>/  # a child issue — full issue with its own type and artifacts
-        ├── task.md            # all types
-        ├── plan.md            # all types
-        ├── progress.md        # doc-update, code-update, fix
-        ├── summary.md         # doc-update, code-update, fix
-        ├── report.md          # investigate
-        └── assets/            # optional
-```
-
-A group has only `index.md` and `progress.md` of its own; it has no type, no `task.md`, and no `summary.md`/`report.md`. The group is an execution container — each child issue carries its own type and summarizes itself. See `reference/issue-groups.md`.
+`assets/` is an optional subdirectory for reference material the user provided as input: a screenshot of a bug, a PDF spec, sample data, an excerpt of discussion with another AI used to shape the issue's scope.
 
 ## Artifacts
 
-There are two cases. A standalone issue uses five canonical issue files; an issue group adds one group-only file, `index.md`, and reuses `progress.md` with a different body. These names and roles are part of the contract — do not rename them and do not invent additional required artifacts.
+These names and roles are part of the contract — do not rename them and do not invent additional required artifacts.
 
-| File          | Used by                                       | When it appears              | Role                                                                                                                                                   |
-| --------------| --------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `task.md`     | all types                                     | at issue creation            | Semantic definition: type, goal, context, scope, out-of-scope, acceptance criteria. No file lists.                                                    |
-| `plan.md`     | all types                                     | during planning              | Investigation findings, planned changes with concrete file paths, open questions, execution steps, self-review notes.                                 |
-| `progress.md` | doc-update, code-update, fix                  | when execution begins        | Log of which planned steps were carried out. Starts `## Status: in-progress`; ends `## Status: done`. Distinct from `summary.md` (see below).         |
-| `summary.md`  | doc-update, code-update, fix                  | at completion                | What shipped in the diff: files changed (with per-location detail for modifications), commits (when multi-commit), verification notes mapped to plan.md's checks, known limitations, follow-up issues.            |
-| `report.md`   | investigate                                   | at completion                | Findings, answer, confidence. The deliverable itself, not a summary of deliverables produced elsewhere.                                                |
-| `index.md`    | issue groups                                  | at group creation            | Static description of the group: purpose, execution order of children, dependencies between children. Group-only; no issue has this file.             |
+| File           | When it appears              | Role                                                                                                                                                     |
+| -------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `task.md`      | at issue creation            | The goal, context, scope, acceptance criteria, decisions, and open questions for the work.                                                              |
+| `progress.md`  | when work begins             | A coarse checkpoint log with a machine-checked status line. Not a diary.                                                                                 |
+| `summary.md`   | at completion (change)       | What shipped and how it was verified. The completion artifact for any issue that produces file changes.                                                  |
+| `report.md`    | at completion (investigation)| The findings and answer. The completion artifact — and the deliverable — for a pure investigation that produces no file changes.                         |
 
-Issue groups reuse `progress.md` with a different body: instead of a step log, the body is an Execution Log table of `(child, verb, status)` rows. The machine-checked status line is the same, except a group may also start at `## Status: pending` (a group can be created before any work is requested). See `reference/issue-groups.md`.
+`task.md` and `progress.md` are always present. The issue closes with `summary.md` or `report.md` — exactly one, chosen by whether the issue changed files. If an issue was worth opening, it is worth a one-line completion artifact saying what happened.
 
-See `templates/<type>/` for section structure and inline format. See `reference/<artifact>-guidelines.md` (one per artifact: task, plan, progress, summary, report) for how to write each artifact. See `templates/issue-group/` and `reference/issue-groups.md` for issue groups.
+## How to write each
 
-### Distinguishing the artifacts
+See `templates/` for section structure and inline format.
 
-Three pairs are easy to conflate; each is kept separate for a distinct reason:
+### task.md
 
-- **`task.md` vs `plan.md`** — `task.md` is semantic (what behavior or knowledge changes), `plan.md` is enumerative (which files change). Splitting them keeps `task.md` stable while `plan.md` evolves; scope changes update `plan.md`, not `task.md`.
-- **`progress.md` vs `summary.md`** — `progress.md` is the execution log ("did you do what you planned?"), `summary.md` is the diff-and-verification summary ("what shipped and how was it verified?"). Both are required for doc-update, code-update, and fix; they are not the same file at different lifecycle stages.
-- **`summary.md` vs `report.md`** — `summary.md` records what was operationally produced (used by diff-producing types), `report.md` records what was discovered or concluded (investigate). The report IS the deliverable, not a description of deliverables.
+The definition of the work. Seven sections:
 
-### Conflict resolution between artifacts
+- **Goal** — what we want to change. One paragraph at the outcome level; do not enumerate files.
+- **Context** — why the change is needed. Reference prior issues, approved design docs, client requirements, or external constraints; point at `assets/` for user-provided material.
+- **Scope** — prose, what changes at a high level. No file list.
+- **Out of Scope** — what will deliberately not be touched.
+- **Acceptance Criteria** — numbered, checkable conditions (build/test/lint/type-check and behavior).
+- **Decisions** — a running log of resolved decisions: direction chosen, trade-off accepted, constraint confirmed. Each entry is the decision plus a one-line why. Grows during execution.
+- **Open Questions** — unresolved sub-questions. Resolve all of them before planning or executing — an issue with open questions is not ready to proceed (see Decisions and open questions during execution below).
 
-When two artifacts disagree, resolve by domain:
+Clarifications from the user are not a separate section — a clarification refines whichever section it pertains to, in place (a scope clarification updates Scope, a constraint updates Out of Scope, and so on). Only resolved decisions land in Decisions.
 
-- **Scope** (what is and is not in the issue): `task.md` wins — it is the source of truth for scope. `plan.md` reflects current thinking and yields to it.
-- **Group intent vs execution** (issue group): `index.md` is the intended plan; `progress.md` is what actually happened. `progress.md` wins.
+### progress.md
 
-Everything else is a record at a different stage, not a competing claim: `plan.md` is current thinking, `progress.md` is execution state, `summary.md` (or `report.md`) is the authoritative summary at completion.
+A checkpoint log, not a detailed diary. Four sections: an issue-level status line, the subtask list, and two structured event logs.
+
+- **Status line** — `## Status: in-progress` when work begins, `## Status: done` at completion. It is the first content after the `# Progress` title, so automation can grep for `## Status: done` to find finished issues. This is the issue-level status, distinct from per-subtask status.
+- **Subtasks** — the planned subtasks as a `Subtask | Status` list. The subtask name is set at plan/replan and does not change during execution; only its status changes. Status is blank for pending, or `in-progress` / `done` / `skipped`. A subtask that is skipped is marked `skipped` here and also recorded under Skipped. Names must be unique — Decisions and Skipped reference subtasks by name.
+- **Decisions** — execution-time decisions, logged as they happen. Each entry names the subtask it pertains to, the decision, and the context/why. The canonical record of a resolved decision also lives in `task.md`'s Decisions.
+- **Skipped** — subtasks stopped before completion. Each entry names the subtask, the reason, and whether it is blocking (stops the issue) or deferred (can be picked up later).
+
+The Subtasks list is the plan of work; Decisions and Skipped are the event trail. Together they are the working memory `summary.md` is written from at completion — record events as they happen so nothing is lost to context compression or a session restart.
+
+For large multi-part work (say, "refactor 100 modules"), do not create child issues unless you truly plan to review them individually. Use one issue: put the overall requirement and constraints in `task.md`, track coarse batches in `progress.md`, and let the agent plan and execute privately. The durable module docs are the review surface; `progress.md` just tracks which batches are done.
+
+### summary.md — for a change
+
+Use `summary.md` when the issue produced file changes (code, docs, or fix).
+
+- **Changed** — what shipped, at a level a reviewer can scan.
+- **Verification** — how it was checked: tests run, manual checks, commands used and their outcome.
+- **Remaining Issues** — only what is still open at the end: blocking or deferred skips and unresolved blockages drawn from `progress.md`'s Skipped. Resolved decisions stay in `task.md`'s Decisions; they do not belong here.
+- **Follow-Up Issues** (optional) — natural follow-ups discovered during the work.
+
+### report.md — for an investigation
+
+Use `report.md` when the issue was a pure investigation that produced no file changes. The report IS the deliverable.
+
+- **Findings** — the investigation output, structured to fit the question (numbered findings, comparison table, timeline, …).
+- **Answer** — the explicit answer to the question from `task.md`. If it depends on conditions, state them.
+- **Confidence & Limitations** — how confident the answer is, and what would change it.
+- **Follow-Up Issues** (optional) — actions the findings suggest.
+
+If investigation findings should outlive the issue — they will be cited by future work, or the project keeps a research library — promote them to a permanent doc under `docs/` and link to it from `report.md`. Do not let `report.md` become the permanent home for findings that deserve one.
+
+## Decisions and open questions during execution
+
+`task.md`'s Open Questions gate execution: do not plan or execute while it is non-empty. Resolve every open question first.
+
+New questions and decisions surface once work is underway. Handle each by case, and **log it in `progress.md` as it happens** — the Subtasks, Decisions, and Skipped sections together are the working memory `summary.md` is written from at completion, so nothing is lost to context compression or a session restart:
+
+- **Simple, safe decision** — make it. Record it in `task.md`'s Decisions and add an entry in `progress.md`'s Decisions (subtask, decision, context).
+- **Blocking question** — stop. Mark the affected subtask's status in `progress.md`'s Subtasks and add a Skipped entry (reason, blocking: yes); if still unresolved at the end, it becomes a Remaining Issue in `summary.md`.
+- **Independent subtask blocked** — stop that subtask, continue the others. Mark it `skipped` in Subtasks and add a Skipped entry (reason, blocking: no / deferred to where); if still open at the end, it goes in `summary.md`'s Remaining Issues.
+
+At completion, write `summary.md` by reviewing `progress.md`'s Subtasks, Decisions, and Skipped, plus the diff. Resolved decisions stay in `task.md`'s Decisions; the full execution trail stays in `progress.md`; only what is still open — blocking or deferred skips, unresolved blockages — lands in `summary.md`'s Remaining Issues.
 
 ## When the user invokes this skill
 
-The skill activates only on explicit slash invocation (e.g. `/aqr-issue-records`); it is not auto-applied based on project state, because the issue format is opinionated and not every project wants it. Once activated, the verb is read from the user's prose, inferred, or asked for if unclear. The user may name a single verb or chain multiple (e.g. "create, plan, and execute this issue").
-
-Each verb names the artifact to create or update; the methodology skill (e.g. Superpowers) drives the actual work. The same verbs apply to both cases below, but at the group level they drive the children rather than drafting a single issue's artifacts.
-
-**Standalone issue.**
-
-- **create** — draft `task.md`; set up the issue directory if it does not already exist, otherwise update in place.
-- **plan** — draft `plan.md`.
-- **execute** — carry out `plan.md`; writes `progress.md` as work lands (doc-update, code-update, fix) and `summary.md` — or `report.md` for investigate — at completion.
-- **revise** — update an existing `task.md` or `plan.md`. The user must specify which file to revise. Revise that file only, then stop: do not cascade into other artifacts, do not continue into planning or execution.
-
-**Issue group.** The decomposition must already be available before the group is created (see `reference/issue-groups.md` §10):
-
-- **create** group — write `index.md` and create the child issue directories; queue one `create` row per child in the group `progress.md`, then clarify all children's intent before working the `create` rows sequentially to draft their `task.md`. Do not queue `plan` or `execute` rows yet.
-- **plan** group — drive each child's `plan`; queue and work the `plan` rows.
-- **execute** group — drive each child's `execute`; queue and work the `execute` rows.
-- **revise** is not a queued group verb. A child issue may be revised on demand during its own execution; that revision stays inside the child and is not a separate row in the group's Execution Log.
-
-**Order (multiple verbs only).** When the user specifies more than one verb for the group, apply the Ordering Rule: outer loop = child, inner loop = verbs — plan and execute each child as a complete unit before moving to the next (e.g. "plan and execute" → `001 plan` / `001 execute` / `002 plan` / `002 execute` / …). This rule applies only when multiple verbs are requested; for a single verb, work the children in `index.md`'s execution order. See `reference/issue-groups.md` §8.
-
-**Clarification stance.** Front-load clarification at the start of each invocation — one round covers the whole chain of verbs the user named, not per verb. Ask a few targeted questions only where the work is genuinely ambiguous; if a verb or artifact is already unambiguous, skip it. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.
-
-The Ordering Rule governs the order in which rows are written and worked, not when clarification happens — so this front-loading applies across the queue too: when a group invocation plans more than one child and any child's plan is ambiguous, resolve all the ambiguous plans up front (001's and 002's together) before writing any rows or executing, then generate and work the queue in the ordered sequence. Planning does not always need clarification; only clarify what is genuinely ambiguous.
+The skill activates only on explicit slash invocation (e.g. `/aqr-issue-records`); it is not auto-applied based on project state, because the issue format is opinionated and not every project wants it. Once activated, read the intent from the user's prose; ask a few targeted questions only where the work is genuinely ambiguous, and skip what is already clear. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.
