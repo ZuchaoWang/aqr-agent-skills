@@ -1,6 +1,6 @@
 # Project doc content criteria
 
-Criteria for the project-level docs: mission, roadmap, tech stack, migration, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how. Where the docs live in the project is a layout choice; this skill covers content only.
+Criteria for the project-level docs: mission, roadmap, tech stack, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how. Where the docs live in the project is a layout choice; this skill covers content only.
 
 ## 1. Mission
 
@@ -42,21 +42,7 @@ Sections:
 
 Constraints: target ~1 page. If a tool is standard and the reason is obvious ("pytest because it's the Python default"), omit the rationale.
 
-## 4. Migration
-
-Purpose: a reviewer who knew the prior project reads it and understands what carried over, what was dropped, and why.
-
-Sections:
-
-1. **Summary** — one paragraph: which project this migrates from and the high-level reason.
-2. **Inherited** — concepts, code, data, or docs that carried over, with one-line roles.
-3. **Dropped** — what was left behind, with a one-line reason for each.
-4. **Restructured** — a mapping table from old locations or names to new ones where the shape changed.
-5. **Rationale** — why the migration made these changes. Constraints, deadlines, new requirements.
-
-Constraints: target ~1–2 pages. A reader who knew the old project should navigate the new one without re-discovering each mapping.
-
-## 5. Concepts (active)
+## 4. Concepts (active)
 
 The domain concepts the project **actively uses**. Distinguished from the background doc (see `reference/research.md`): this section holds only concepts in active use; background knowledge, motivations, and concepts considered but **not** used live there.
 
