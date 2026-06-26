@@ -26,7 +26,7 @@ Use it to:
 - Its files are **not** authoritative for any project. They are starter material; once copied into a project, the project-local copies are ground truth and may be edited, overridden, or deleted. The skill does not re-impose its defaults on a project that has diverged.
 - It does **not** rewrite existing project structure automatically. For existing projects, first produce a comparison and a proposal; the user decides what to apply.
 - It does **not** create technology-specific files without first asking or inferring. See "Scaffolding workflow" below.
-- It does **not** define the development workflow. Pair with `aqr-issue-records` and an execution skill (e.g. Superpowers) for that.
+- It does **not** define the development workflow. Pair with an execution skill (e.g. Superpowers) for that.
 
 ## Recommended root files
 

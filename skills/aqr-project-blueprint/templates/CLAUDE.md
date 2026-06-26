@@ -10,8 +10,6 @@ When modifying code, follow the per-stack rule files that apply (e.g. `docs/rule
 
 When updating documentation, follow `docs/rules/doc_markdown.md` for format. For content criteria on dynamic doc types (module design/interface, dataset, migration), see the `aqr-content-criteria` skill.
 
-Issue records (if the project uses `aqr-issue-records`) live under `issues/`, grouped by `YYYYMM`.
-
 ## Toolchain
 
 {{Runtime / toolchain specifics. One bullet per runtime. Include language version, where the version file lives, anything that surprises a fresh agent (e.g. system Node is the wrong version; pyenv env name).}}

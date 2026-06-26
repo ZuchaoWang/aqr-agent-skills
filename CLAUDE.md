@@ -33,11 +33,10 @@ disable-model-invocation: <true | false | omit>
 
 - `aqr-project-blueprint` — Scaffolds or compares a project against the recommended project/doc/code rule blueprint. Defines project shape: root files, docs layout, code/doc rules. Does not mention issues or workflow.
 - `aqr-content-criteria` — Content criteria for every standard doc type in the blueprint layout, and universal code quality principles. Applied when writing or reviewing docs and code; criteria are not copied into the project.
-- `aqr-issue-records` — A lightweight way to make doc or code changes, ship fixes, or run investigations in a repo. Each issue lives under `issues/<YYYY-MM-DD>-<name>/` and is recorded through `task.md`, `progress.md`, and one completion artifact (`summary.md` for a change, `report.md` for an investigation). No `plan.md` (planning is an agent behavior, not a repo artifact), no issue types, no issue groups.
 
-All three skills are auto-invocable — the host may invoke any of them based on context, and the user can also name one directly via slash command.
+Both skills are auto-invocable — the host may invoke any of them based on context, and the user can also name one directly via slash command.
 
-The three-way split is deliberate: project shape (`aqr-project-blueprint`), content quality (`aqr-content-criteria`), and issue workflow (`aqr-issue-records`) are independent concerns. A project can adopt any combination.
+The split is deliberate: project shape (`aqr-project-blueprint`) and content quality (`aqr-content-criteria`) are independent concerns. A project can adopt any combination.
 
 ## Conventions inside skill files
 
@@ -52,7 +51,7 @@ When editing a skill:
 
 1. Read the existing `SKILL.md` first to understand the skill's scope and invocation policy.
 2. Match the conventions of existing files in the same skill (numbered headings, `-` bullets, no `---`, no `Status:` header).
-3. Cross-check the three-way split: `aqr-project-blueprint` covers layout only; `aqr-content-criteria` covers content quality only; `aqr-issue-records` covers workflow only. None should overlap.
+3. Cross-check the split: `aqr-project-blueprint` covers layout only; `aqr-content-criteria` covers content quality only. They should not overlap.
 4. If a template or reference change affects invocation behavior, update `SKILL.md` accordingly.
 
 ## Installing a skill
@@ -71,6 +70,6 @@ Copy the skill directory verbatim. The host agent reads `SKILL.md` to decide whe
 There is no test suite. Verification is by inspection:
 
 - `find skills -type f | sort` — check the file tree is intact.
-- `grep -rn "^Status:" skills/` — should return nothing. The retired convention is a bare `Status:` header; the legitimate machine-checked `## Status: in-progress` / `## Status: done` line in `progress.md` templates starts with `##`, so this grep does not match it.
+- `grep -rn "^Status:" skills/` — should return nothing. Markdown files start with a `#` title, not a `Status:` header.
 - `grep -n "^---$" skills/*/SKILL.md` — confirm every SKILL.md has YAML frontmatter (two `---` lines).
 - Read each `SKILL.md` end-to-end before considering the skill ready.

@@ -64,7 +64,6 @@ If the project has more than one deployable (e.g. frontend + backend in one repo
 frontend/    # React + Vite
 backend/     # Python or Node service
 docs/        # shared docs
-issues/      # shared issue records
 ```
 
 With per-tree `package.json` / `pyproject.toml`. Avoid npm workspaces or pnpm workspaces unless the project has shared JS packages — they add complexity without proportional value when the trees are independent.

@@ -15,7 +15,6 @@ backend/                # Python service
 frontend/               # React + TypeScript client
   src/
 docs/                   # Documentation — start at docs/index.md
-issues/                 # Issue records (one directory per issue, grouped by YYYYMM)
 tmp/                    # Local scratch; not committed
 }}
 ```
@@ -78,5 +77,4 @@ Each module folder under `implementation/` (path: `{{module_name}}/` or `{{layer
 ## 4. Layout rules
 
 - `docs/` is spec-driven: code is written to satisfy documented specifications, not the other way around.
-- `issues/` holds issue records in the `aqr-issue-records` format. One directory per issue, grouped by `YYYYMM`.
 - `tmp/` is local scratch; nothing in `tmp/` is committed.

@@ -77,6 +77,5 @@ Default: do not. The sections above cover the common cases. If a project feels i
 
 ## 9. What does not belong in docs/
 
-- Issue records. Those live under `issues/`. `docs/` references issues by directory path when needed.
 - Scratch notes, drafts, half-formed ideas. Those go in `tmp/` or in a personal notes repo.
 - Generated API references. Those go in `implementation/[{{layer}}/]{{module_name}}/interface.md`, written by hand; do not commit generated HTML.
