@@ -1,6 +1,6 @@
 ---
 name: aqr-issue-records
-description: A lightweight issue-record format for doc or code changes, fixes, and investigations in a repo. Each issue lives in its own directory under issues/<YYYY-MM-DD>-<name>/ with task.md, progress.md, and one completion artifact — summary.md for a change, report.md for an investigation. No plan.md, no issue types, no issue groups. Manual-only — invoke via slash command.
+description: Manual-only skill for keeping a lightweight record of a complex doc or code change, fix, or investigation. Each issue lives under issues/<YYYY-MM-DD>-<name>/ as task.md (the agreed work), progress.md (an execution log you can resume from after a crash), and one completion artifact — summary.md for a change, report.md for an investigation. No plan.md, no issue types, no issue groups. Invoke via /aqr-issue-records.
 disable-model-invocation: true
 ---
 
