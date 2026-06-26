@@ -1,10 +1,10 @@
 # Summary
 
-<!-- The completion artifact for a change (code, docs, or fix). What shipped and how it was verified. -->
+<!-- The completion artifact for a change (code, docs, or fix). What shipped, how it was checked, and what limits it. -->
 
 ## Changed
 
-<!-- What shipped, written so a later reviewer or follow-up issue can find each change. For each file touched: what changed and where (the doc section, function, or region). Include the decisions that shaped it (drawn from progress.md's Decisions). -->
+<!-- The file/function-level diff of what shipped: for each file touched, what changed and where (the doc section, function, or region). -->
 
 - **<file>** — <what changed, and where: doc section / function / region>
 
@@ -14,13 +14,13 @@
 
 - ...
 
-## Remaining Issues
+## Limitations
 
-<!-- Only what is still open at the end: blocked subtasks that are blocking or deferred, drawn from progress.md's Blocked and skipped. Consciously skipped (dropped) subtasks are closed, not remaining. Resolved decisions stay in progress.md (the material ones land in Changed). -->
+<!-- A summary of the assumptions, blocked, skipped, and open questions from execution, drawn from progress.md's Assumptions and Blocked and skipped. The user can review what bounds the change without reading progress.md. -->
 
-- ...
+- **<assumption / blocked / skipped / open question>** — <why it bounds the change / where it resumes>
 
-## Follow-Up Issues
+## Follow-Ups
 
 <!-- Optional. Each item: short title + one-line rationale. -->
 

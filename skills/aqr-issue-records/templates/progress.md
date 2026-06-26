@@ -13,16 +13,23 @@
 | name | |
 | name | |
 
-## Decisions
+## Late Decisions
 
-<!-- Execution-time decisions, logged as they happen. Each entry: the subtask it pertains to, the decision, and the context/why. This is the canonical record of decisions made during execution; task.md's Decisions holds only what was resolved during initial clarification. -->
+<!-- Choices the user confirmed mid-execution, after task.md was frozen (rare). Each entry: the subtask it pertains to, the decision, and the context/why. task.md's Decisions holds what was resolved during initial clarification; this section holds the ones the user handed down during execution. -->
 
 - **<subtask name>** — <decision>
   - Context: <why>
 
+## Assumptions
+
+<!-- Choices the agent made autonomously during execution, logged as they happen (the common case). Each entry: the subtask it pertains to, the assumption, and the context/why. These are what a reviewer most needs to vet; at completion they are summarized in summary.md's Limitations. -->
+
+- **<subtask name>** — <assumption>
+  - Context: <why>
+
 ## Blocked and skipped
 
-<!-- Subtasks that did not reach done. Each entry: the subtask, the reason, and the impact — blocking (stops the whole issue), deferred (only this subtask, pick up later), or dropped (consciously not doing it). The subtask is marked blocked (for blocking/deferred) or skipped (for dropped) in the Subtasks list above. Blocking or still-deferred blocks at completion become Remaining Issues in summary.md; dropped skips do not. -->
+<!-- Subtasks that did not reach done. Each entry: the subtask, the reason, and the impact — blocking (stops the whole issue), deferred (only this subtask, pick up later), or dropped (consciously not doing it). The subtask is marked blocked (for blocking/deferred) or skipped (for dropped) in the Subtasks list above. Blocking or still-deferred blocks at completion surface in summary.md's Limitations; dropped skips do not. -->
 
 - **<subtask name>** — <reason>
   - Impact: <blocking / deferred (where it resumes) / dropped>

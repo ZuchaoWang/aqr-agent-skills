@@ -14,11 +14,11 @@
 
 <!-- The explicit answer to the question from task.md. If "it depends", state the conditions. -->
 
-## Confidence & Limitations
+## Limitations
 
-<!-- How confident the answer is, and what would change it. What was NOT checked that a reader might assume was checked. -->
+<!-- What bounds the answer: assumptions made during the investigation, what was NOT checked that a reader might assume was checked, and what would change it. -->
 
-## Follow-Up Issues
+## Follow-Ups
 
 <!-- Optional. Each item: short title + one-line rationale. If findings warrant action, list them here. -->
 
