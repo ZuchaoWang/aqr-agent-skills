@@ -31,11 +31,11 @@ disable-model-invocation: <true | false | omit>
 
 ## Skills currently in this repo
 
-- `aqr-project-blueprint` — Scaffolds or compares a project against the recommended project/doc/code rule blueprint. **Manual-only.** Defines project shape: root files, docs layout, code/doc rules. Does not mention issues or workflow.
-- `aqr-content-criteria` — Content criteria for every standard doc type in the blueprint layout, and universal code quality principles. **Auto-invocable.** Applied when writing or reviewing docs and code; criteria are not copied into the project.
-- `aqr-issue-records` — A lightweight way to make doc or code changes, ship fixes, or run investigations in a repo. Each issue lives under `issues/<YYYY-MM-DD>-<name>/` and is recorded through `task.md`, `progress.md`, and one completion artifact (`summary.md` for a change, `report.md` for an investigation). No `plan.md` (planning is an agent behavior, not a repo artifact), no issue types, no issue groups. **Manual-only.**
+- `aqr-project-blueprint` — Scaffolds or compares a project against the recommended project/doc/code rule blueprint. Defines project shape: root files, docs layout, code/doc rules. Does not mention issues or workflow.
+- `aqr-content-criteria` — Content criteria for every standard doc type in the blueprint layout, and universal code quality principles. Applied when writing or reviewing docs and code; criteria are not copied into the project.
+- `aqr-issue-records` — A lightweight way to make doc or code changes, ship fixes, or run investigations in a repo. Each issue lives under `issues/<YYYY-MM-DD>-<name>/` and is recorded through `task.md`, `progress.md`, and one completion artifact (`summary.md` for a change, `report.md` for an investigation). No `plan.md` (planning is an agent behavior, not a repo artifact), no issue types, no issue groups.
 
-`aqr-project-blueprint` and `aqr-issue-records` are manual-only. The host agent will not auto-invoke them based on context; the user must invoke them via slash command.
+All three skills are auto-invocable — the host may invoke any of them based on context, and the user can also name one directly via slash command.
 
 The three-way split is deliberate: project shape (`aqr-project-blueprint`), content quality (`aqr-content-criteria`), and issue workflow (`aqr-issue-records`) are independent concerns. A project can adopt any combination.
 

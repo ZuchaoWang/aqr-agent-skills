@@ -1,7 +1,7 @@
 ---
 name: aqr-issue-records
-description: Manual-only skill for keeping a lightweight record of a complex doc or code change, fix, or investigation. Each issue lives under issues/<YYYY-MM-DD>-<name>/ as task.md (the agreed work), progress.md (an execution log you can resume from after a crash), and one completion artifact — summary.md for a change, report.md for an investigation. No plan.md, no issue types, no issue groups. Invoke via /aqr-issue-records.
-disable-model-invocation: true
+description: Skill for keeping a lightweight record of complex doc or code work — multi-session changes, risky refactors, changes touching architecture or contracts, or investigations worth resuming. Each issue lives under issues/<YYYY-MM-DD>-<name>/ as task.md (the agreed work), progress.md (an execution log you can resume from after a crash), and one completion artifact — summary.md for a change, report.md for an investigation. No plan.md, no issue types, no issue groups.
+disable-model-invocation: false
 ---
 
 # aqr-issue-records
@@ -146,6 +146,6 @@ New questions and decisions surface once work is underway. Handle each by case, 
 
 At completion, write `summary.md` by reviewing `progress.md`'s Subtasks, Decisions, and Blocked and skipped, plus the diff. The execution trail stays in `progress.md`; carry the decisions that shaped what shipped into Changed, and only what is still open — blocked subtasks, blocking or deferred — lands in `summary.md`'s Remaining Issues.
 
-## When the user invokes this skill
+## When this skill activates
 
-The skill activates only on explicit slash invocation (e.g. `/aqr-issue-records`); it is not auto-applied based on project state, because the issue format is opinionated and not every project wants it. Once activated, read the intent from the user's prose; ask a few targeted questions only where the work is genuinely ambiguous, and skip what is already clear. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.
+This skill activates automatically when work is complex enough to warrant a record — the "Issue needed" cases in When to create an issue — or when the user names it. For small or obvious changes, skip it. Once activated, read the intent from the user's prose; ask a few targeted questions only where the work is genuinely ambiguous, and skip what is already clear. Do not run for an hour and then ask. If something ambiguous turns up later and is not blocking, pick the most likely interpretation and proceed; stop to ask only when the ambiguity is material and no reasonable default exists.

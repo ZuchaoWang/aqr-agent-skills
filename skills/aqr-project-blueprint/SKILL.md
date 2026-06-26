@@ -1,7 +1,7 @@
 ---
 name: aqr-project-blueprint
-description: Scaffold a new project or compare an existing repo against the recommended project/doc/code rule blueprint. Use only when explicitly invoked — this skill is opinionated and is not applied automatically.
-disable-model-invocation: true
+description: Scaffold a new project or compare an existing repo against the recommended project/doc/code rule blueprint — root files, docs layout, and code/doc rules. Use when starting a new project, adding the recommended docs/rules to a repo, or checking a repo's structure for drift against the blueprint.
+disable-model-invocation: false
 ---
 
 # aqr-project-blueprint
@@ -14,7 +14,7 @@ This skill defines **project shape and rules only**. It does not define the deve
 
 ## What this skill is for
 
-Use it when explicitly asked to:
+Use it to:
 
 - Scaffold a new project from the recommended blueprint.
 - Add recommended project docs or rules to an existing repo.
