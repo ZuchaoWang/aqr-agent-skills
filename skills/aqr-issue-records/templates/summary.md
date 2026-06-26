@@ -4,9 +4,9 @@
 
 ## Changed
 
-<!-- What shipped, at a level a reviewer can scan. -->
+<!-- What shipped, written so a later reviewer or follow-up issue can find each change. For each file touched: what changed and where (the doc section, function, or region). Include the decisions that shaped it (drawn from progress.md's Decisions). -->
 
-- ...
+- **<file>** — <what changed, and where: doc section / function / region>
 
 ## Verification
 
@@ -16,7 +16,7 @@
 
 ## Remaining Issues
 
-<!-- Only what is still open at the end: unresolved blockages and skipped subtasks drawn from progress.md. Resolved decisions stay in task.md's Decisions. -->
+<!-- Only what is still open at the end: unresolved blockages and skipped subtasks drawn from progress.md. Resolved decisions are not issues; they stay in progress.md (the material ones land in Changed). -->
 
 - ...
 

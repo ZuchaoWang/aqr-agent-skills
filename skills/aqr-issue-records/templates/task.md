@@ -27,7 +27,7 @@
 
 ## Decisions
 
-<!-- Resolved decisions made during the work: direction chosen, trade-off accepted, constraint confirmed. Each entry: the decision + a one-line why. Add as they get made. A clarification from the user refines the relevant section above in place; record only resolved decisions here. -->
+<!-- Resolved decisions reached during initial clarification: direction chosen, trade-off accepted, constraint confirmed. Each entry: the decision + a one-line why. This section is fixed once initial clarification finishes — decisions made during execution go in progress.md, not here. A clarification from the user refines the relevant section above in place. -->
 
 - ...
 

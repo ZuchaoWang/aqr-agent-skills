@@ -15,7 +15,7 @@
 
 ## Decisions
 
-<!-- Execution-time decisions, logged as they happen. Each entry: the subtask it pertains to, the decision, and the context/why. The canonical record of a resolved decision also lives in task.md's Decisions. -->
+<!-- Execution-time decisions, logged as they happen. Each entry: the subtask it pertains to, the decision, and the context/why. This is the canonical record of decisions made during execution; task.md's Decisions holds only what was resolved during initial clarification. -->
 
 - **<subtask name>** — <decision>
   - Context: <why>
