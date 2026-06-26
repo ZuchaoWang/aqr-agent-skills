@@ -57,12 +57,12 @@ issues/<YYYY-MM-DD>-<issue-name>/
 
 These names and roles are part of the contract — do not rename them and do not invent additional required artifacts.
 
-| File           | When it appears               | Role                                                                                                                                    |
-| -------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `task.md`      | at issue creation             | The goal, context, scope, acceptance criteria, decisions, and open questions for the work.                                              |
-| `progress.md`  | when work begins              | A coarse checkpoint log with a machine-checked status line. Not a diary.                                                                |
-| `summary.md`   | at completion (change)        | What shipped and how it was verified. The completion artifact for any issue that produces file changes.                                 |
-| `report.md`    | at completion (investigation) | The findings and answer. The completion artifact — and the deliverable — for a pure investigation that produces no file changes.        |
+| File | When it appears | Role |
+| --- | --- | --- |
+| `task.md` | at issue creation | Clarify and agree the work before execution — goal, scope, acceptance criteria, and decisions. |
+| `progress.md` | when work begins | Record execution and resume after a crash or session restart — subtask status, decisions, and blocks. |
+| `summary.md` | at completion (change) | Review what shipped and follow up — what changed, how it was verified, what is still open. |
+| `report.md` | at completion (investigation) | Review the findings and follow up — the answer and confidence; it is the deliverable itself. |
 
 `task.md` and `progress.md` are always present. The issue closes with exactly one of `summary.md` or `report.md` — `summary.md` when it produced file changes, `report.md` when it was a pure investigation. If an issue was worth opening, it is worth a one-line completion artifact saying what happened.
 
@@ -93,7 +93,7 @@ A checkpoint log, not a detailed diary. Four sections: an issue-level status lin
 - **Decisions** — execution-time decisions, logged as they happen. Each entry names the subtask it pertains to, the decision, and the context/why. This is the canonical record of decisions made during execution; `task.md`'s Decisions holds only what was resolved during initial clarification.
 - **Blocked and skipped** — subtasks that did not reach done. Each entry names the subtask, the reason, and the impact: *blocking* (stops the whole issue, e.g. an unanswered question), *deferred* (only this subtask — pick it up later), or *dropped* (consciously not doing it). The subtask's status in the Subtasks list is `blocked` for blocking or deferred, `skipped` for dropped.
 
-The Subtasks list reflects the plan of work; Decisions and Skipped are the event trail. Together they are the working memory `summary.md` is written from at completion — record events as they happen so nothing is lost to context compression or a session restart.
+The Subtasks list reflects the plan of work; the Decisions and Blocked-and-skipped sections are the event trail. Together they are the working memory `summary.md` is written from at completion — record events as they happen so nothing is lost to context compression or a session restart.
 
 For large multi-part work (say, "refactor 100 modules"), do not create child issues unless you truly plan to review them individually. Use one issue: put the overall requirement and constraints in `task.md`, track coarse batches in `progress.md`, and let the agent plan and execute privately. The durable module docs are the review surface; `progress.md` just tracks which batches are done.
 
@@ -138,7 +138,7 @@ Common situations:
 
 Once execution begins, `task.md` is frozen (see the freeze point above), so decisions and events that surface during execution go in `progress.md`, not back into `task.md`. `task.md`'s Open Questions gate execution: do not plan or execute while it is non-empty. Resolve every open question first.
 
-New questions and decisions surface once work is underway. Handle each by case, and **log it in `progress.md` as it happens** — the Subtasks, Decisions, and Skipped sections together are the working memory `summary.md` is written from at completion, so nothing is lost to context compression or a session restart:
+New questions and decisions surface once work is underway. Handle each by case, and **log it in `progress.md` as it happens** — the Subtasks, Decisions, and Blocked-and-skipped sections together are the working memory `summary.md` is written from at completion, so nothing is lost to context compression or a session restart:
 
 - **Simple, safe decision** — make it. Record it in `progress.md`'s Decisions (subtask, decision, context); do not edit `task.md` for it, since `task.md` is frozen once execution begins. The decisions that shaped what shipped are carried into `summary.md`'s Changed at completion.
 - **Blocking question** — stop. Mark the affected subtask `blocked` in `progress.md`'s Subtasks and add an entry under Blocked and skipped (reason, impact: blocking); if still unresolved at the end, it becomes a Remaining Issue in `summary.md`.
