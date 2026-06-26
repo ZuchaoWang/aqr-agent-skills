@@ -33,10 +33,11 @@ disable-model-invocation: <true | false | omit>
 
 - `aqr-project-blueprint` — Scaffolds or compares a project against the recommended project/doc/code rule blueprint. Defines project shape: root files, docs layout, code/doc rules. Does not mention issues or workflow.
 - `aqr-content-criteria` — Content criteria for every standard doc type in the blueprint layout, and universal code quality principles. Applied when writing or reviewing docs and code; criteria are not copied into the project.
+- `aqr-project-principle` — Working principles that define quality standards for any work on a project: clarify before committing, documentation as project memory, optimize for human review, keep the solution simple, verify before completion. Applied during work; not copied into the project.
 
-Both skills are auto-invocable — the host may invoke any of them based on context, and the user can also name one directly via slash command.
+All three skills are auto-invocable — the host may invoke any of them based on context, and the user can also name one directly via slash command.
 
-The split is deliberate: project shape (`aqr-project-blueprint`) and content quality (`aqr-content-criteria`) are independent concerns. A project can adopt any combination.
+The split is deliberate: project shape (`aqr-project-blueprint`), content quality (`aqr-content-criteria`), and working principles (`aqr-project-principle`) are independent concerns. A project can adopt any combination.
 
 ## Conventions inside skill files
 
@@ -51,7 +52,7 @@ When editing a skill:
 
 1. Read the existing `SKILL.md` first to understand the skill's scope and invocation policy.
 2. Match the conventions of existing files in the same skill (numbered headings, `-` bullets, no `---`, no `Status:` header).
-3. Cross-check the split: `aqr-project-blueprint` covers layout only; `aqr-content-criteria` covers content quality only. They should not overlap.
+3. Cross-check the split: `aqr-project-blueprint` covers layout only; `aqr-content-criteria` covers content quality only; `aqr-project-principle` covers working standards only. None should overlap.
 4. If a template or reference change affects invocation behavior, update `SKILL.md` accordingly.
 
 ## Installing a skill

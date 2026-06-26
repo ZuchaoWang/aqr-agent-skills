@@ -6,6 +6,7 @@ Custom, opinionated AI-coding skills. Source repository — install by copying o
 
 - `aqr-project-blueprint` — Scaffold or compare a project against the recommended project/doc/code convention blueprint. Auto-invocable; project shape and conventions.
 - `aqr-content-criteria` — Content criteria for common documentation types (design, interface, usage scenarios, project, research, dataset) and source code. Auto-invocable; applied when writing or reviewing doc or code.
+- `aqr-project-principle` — Working principles for any project work: clarify before committing, documentation as project memory, optimize for human review, keep the solution simple, verify before completion. Auto-invocable; applied during work.
 
 All skills are doc only — no executable code.
 
