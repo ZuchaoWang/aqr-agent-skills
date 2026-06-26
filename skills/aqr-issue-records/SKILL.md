@@ -89,9 +89,9 @@ Clarifications from the user are not a separate section — a clarification refi
 A checkpoint log, not a detailed diary. Four sections: an issue-level status line, the subtask list, and two structured event logs.
 
 - **Status line** — `## Status: in-progress` when work begins, `## Status: done` at completion. It is the first content after the `# Progress` title, so automation can grep for `## Status: done` to find finished issues. This is the issue-level status, distinct from per-subtask status.
-- **Subtasks** — the planned subtasks as a `Subtask | Status` list. The subtask name is set at plan/replan and does not change during execution; only its status changes. Status is blank for pending, or `in-progress` / `done` / `skipped`. A subtask that is skipped is marked `skipped` here and also recorded under Skipped. Names must be unique — Decisions and Skipped reference subtasks by name.
+- **Subtasks** — the planned subtasks as a `Subtask | Status` list. The subtask name is set at plan/replan and does not change during execution; only its status changes. Status is blank for pending, or `in-progress` / `done` / `blocked` / `skipped` — `blocked` means cannot proceed (needs an answer or dependency), `skipped` means consciously dropped. A subtask marked `blocked` or `skipped` is also recorded under Blocked and skipped. Names must be unique — other sections reference subtasks by name.
 - **Decisions** — execution-time decisions, logged as they happen. Each entry names the subtask it pertains to, the decision, and the context/why. This is the canonical record of decisions made during execution; `task.md`'s Decisions holds only what was resolved during initial clarification.
-- **Skipped** — subtasks stopped before completion. Each entry names the subtask, the reason, and whether it is blocking (stops the issue) or deferred (can be picked up later).
+- **Blocked and skipped** — subtasks that did not reach done. Each entry names the subtask, the reason, and the impact: *blocking* (stops the whole issue, e.g. an unanswered question), *deferred* (only this subtask — pick it up later), or *dropped* (consciously not doing it). The subtask's status in the Subtasks list is `blocked` for blocking or deferred, `skipped` for dropped.
 
 The Subtasks list reflects the plan of work; Decisions and Skipped are the event trail. Together they are the working memory `summary.md` is written from at completion — record events as they happen so nothing is lost to context compression or a session restart.
 
@@ -103,7 +103,7 @@ Use `summary.md` when the issue produced file changes (code, docs, or fix).
 
 - **Changed** — what shipped, written so a later reviewer or follow-up issue can find each change. For each file touched: what changed and where (the doc section, function, or region). Include the decisions that shaped it (drawn from `progress.md`'s Decisions).
 - **Verification** — how it was checked: tests run, manual checks, commands used and their outcome.
-- **Remaining Issues** — only what is still open at the end: blocking or deferred skips and unresolved blockages drawn from `progress.md`'s Skipped. Resolved decisions are not issues; they stay in `progress.md` (the material ones land in Changed).
+- **Remaining Issues** — only what is still open at the end: blocked subtasks (whether they block the whole issue or are deferred for later), drawn from `progress.md`'s Blocked and skipped. Consciously skipped subtasks are closed decisions, not remaining. Resolved decisions stay in `progress.md` (the material ones land in Changed).
 - **Follow-Up Issues** (optional) — natural follow-ups discovered during the work.
 
 ### report.md — for an investigation
@@ -141,10 +141,10 @@ Once execution begins, `task.md` is frozen (see the freeze point above), so deci
 New questions and decisions surface once work is underway. Handle each by case, and **log it in `progress.md` as it happens** — the Subtasks, Decisions, and Skipped sections together are the working memory `summary.md` is written from at completion, so nothing is lost to context compression or a session restart:
 
 - **Simple, safe decision** — make it. Record it in `progress.md`'s Decisions (subtask, decision, context); do not edit `task.md` for it, since `task.md` is frozen once execution begins. The decisions that shaped what shipped are carried into `summary.md`'s Changed at completion.
-- **Blocking question** — stop. Mark the affected subtask's status in `progress.md`'s Subtasks and add a Skipped entry (reason, blocking: yes); if still unresolved at the end, it becomes a Remaining Issue in `summary.md`.
-- **Independent subtask blocked** — stop that subtask, continue the others. Mark it `skipped` in Subtasks and add a Skipped entry (reason, blocking: no / deferred to where); if still open at the end, it goes in `summary.md`'s Remaining Issues.
+- **Blocking question** — stop. Mark the affected subtask `blocked` in `progress.md`'s Subtasks and add an entry under Blocked and skipped (reason, impact: blocking); if still unresolved at the end, it becomes a Remaining Issue in `summary.md`.
+- **Independent subtask blocked** — stop that subtask, continue the others. Mark it `blocked` in Subtasks and add an entry under Blocked and skipped (reason, impact: deferred — where it resumes); if still open at the end, it goes in `summary.md`'s Remaining Issues.
 
-At completion, write `summary.md` by reviewing `progress.md`'s Subtasks, Decisions, and Skipped, plus the diff. The execution trail stays in `progress.md`; carry the decisions that shaped what shipped into Changed, and only what is still open — blocking or deferred skips, unresolved blockages — lands in `summary.md`'s Remaining Issues.
+At completion, write `summary.md` by reviewing `progress.md`'s Subtasks, Decisions, and Blocked and skipped, plus the diff. The execution trail stays in `progress.md`; carry the decisions that shaped what shipped into Changed, and only what is still open — blocked subtasks, blocking or deferred — lands in `summary.md`'s Remaining Issues.
 
 ## When the user invokes this skill
 

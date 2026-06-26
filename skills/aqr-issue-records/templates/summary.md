@@ -16,7 +16,7 @@
 
 ## Remaining Issues
 
-<!-- Only what is still open at the end: unresolved blockages and skipped subtasks drawn from progress.md. Resolved decisions are not issues; they stay in progress.md (the material ones land in Changed). -->
+<!-- Only what is still open at the end: blocked subtasks that are blocking or deferred, drawn from progress.md's Blocked and skipped. Consciously skipped (dropped) subtasks are closed, not remaining. Resolved decisions stay in progress.md (the material ones land in Changed). -->
 
 - ...
 
