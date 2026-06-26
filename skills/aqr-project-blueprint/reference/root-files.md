@@ -15,8 +15,8 @@ First file a new reader opens. Two-paragraph max: what the project is, how to st
 Top-level instructions for AI coding agents working in the repo. Points at:
 
 - `docs/index.md` for the documentation map.
-- the per-stack rule files for code changes (e.g. `docs/rules/frontend_js.md`, `docs/rules/backend_python.md`); for universal code quality principles, see the `aqr-content-criteria` skill.
-- `docs/rules/doc_markdown.md` for doc format; for content criteria on dynamic doc types, see the `aqr-content-criteria` skill.
+- the per-stack rule files for code changes (e.g. `docs/rules/frontend_js.md`, `docs/rules/backend_python.md`); for universal code quality principles, see the `aqr-code-criteria` skill.
+- `docs/rules/doc_markdown.md` for doc format; for content criteria on dynamic doc types, see the `aqr-doc-criteria` skill.
 
 Also carries toolchain specifics — language versions, where the version file lives, anything that surprises a fresh agent (system Node being the wrong version, pyenv env name, required system packages). These notes go here, not in `docs/`, because they affect agent behavior directly.
 

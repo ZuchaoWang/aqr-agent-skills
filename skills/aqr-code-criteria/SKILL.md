@@ -1,8 +1,14 @@
-# Code content criteria
+---
+name: aqr-code-criteria
+description: Universal code quality principles that apply regardless of language, framework, or project style. Use when writing or reviewing source code.
+disable-model-invocation: false
+---
 
-Universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Project-specific style rules (per-stack formatting, linting, framework mechanics) layer on top and may be stricter; those live in the project's own rule files, not here.
+# aqr-code-criteria
 
-How to decompose code into components and modules, assign responsibility, and own state is a design concern — see `reference/design.md` §2.1. This doc covers the code-level floor that any decomposition must still meet.
+Defines **what good source code looks like** — universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Project-specific per-stack rules (formatting, linting, framework mechanics) layer on top and may be stricter; those live in the project's own rule files, not here.
+
+How to decompose code into components and modules, assign responsibility, and own state is a design concern — see the `aqr-doc-criteria` skill's design criteria (§2.1). This skill covers the code-level floor that any decomposition must still meet.
 
 ## 1. Library-first approach
 
@@ -56,7 +62,7 @@ Record the chosen library and the reason in the project's tech-stack doc; the ma
 ## 7. File and module hygiene
 
 - Do not create empty files. The only exception is `__init__.py`, which may be empty to mark a Python package.
-- If a module file is growing past ~300 lines, reconsider its scope before adding more — the responsibility split is a design call (see `reference/design.md` §2.1).
+- If a module file is growing past ~300 lines, reconsider its scope before adding more — the responsibility split is a design call (see the `aqr-doc-criteria` skill's design criteria, §2.1).
 - Co-locate what changes together. A component, its styles, and its tests that change together live together.
 - Prefer early returns over nested conditionals, and avoid deep nesting (roughly more than three levels). Exact thresholds are a project-style choice.
 
