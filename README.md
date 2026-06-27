@@ -5,7 +5,7 @@ Custom, opinionated AI-coding skills. Source repository — install by copying o
 ## Skills
 
 - `aqr-doc-blueprint` — Lay out or compare a project's docs against the recommended `docs/` tree. Auto-invocable; docs layout.
-- `aqr-doc-criteria` — Content criteria for common documentation types (design, interface, project, research, dataset, milestone). Auto-invocable; applied when writing or reviewing docs.
+- `aqr-doc-criteria` — Content criteria for common documentation types (design, interface, project, research, dataset). Auto-invocable; applied when writing or reviewing docs.
 - `aqr-code-criteria` — Universal code quality principles that apply regardless of language or stack. Auto-invocable; applied when writing or reviewing code.
 - `aqr-project-principle` — Working principles for any project work: clarify before committing, documentation as project memory, optimize for human review, keep the solution simple, verify before completion. Auto-invocable; applied during work.
 - `aqr-style-rules` — Opinionated, stack-specific style defaults for code, tests, notebooks, presentations, and doc formatting. Auto-invocable; applied when writing or reviewing code, tests, notebooks, or decks.

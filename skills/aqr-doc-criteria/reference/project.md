@@ -39,12 +39,12 @@ Purpose: a reviewer reads it and understands where the project is heading, what 
 Sections:
 
 1. **Vision** — the long-term direction; where the project is heading qualitatively.
-2. **Now** — the current milestone; what is in flight. Name it and link to its milestone doc.
-3. **Next** — the milestone queued after Now. Name it and link to its milestone doc when one exists.
-4. **Later** — milestones beyond Next, stated at a coarser grain; descriptive, no doc required.
+2. **Now** — the current milestone; what is in flight.
+3. **Next** — the milestone queued after Now.
+4. **Later** — milestones beyond Next, stated at a coarser grain.
 5. **Decisions log** — key decisions that shaped the roadmap, each with a one-line rationale and date. Example: "2026-03: deferred multi-tenant isolation to v2 — single-tenant ships first to meet the pilot deadline; revisit when a second tenant is signed."
 
-Constraints: the roadmap is the index over milestones — name each milestone and link to its doc rather than re-describing the work (the detail lives in the milestone doc). Link only where a milestone doc exists; Vision and far-horizon Later stay descriptive. For a date-driven project, swap Now/Next/Later for dated milestones (name, target date, what is included). Keep it current — a stale roadmap misleads more than no roadmap.
+Constraints: reference work by name rather than re-describing it. For a date-driven project, swap Now/Next/Later for dated milestones (name, target date, what is included). Keep it current — a stale roadmap misleads more than no roadmap.
 
 ## 4. Tech stack
 
