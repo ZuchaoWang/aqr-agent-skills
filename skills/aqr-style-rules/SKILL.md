@@ -6,7 +6,7 @@ disable-model-invocation: false
 
 # aqr-style-rules
 
-Opinionated style defaults — taste, not a quality floor. They layer on top of the universal principles in `aqr-code-criteria` (code) and `aqr-doc-criteria` (docs); anything not covered here follows those. Applied when writing or reviewing; not copied into the project.
+Opinionated style defaults — taste, not a quality floor. They layer on top of the universal principles in `aqr-code-criteria` (code) and `aqr-doc-content` (docs); anything not covered here follows those. Applied when writing or reviewing; not copied into the project.
 
 ## Reference files to look at
 

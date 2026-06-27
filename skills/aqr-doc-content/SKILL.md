@@ -1,10 +1,10 @@
 ---
-name: aqr-doc-criteria
+name: aqr-doc-content
 description: Criteria for writing common documentation types (design, interface, project, research, dataset) and the repo layout doc. Use when writing or reviewing any such doc.
 disable-model-invocation: false
 ---
 
-# aqr-doc-criteria
+# aqr-doc-content
 
 Defines **what good content looks like** for common documentation types. When writing or reviewing a doc, load the corresponding reference and follow the criteria it defines.
 

@@ -1,13 +1,18 @@
 # aqr-agent-skills
 
-Custom, opinionated AI-coding skills. Source repository — install by copying or symlinking a skill directory into a project's `.claude/skills/` folder, then point the agent at it from that project's `CLAUDE.md`. These are opinionated skills: install them per project only where wanted, not at user scope.
+Custom AI-coding skills — two are a universal engineering and working floor, three are opinionated taste. Source repository — install by copying or symlinking a skill directory into a project's `.claude/skills/` folder, then point the agent at it from that project's `CLAUDE.md`. Install per project only where wanted, not at user scope.
 
 ## Skills
 
-- `aqr-doc-blueprint` — Lay out or compare a project's docs against the recommended `docs/` tree. Auto-invocable; docs layout.
-- `aqr-doc-criteria` — Content criteria for common documentation types (design, interface, project, research, dataset). Auto-invocable; applied when writing or reviewing docs.
+**Universal** — engineering and working floor:
+
 - `aqr-code-criteria` — Universal code quality principles that apply regardless of language or stack. Auto-invocable; applied when writing or reviewing code.
-- `aqr-project-principle` — Working principles for any project work: clarify before committing, documentation as project memory, optimize for human review, keep the solution simple, verify before completion. Auto-invocable; applied during work.
+- `aqr-project-principle` — Working principles that define the quality bar for project work: what good work looks like, not a fixed workflow. Auto-invocable; applied during work.
+
+**Opinionated** — taste-based choices a project opts into:
+
+- `aqr-doc-blueprint` — Lay out or compare a project's docs against the recommended `docs/` tree. Auto-invocable; docs layout.
+- `aqr-doc-content` — Content criteria for common documentation types (design, interface, project, research, dataset). Auto-invocable; applied when writing or reviewing docs.
 - `aqr-style-rules` — Opinionated, stack-specific style defaults for code, tests, notebooks, presentations, and doc formatting. Auto-invocable; applied when writing or reviewing code, tests, notebooks, or decks.
 
 All skills are doc only — no executable code.
@@ -24,7 +29,7 @@ See `CLAUDE.md` for editing and installation details.
 
 ## References
 
-External sources adapted by `aqr-doc-criteria` and `aqr-code-criteria`:
+External sources adapted by `aqr-doc-content` and `aqr-code-criteria`:
 
 - [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) (M. Nygard, 2011) — the Architecture Decision Record format adapted in `reference/design.md` §2.4.
 - [architecture-decision-record](https://github.com/joelparkerhenderson/architecture-decision-record) (J. P. Henderson) — ADR templates and writing guidance.

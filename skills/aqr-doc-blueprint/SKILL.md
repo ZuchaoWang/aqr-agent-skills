@@ -6,7 +6,7 @@ disable-model-invocation: false
 
 # aqr-doc-blueprint
 
-A reference for the recommended docs layout: how a project's `docs/` tree is laid out, plus the root entry points that route readers and agents into it. It describes the layout — it does not prescribe how to write the content. For content quality, pair with the other skills: `aqr-doc-criteria` (what each doc type should contain), `aqr-code-criteria` (universal code quality floor), and `aqr-style-rules` (opinionated code, test, notebook, and doc style taste).
+A reference for the recommended docs layout: how a project's `docs/` tree is laid out, plus the root entry points that route readers and agents into it. It describes the layout — it does not prescribe how to write the content. For content quality, pair with the other skills: `aqr-doc-content` (what each doc type should contain), `aqr-code-criteria` (universal code quality floor), and `aqr-style-rules` (opinionated code, test, notebook, and doc style taste).
 
 ## Scope
 
