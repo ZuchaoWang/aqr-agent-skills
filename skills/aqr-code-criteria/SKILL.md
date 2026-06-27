@@ -6,7 +6,7 @@ disable-model-invocation: false
 
 # aqr-code-criteria
 
-Defines **what good source code looks like** — universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Project-specific per-stack rules (formatting, linting, framework mechanics) layer on top and may be stricter; those live in the project's own rule files, not here.
+Defines **what good source code looks like** — universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Per-stack style (formatting, linting, framework mechanics) layers on top and may be stricter; that lives in the `aqr-style-rules` skill, not here.
 
 How to decompose code into components and modules, assign responsibility, and own state is a design concern — see the `aqr-doc-criteria` skill's design criteria (§2.1). This skill covers the code-level floor that any decomposition must still meet.
 
@@ -78,6 +78,6 @@ Record the chosen library and the reason in the project's tech-stack doc; the ma
 
 ## 9. Before committing
 
-- Run the project's linters, formatters, and type checker on touched files. See the project's per-stack style rules for the exact tools. Run on touched files only — do not reformat the whole tree as part of an unrelated change.
+- Run the project's linters, formatters, and type checker on touched files. See the `aqr-style-rules` skill for the exact tools. Run on touched files only — do not reformat the whole tree as part of an unrelated change.
 - Ensure new public functions are covered by at least one test that exercises a realistic input.
 - If the change affects a public surface or a documented contract, update the corresponding interface doc or design doc in the same change.

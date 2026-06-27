@@ -1,62 +1,54 @@
 ---
 name: aqr-project-blueprint
-description: Scaffold a new project or compare an existing repo against the recommended project/doc/code rule blueprint — root files, docs layout, and code/doc rules. Use when starting a new project, adding the recommended docs/rules to a repo, or checking a repo's structure for drift against the blueprint.
+description: Reference for the recommended project shape — root files and docs layout. Tells what files a project should have and where; not how to write them. Use when starting a new project, laying out its root files or docs tree, deciding where a file belongs, or checking a repo's shape for drift.
 disable-model-invocation: false
 ---
 
 # aqr-project-blueprint
 
-Provides a reusable project scaffold and alignment guide. Recommends root files, docs layout, rule docs, and code/doc style defaults. Used to scaffold a new project or compare an existing project against the recommended structure.
+A reference for the recommended project shape: which root files a project should carry and how its `docs/` tree is laid out. It describes the shape — it does not prescribe how to write the content. For content quality, pair with the other skills: `aqr-doc-criteria` (what each doc type should contain), `aqr-code-criteria` (universal code quality floor), and `aqr-style-rules` (opinionated code, test, notebook, and doc style taste).
 
 ## Scope
 
-This skill defines **project shape and rules only**. It does not define the development workflow, and it does not define what good content looks like inside the docs it scaffolds.
+This skill defines **project shape only** — what files exist and where. It does not define doc content quality, code quality, style taste, or development workflow.
 
 ## What this skill is for
 
 Use it to:
 
-- Scaffold a new project from the recommended blueprint.
-- Add recommended project docs or rules to an existing repo.
-- Compare an existing repo against the recommended blueprint and report drift.
-- Propose a migration plan from an existing layout to the blueprint.
+- Lay out a new project's root files and docs tree from the recommended shape.
+- Decide where a given doc or file belongs.
+- Compare an existing repo against the recommended shape and report drift.
 
-## What this skill does not do
-
-- Its files are **not** authoritative for any project. They are starter material; once copied into a project, the project-local copies are ground truth and may be edited, overridden, or deleted. The skill does not re-impose its defaults on a project that has diverged.
-- It does **not** rewrite existing project structure automatically. For existing projects, first produce a comparison and a proposal; the user decides what to apply.
-- It does **not** create technology-specific files without first asking or inferring. See "Scaffolding workflow" below.
-- It does **not** define the development workflow. Pair with an execution skill (e.g. Superpowers) for that.
+The recommended shape is a reference, not authority for a project that has diverged. When comparing, report drift; do not rewrite a project's structure unless asked.
 
 ## Recommended root files
 
-Copied verbatim from `templates/` into the project root when scaffolding:
+Stack-agnostic files recommended for every project:
 
 ```
-README.md
-CLAUDE.md
-.editorconfig
-.gitignore
-.gitattributes
-.markdownlint.json
+README.md                # entry pointer: what the project is and how to start; points at docs/index.md
+CLAUDE.md                # top-level instructions for AI coding agents; carries toolchain specifics
+.editorconfig            # editor-agnostic style defaults: line endings, encoding, indent per language
+.gitignore               # common ignore patterns: local env, editor state, caches, build output
+.gitattributes           # forces LF on checkout; marks binary file types so they are not diffed as text
+.markdownlint.json       # disables markdownlint rules incompatible with the project doc style
 ```
 
-Technology-specific files are added only after the relevant choice is known:
+Technology-specific files are added once the relevant choice is known:
 
 ```
-.nvmrc                    # when the project uses Node
-.python-version           # when the project uses Python
-package.json              # when the project uses Node
-pyproject.toml            # when the project uses Python
+.nvmrc                    # Node version pin (single line, no `v` prefix) — when the project uses Node
+.python-version           # Python version pin — when the project uses Python
+package.json              # npm manifest — when the project uses Node
+pyproject.toml            # Python project metadata, build, and tool config — when the project uses Python
 ```
-
-See `reference/root-files.md` for the role of each file and when to include or skip it.
 
 ## Recommended docs structure
 
 ```
 docs/
-  index.md                # documentation map
+  index.md                # documentation map: one section per top-level docs/ subdirectory
   project_layout.md       # top-level repo layout, one-line annotation per directory
 
   project/
@@ -80,71 +72,19 @@ docs/
     brainstorm.md         # discussion of possible designs
 
   implementation/
-    # Two layouts, picked at scaffolding time based on source-tree shape:
+    # Two layouts, chosen based on source-tree shape:
 
     {{module_name}}/      # flat — single-stack projects
-      design.md
-      interface.md
+      design.md           # module-level design: components, data flow
+      interface.md        # module file and signature contract
 
     {{layer}}/            # layered — multi-stack projects (e.g., frontend/, backend/)
       {{module_name}}/    # one folder per top-level source module
-        design.md
-        interface.md
+        design.md         # module-level design: components, data flow
+        interface.md      # module file and signature contract
 
   data/
-    {{dataset}}.md        # one per dataset
-
-  rules/
-    doc_markdown.md       # markdown doc style: headings, lists, lifecycle, archival
-    report_ppt.md         # conventions for PowerPoint reports the project produces
-    frontend_js.md        # code + test rules for a JS/TS frontend (any framework)
-    backend_python.md     # code + test rules for a Python backend
-    backend_jupyter.md    # code + test rules for a Jupyter backend
+    {{dataset}}.md        # one doc per dataset
 ```
 
-Not every project needs every file above. The scaffolding step copies the full skeleton; the user deletes what does not apply. Two subtrees are **not** scaffolded with placeholder files — they are created on demand by the project author:
-
-- The module folder under `implementation/` (path: `{{module_name}}/` or `{{layer}}/{{module_name}}/`) — one per top-level source module, each containing `design.md` and `interface.md`. Content criteria for both live in `aqr-doc-criteria`.
-- `data/{{dataset}}.md` — one doc per dataset.
-
-See `reference/docs-layout.md` for the meaning of each directory and what belongs in each.
-
-## Scaffolding workflow
-
-When invoked to scaffold a new project:
-
-1. Ask the user the tech-choice questions below (or accept their stated answers), then add the relevant technology-specific root files.
-2. Copy the root files from `templates/` to the project root.
-3. Copy the docs skeleton from `templates/docs/` to `<project>/docs/`.
-4. Stop. Do not populate the docs skeleton with substantive content — that is later doc-update work, not scaffolding.
-
-**Tech choices to confirm** — default to asking on a blank slate; infer from existing files when extending:
-
-- Python version → `.python-version` and `pyproject.toml`. Python package manager (default: pip).
-- Node version → `.nvmrc` and `package.json engines`. Node package manager (default: npm).
-- Frontend framework (default: React + TypeScript).
-- Backend framework (default: FastAPI for Python services).
-- Monorepo layout (single tree vs. `frontend/` + `backend/`) — determines whether `implementation/` docs are flat or layered.
-- Lint / format / type-check tools.
-
-**Reference docs for common stacks:**
-
-- `reference/python-project.md` — Python version, package manager, `pyproject.toml`, ruff/pyright config.
-- `reference/node-project.md` — Node version, package manager, `package.json`, ESLint/Prettier config.
-- `reference/backend-python.md` — FastAPI + Pydantic application patterns (module layout, config, startup, request/response envelope, tests).
-- `reference/frontend-react.md` — React + TypeScript + Vite patterns.
-
-When invoked to compare an existing repo:
-
-1. Read the existing root files and docs tree.
-2. Map each existing artifact to a blueprint slot.
-3. Report three buckets: **matches** (blueprint satisfied), **drift** (blueprint recommends something different), **extra** (project has files the blueprint does not mention).
-4. Propose changes; do not apply them unless the user asks.
-
-## After scaffolding
-
-Once scaffolding completes, the project-local files are ground truth. In practice this means:
-
-- Do not re-copy skill templates over existing project files.
-- Do not "fix" drift by editing project files to match the skill.
-- If the user later asks to compare against the blueprint, produce a drift report — do not apply changes unless asked.
+Not every project needs every file; add what applies. Content criteria for each doc type (design, interface, project, research, dataset) live in `aqr-doc-criteria`.
