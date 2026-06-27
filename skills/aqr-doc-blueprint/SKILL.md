@@ -38,7 +38,7 @@ Stack-specific root files (version pins, manifests, editor and lint config) are 
 ```
 docs/
   index.md                # documentation map: one section per top-level docs/ subdirectory
-  project_layout.md       # top-level repo layout, one-line annotation per directory
+  project_layout.md       # whole-repo layout (source and docs), one-line annotation per directory
 
   project/
     mission.md            # what the project is for; problem statement and scope
@@ -82,4 +82,4 @@ docs/
     {{dataset}}.md        # one doc per dataset
 ```
 
-Not every project needs every file; add what applies. Content criteria for each doc type (design, interface, project, research, dataset, milestone) live in `aqr-doc-criteria`.
+Not every project needs every file; add what applies.
