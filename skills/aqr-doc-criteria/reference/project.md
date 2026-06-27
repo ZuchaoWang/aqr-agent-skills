@@ -1,6 +1,6 @@
 # Project doc content criteria
 
-Criteria for the project-level docs: mission, usage scenarios, roadmap, tech stack, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how.
+Criteria for the project-level docs: mission, usage scenarios, roadmap, tech stack, and the project's active concept set. These are lighter than design docs — they state what and why at the project level, not how. Where each doc lives is a layout choice — see the `aqr-doc-blueprint` skill.
 
 ## 1. Mission
 
@@ -39,7 +39,7 @@ Purpose: a reviewer reads it and understands where the project is heading, what 
 Sections:
 
 1. **Vision** — the long-term direction; where the project is heading qualitatively.
-2. **Now** — the current milestone; what is in flight. Name it and link to its `milestones/<index>-<name>.md`.
+2. **Now** — the current milestone; what is in flight. Name it and link to its milestone doc.
 3. **Next** — the milestone queued after Now. Name it and link to its milestone doc when one exists.
 4. **Later** — milestones beyond Next, stated at a coarser grain; descriptive, no doc required.
 5. **Decisions log** — key decisions that shaped the roadmap, each with a one-line rationale and date. Example: "2026-03: deferred multi-tenant isolation to v2 — single-tenant ships first to meet the pilot deadline; revisit when a second tenant is signed."

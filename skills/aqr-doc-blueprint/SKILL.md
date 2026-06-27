@@ -44,6 +44,7 @@ docs/
     mission.md            # what the project is for; problem statement and scope
     usage_scenarios.md    # concrete user-facing scenarios the project must support
     roadmap.md            # the sequence of milestones: order, target dates, owners
+    concepts.md           # active domain vocabulary: concepts the project uses, with definitions
 
   milestones/             # one file per short-term development goal — the working contract for the next change
     {{index}}-{{name}}.md # what should change: user intent, agreed decisions, acceptance criteria
