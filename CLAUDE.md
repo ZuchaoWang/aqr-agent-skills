@@ -57,14 +57,25 @@ When editing a skill:
 
 ## Installing a skill
 
-These skills are source; installation is by copy or symlink into the host agent's skills directory. For Claude Code:
+These skills are opinionated and opt-in. Install them **per project** — not at user scope — only in projects that want them. For Claude Code, copy or symlink each skill directory into the project's skills folder:
 
 ```
-~/.claude/skills/<skill-name>/   # user-level skills
-<project>/.claude/skills/<skill-name>/   # project-level skills
+<project>/.claude/skills/<skill-name>/
 ```
 
 Copy the skill directory verbatim. The host agent reads `SKILL.md` to decide when to invoke; nothing else needs configuration.
+
+Skill auto-invocation is unreliable on its own, so the adopting project should also add a directive to its own `CLAUDE.md` telling the agent to use them. Example:
+
+```md
+For software-development work, use the AQR skills under `.claude/skills/` and invoke the one that matches the task (do not invoke all of them):
+
+- `aqr-project-principle` — working standards: clarify before committing, documentation as memory, optimize for human review, keep it simple, verify before completion
+- `aqr-code-criteria` — writing or reviewing source code
+- `aqr-doc-criteria` — writing or reviewing docs (design, interface, project, research, dataset)
+- `aqr-doc-blueprint` — laying out or auditing the `docs/` tree
+- `aqr-style-rules` — formatting and style for code, tests, notebooks, decks, docs
+```
 
 ## Verifying changes
 

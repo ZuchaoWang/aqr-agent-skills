@@ -1,6 +1,6 @@
 # aqr-agent-skills
 
-Custom, opinionated AI-coding skills. Source repository — install by copying or symlinking a skill directory into the host agent's skills folder (e.g. `~/.claude/skills/` for Claude Code).
+Custom, opinionated AI-coding skills. Source repository — install by copying or symlinking a skill directory into a project's `.claude/skills/` folder, then point the agent at it from that project's `CLAUDE.md`. These are opinionated skills: install them per project only where wanted, not at user scope.
 
 ## Skills
 
