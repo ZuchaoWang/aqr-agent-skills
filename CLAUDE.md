@@ -31,7 +31,7 @@ disable-model-invocation: <true | false | omit>
 ## Skills currently in this repo
 
 - `aqr-doc-blueprint` — Reference for the recommended docs layout: the `docs/` tree plus the root entry points that route into it. Describes what docs a project should have and where; not how to write them. Does not mention issues or workflow.
-- `aqr-doc-criteria` — Content criteria for every standard doc type in the blueprint layout (design, interface, project, research, dataset). Applied when writing or reviewing docs; criteria are not copied into the project.
+- `aqr-doc-criteria` — Content criteria for every standard doc type in the blueprint layout (design, interface, project, research, dataset, milestone). Applied when writing or reviewing docs; criteria are not copied into the project.
 - `aqr-code-criteria` — Universal code quality principles that apply regardless of language or stack. Applied when writing or reviewing code; criteria are not copied into the project.
 - `aqr-project-principle` — Working principles that define quality standards for any work on a project: clarify before committing, documentation as project memory, optimize for human review, keep the solution simple, verify before completion. Applied during work; not copied into the project.
 - `aqr-style-rules` — Opinionated, stack-specific style defaults (code, tests, notebooks, presentations, doc formatting) layered on top of the universal code/doc criteria. Applied when writing or reviewing code, tests, notebooks, or decks; not copied into the project.
