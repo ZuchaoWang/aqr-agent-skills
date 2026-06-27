@@ -6,16 +6,16 @@ Custom AI-coding skills — two are a universal engineering and working floor, t
 
 **Universal** — engineering and working floor:
 
-- `aqr-code-criteria` — Universal code quality principles that apply regardless of language or stack. Auto-invocable; applied when writing or reviewing code.
-- `aqr-project-principle` — Working principles that define the quality bar for project work: what good work looks like, not a fixed workflow. Auto-invocable; applied during work.
+- `aqr-code-criteria` — Universal code quality principles that apply regardless of language or stack.
+- `aqr-project-principle` — Working principles that define the quality bar for project work: what good work looks like, not a fixed workflow.
 
 **Opinionated** — taste-based choices a project opts into:
 
-- `aqr-doc-blueprint` — Lay out or compare a project's docs against the recommended `docs/` tree. Auto-invocable; docs layout.
-- `aqr-doc-content` — Content criteria for common documentation types (design, interface, project, research, dataset). Auto-invocable; applied when writing or reviewing docs.
-- `aqr-style-rules` — Opinionated, stack-specific style defaults for code, tests, notebooks, presentations, and doc formatting. Auto-invocable; applied when writing or reviewing code, tests, notebooks, or decks.
+- `aqr-doc-blueprint` — Lay out or compare a project's docs against the recommended `docs/` tree.
+- `aqr-doc-content` — Content criteria for common documentation types (design, interface, project, research, dataset).
+- `aqr-style-rules` — Opinionated, stack-specific style defaults for code, tests, notebooks, presentations, and doc formatting.
 
-All skills are doc only — no executable code.
+All five are auto-invocable and doc only — no executable code.
 
 ## Layout
 
