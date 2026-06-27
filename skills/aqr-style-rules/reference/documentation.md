@@ -1,6 +1,6 @@
 # Documentation style (markdown)
 
-Opinionated markdown formatting defaults for project docs. These cover formatting only; the structure of the doc set lives in `aqr-doc-blueprint`, and the content criteria for each doc type live in `aqr-doc-criteria`.
+Opinionated markdown formatting defaults for project docs.
 
 ## 1. Structure
 

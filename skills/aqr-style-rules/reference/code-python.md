@@ -1,6 +1,6 @@
 # Code and test style (Python)
 
-Opinionated Python-stack style defaults for code and tests, layered on top of the universal floor in the `aqr-code-criteria` skill — code quality in the main body, testing in §8. Apply these unless the project records a different choice. Anything not mentioned here follows `aqr-code-criteria` — type annotations on public surfaces, `_`-prefix private helpers, named constants, secrets read from the environment, no empty files, test behavior rather than implementation.
+Opinionated Python-stack style defaults for code and tests. Apply these unless the project records a different choice
 
 ## 1. Code
 

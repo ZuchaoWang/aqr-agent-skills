@@ -1,6 +1,6 @@
 # Code and test style (JavaScript)
 
-Opinionated JavaScript-stack style defaults, layered on top of the universal floor in the `aqr-code-criteria` skill. Apply these unless the project records a different choice. This is a minimal seed — grow it as JavaScript conventions are fixed. Anything not mentioned here follows `aqr-code-criteria`.
+Opinionated JavaScript-stack style defaults. Apply these unless the project records a different choice.
 
 ## 1. Project files and editor config
 
