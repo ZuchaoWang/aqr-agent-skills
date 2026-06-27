@@ -69,9 +69,12 @@ Record the chosen library and the reason in the project's tech-stack doc; the ma
 ## 8. Testing
 
 - New public functions are covered by at least one test that exercises a realistic input, not just the happy path.
+- Test all pure functions — they are deterministic and cheap to test, so each one should be covered.
 - Test behavior, not implementation. A test that breaks on a harmless refactor is testing the wrong thing.
 - Boundary tests for system boundaries: invalid input, missing fields, empty collections, off-by-one, large inputs.
 - What to mock vs. use real: mock external dependencies that are slow, nondeterministic, or stateful; use real implementations for pure logic. Over-mocking tests the mocks, not the code.
+- Avoid conceptually duplicated test cases. If two tests exercise the same logic with only minor input variations, combine them; split only when the logic path meaningfully differs.
+- Keep existing test cases intact when modifying test files.
 
 ## 9. Before committing
 
