@@ -30,7 +30,7 @@ disable-model-invocation: <true | false | omit>
 
 ## Skills currently in this repo
 
-- `aqr-project-blueprint` — Reference for the recommended project shape: root files and docs layout. Describes what files a project should have and where; not how to write them. Does not mention issues or workflow.
+- `aqr-doc-blueprint` — Reference for the recommended docs layout: the `docs/` tree plus the root entry points that route into it. Describes what docs a project should have and where; not how to write them. Does not mention issues or workflow.
 - `aqr-doc-criteria` — Content criteria for every standard doc type in the blueprint layout (design, interface, project, research, dataset). Applied when writing or reviewing docs; criteria are not copied into the project.
 - `aqr-code-criteria` — Universal code quality principles that apply regardless of language or stack. Applied when writing or reviewing code; criteria are not copied into the project.
 - `aqr-project-principle` — Working principles that define quality standards for any work on a project: clarify before committing, documentation as project memory, optimize for human review, keep the solution simple, verify before completion. Applied during work; not copied into the project.
@@ -38,7 +38,7 @@ disable-model-invocation: <true | false | omit>
 
 All five skills are auto-invocable — the host may invoke any of them based on context, and the user can also name one directly via slash command.
 
-The split is deliberate: project shape (`aqr-project-blueprint`), doc content (`aqr-doc-criteria`), code content (`aqr-code-criteria`), working principles (`aqr-project-principle`), and opinionated style taste (`aqr-style-rules`) are independent concerns. A project can adopt any combination.
+The split is deliberate: docs layout (`aqr-doc-blueprint`), doc content (`aqr-doc-criteria`), code content (`aqr-code-criteria`), working principles (`aqr-project-principle`), and opinionated style taste (`aqr-style-rules`) are independent concerns. A project can adopt any combination.
 
 ## Conventions inside skill files
 
@@ -52,7 +52,7 @@ When editing a skill:
 
 1. Read the existing `SKILL.md` first to understand the skill's scope and invocation policy.
 2. Match the conventions of existing files in the same skill (numbered headings, `-` bullets, no `---`, no `Status:` header).
-3. Cross-check the split: `aqr-project-blueprint` covers layout only; `aqr-doc-criteria` covers doc content quality only; `aqr-code-criteria` covers code content quality only; `aqr-project-principle` covers working standards only; `aqr-style-rules` covers opinionated style taste on top of the universal floor only. None should overlap.
+3. Cross-check the split: `aqr-doc-blueprint` covers docs layout only; `aqr-doc-criteria` covers doc content quality only; `aqr-code-criteria` covers code content quality only; `aqr-project-principle` covers working standards only; `aqr-style-rules` covers opinionated style taste on top of the universal floor only. None should overlap.
 4. If a reference change affects invocation behavior, update `SKILL.md` accordingly.
 
 ## Installing a skill

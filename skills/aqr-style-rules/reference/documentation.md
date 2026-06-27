@@ -1,6 +1,6 @@
 # Documentation style (markdown)
 
-Opinionated markdown formatting defaults for project docs. These cover formatting only; the structure of the doc set lives in `aqr-project-blueprint`, and the content criteria for each doc type live in `aqr-doc-criteria`.
+Opinionated markdown formatting defaults for project docs. These cover formatting only; the structure of the doc set lives in `aqr-doc-blueprint`, and the content criteria for each doc type live in `aqr-doc-criteria`.
 
 ## 1. Structure
 
@@ -12,3 +12,5 @@ Opinionated markdown formatting defaults for project docs. These cover formattin
 - Do not use `---` horizontal separators. Restructure instead.
 - Use `-` for list items, not `*`.
 - For two-column tables, convert to key: value lists instead.
+
+Enforce these in `.markdownlint.json` at the repo root, disabling any rule that conflicts with this style (for example, the horizontal-rule rule, since separators are disallowed, and any line-length rule).
