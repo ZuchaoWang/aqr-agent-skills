@@ -1,6 +1,6 @@
 ---
 name: aqr-doc-content
-description: Criteria for writing common documentation types (design, interface, project, research, dataset) and the repo layout doc. Use when writing or reviewing any such doc.
+description: Criteria for writing common documentation types (design, interface, project, research, dataset). Use when writing or reviewing any such doc.
 disable-model-invocation: false
 ---
 
@@ -17,4 +17,3 @@ Defines **what good content looks like** for common documentation types. When wr
 | Project docs | mission and scope, usage scenarios, roadmap, tech-stack rationale, active domain concepts | `reference/project.md` |
 | Research docs | domain background, related-work comparison, design-option brainstorm | `reference/research.md` |
 | Dataset doc | data acquisition, processing and description | `reference/dataset.md` |
-| Layout doc | whole-repo file layout, update it whenever the structure changes | `reference/project_layout.md` |

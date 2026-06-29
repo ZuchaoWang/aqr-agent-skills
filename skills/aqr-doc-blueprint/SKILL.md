@@ -6,39 +6,26 @@ disable-model-invocation: false
 
 # aqr-doc-blueprint
 
-A reference for the recommended docs layout: how a project's `docs/` tree is laid out, plus the root entry points that route readers and agents into it. It describes the layout — it does not prescribe how to write the content. For content quality, pair with the other skills: `aqr-doc-content` (what each doc type should contain), `aqr-code-criteria` (universal code quality floor), and `aqr-style-rules` (opinionated code, test, notebook, and doc style taste).
-
-## Scope
-
-This skill defines the **docs layout only** — which docs exist and where, plus the root files that point into them. It does not define doc content quality, code quality, style taste, or development workflow.
-
-## What this skill is for
-
-Use it to:
-
-- Lay out a new project's docs tree from the recommended shape.
-- Decide where a given doc belongs.
-- Compare an existing docs tree against the recommended shape and report drift.
-
-The recommended shape is a reference, not authority for a project that has diverged. When comparing, report drift; do not rewrite a project's structure unless asked.
+A recommended docs layout: what docs a project should have and where. It covers layout only — not how to write the content. Use it when creating or moving a doc to decide its name and location, and to see which docs a project needs.
 
 ## Root entry points
 
 Two root files route readers and agents into the docs:
 
 ```
-README.md                # entry pointer: what the project is and how to start; points at docs/index.md
-CLAUDE.md                # top-level instructions for AI coding agents; carries toolchain specifics
+README.md                # what the project is and how to start; points at docs/index.md
+CLAUDE.md                # agent instructions and toolchain specifics; also a brief top-level directory map
 ```
 
-Stack-specific root files (version pins, manifests, editor and lint config) are not docs layout — they are per-stack conventions covered by `aqr-style-rules`.
+Top-level repo orientation — what each top-level directory is for — belongs here in CLAUDE.md/README, not in a separate layout doc. Stack-specific root files (version pins, manifests, editor and lint config) are per-stack conventions, outside this layout.
 
 ## Recommended docs structure
+
+`docs/index.md` is the ground truth for a project's docs — the map of what actually exists. The shape below is a reference: use it to bootstrap a new docs tree or to audit an existing one for drift. It is not a prescription — do not impose it on a project that has diverged; report drift instead.
 
 ```
 docs/
   index.md                # documentation map: one section per top-level docs/ subdirectory
-  project_layout.md       # whole-repo layout (source and docs), one-line annotation per directory
 
   project/
     mission.md            # what the project is for; problem statement and scope

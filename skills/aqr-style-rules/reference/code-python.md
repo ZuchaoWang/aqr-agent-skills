@@ -10,7 +10,14 @@ Opinionated Python-stack style defaults for code and tests. Apply these unless t
 - Use `os.path` for path manipulation, not `pathlib`.
 - Use relative imports within the package.
 
-### 1.2 Toolchain
+### 1.2 Naming
+
+- Files: `snake_case.py` — lower-case words joined by underscores, importable as modules.
+- Functions and variables: `snake_case`.
+- Private functions and variables: `_snake_case` (leading underscore).
+- Classes: `PascalCase`.
+
+### 1.3 Toolchain
 
 - Format: `ruff format <file>`.
 - Lint: `ruff check --fix <file>`.
@@ -19,7 +26,7 @@ Opinionated Python-stack style defaults for code and tests. Apply these unless t
 
 Run on touched files only — do not reformat the whole tree as part of an unrelated change. Skip format, lint, and type checks on generated files (e.g. parser / lexer / listener files produced by antlr4 or similar tools).
 
-### 1.3 Project files and editor config
+### 1.4 Project files and editor config
 
 - `.python-version` — pins the Python version (e.g. `3.12`); read by pyenv and other version managers.
 - `pyproject.toml` — project metadata, build system, and tool config. The toolchain above (`ruff`, `pyright` / `mypy`, `pytest`) reads its settings from here.

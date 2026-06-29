@@ -6,78 +6,55 @@ disable-model-invocation: false
 
 # aqr-code-criteria
 
-Defines **what good source code looks like** — universal code quality principles that apply regardless of language, framework, or project style. These are baseline expectations — a floor, not a ceiling. Per-stack style (formatting, linting, framework mechanics) layers on top and may be stricter; that lives in the `aqr-style-rules` skill, not here.
+Universal code quality principles — a floor, not a ceiling, applying regardless of language or stack. These are reminders of what good code looks like; per-stack style (formatting, linting, framework mechanics) is not covered here. Decomposing code into modules and assigning responsibility is a design concern, also not covered here.
 
-How to decompose code into components and modules, assign responsibility, and own state is a design concern — see the `aqr-doc-content` skill's design criteria (§2.1). This skill covers the code-level floor that any decomposition must still meet.
+## 1. Library-first
 
-## 1. Library-first approach
+Prefer an existing library over hand-rolled code for cross-cutting concerns (retry, validation, state management, auth). Custom code is justified only for domain-specific logic, performance-critical paths, or security-sensitive control. Record the chosen library and rationale in the tech-stack doc; the manifest holds the version pin, not the reason.
 
-Search for an existing solution before writing custom code. Check the language's package registry (npm, PyPI, …), existing services or SaaS, and third-party APIs for the functionality needed. Prefer a library over a hand-rolled utility for cross-cutting concerns — use a retry library instead of writing retry logic, a validation library instead of hand-rolled checks.
+## 2. Public surface
 
-Custom code is justified only when:
+- The public surface is a contract: cheap to propose, expensive to retract — default to exposing less.
+- Type-annotate public APIs; untyped internal helpers are fine. Keep internals out of the public surface.
+- If a caller needs to know an internal mechanism, that is a design problem, not a documentation problem.
 
-- It is specific business logic unique to the domain.
-- It is a performance-critical path with special requirements no library meets.
-- It is security-sensitive code requiring full control.
-- Existing solutions fail a thorough evaluation against the requirements.
+## 3. Naming
 
-Avoid NIH ("not invented here"): do not build custom auth when an identity provider exists, custom state management when a store library exists, or custom form validation when an established library exists. Every line of custom code is a liability that needs maintenance, testing, and documentation.
-
-Record the chosen library and the reason in the project's tech-stack doc; the manifest (`package.json`, `requirements.txt`, …) holds the version pin, not the rationale.
-
-## 2. Public surface integrity
-
-- Type-annotate all public surfaces. Untyped internal helpers are acceptable; untyped public APIs are not.
-- Prefix module-private helpers with `_` (Python) or use do-not-export patterns (TypeScript) to keep the public surface honest.
-- Do not expose implementation details through the public surface. If a caller needs to know about an internal type or mechanism, that is a design problem, not a documentation problem.
-- The public surface is a contract. It is cheap to propose and expensive to retract — default to exposing less.
-
-## 3. Naming and constants
-
-- Use named constants instead of magic numbers and magic strings.
-- Name things for what they are, not how they are implemented. `user_store` over `user_dict`; `is_active` over `flag`.
-- Function names are verbs or verb phrases. Data names are nouns. Booleans answer a yes/no question (`is_`, `has_`, `can_`).
-- Names are consistent across the boundary: a concept called `invoice` in the design keeps that name in code unless there is a recorded reason not to.
-- Avoid generic dumping-ground names — `utils`, `helpers`, `common`, `shared` — that collect unrelated functions. Name by domain responsibility (`OrderCalculator`, `UserAuthenticator`) so a file's purpose is clear from its name.
+- Named constants, not magic numbers or strings. Names describe what a thing is, not how it is built.
+- Avoid dumping-ground names (`utils`, `helpers`, `common`, `shared`); name by domain responsibility so a file's purpose is clear from its name.
+- Keep names consistent across the design-to-code boundary unless there is a recorded reason not to.
 
 ## 4. Comments
 
-- Comments explain why, not what. If the why is non-obvious, write one line. If the why is obvious, omit the comment entirely.
-- Do not write multi-line comment blocks describing what a function does — that belongs in the doc, or the code is not clear enough and should be simplified.
-- Do not reference issue numbers, PR titles, or task names in comments. Those belong in commit messages and PR descriptions; they rot in code.
+- Comments explain why, not what. Omit when the why is obvious; one line when it is not.
+- Do not reference issue numbers or PR titles in comments — they rot; they belong in commit messages.
 
 ## 5. Secrets and configuration
 
-- Do not hardcode secrets, passwords, or tokens. Read them from environment variables or a config file outside version control.
-- Do not hardcode environment-specific paths or hosts. Parameterize them.
-- Distinguish config that changes per environment (read at runtime) from constants that do not (defined in code). Mixing the two makes deployments fragile.
+- Secrets are never hardcoded; read them from environment variables or out-of-tree config.
+- Separate per-environment config (read at runtime) from true constants (defined in code). Mixing them makes deployments fragile.
 
 ## 6. Error handling
 
-- Handle errors at the boundary where you can do something meaningful. Do not swallow exceptions silently. Do not re-raise exceptions that add no information.
-- Validate at system boundaries (user input, external API responses, config values). Trust internal code and framework guarantees — do not add defensive checks for states that cannot occur.
-- Errors are part of the contract. A function that can fail states how it fails (exception type, error code, null) and a caller can branch on it. Surprising failure modes are bugs.
-- Prefer errors that fail loudly and early over silent defaults that mask a mistake.
+- Handle errors at the boundary where something meaningful can be done. Do not swallow silently or re-raise without adding information.
+- Validate at system boundaries; trust internal code and framework guarantees — do not defend against states that cannot occur.
+- Errors are part of the contract: a function states how it fails, and surprising failure modes are bugs. Prefer loud, early failures over silent defaults.
 
 ## 7. File and module hygiene
 
-- Do not create empty files. The only exception is `__init__.py`, which may be empty to mark a Python package.
-- If a module file is growing past ~300 lines, reconsider its scope before adding more — the responsibility split is a design call (see the `aqr-doc-content` skill's design criteria, §2.1).
-- Co-locate what changes together. A component, its styles, and its tests that change together live together.
-- Prefer early returns over nested conditionals, and avoid deep nesting (roughly more than three levels). Exact thresholds are a project-style choice.
+- Do not create empty files (`__init__.py` excepted).
+- Past ~300 lines, reconsider a module's scope before adding more.
+- Co-locate what changes together; prefer early returns and avoid nesting beyond ~3 levels.
 
 ## 8. Testing
 
-- New public functions are covered by at least one test that exercises a realistic input, not just the happy path.
-- Test all pure functions — they are deterministic and cheap to test, so each one should be covered.
-- Test behavior, not implementation. A test that breaks on a harmless refactor is testing the wrong thing.
+- Cover every pure function, and at least one realistic (non-happy-path) test for each public function.
+- Test behavior, not implementation; mock slow, nondeterministic, or stateful dependencies and use real implementations for pure logic.
 - Boundary tests for system boundaries: invalid input, missing fields, empty collections, off-by-one, large inputs.
-- What to mock vs. use real: mock external dependencies that are slow, nondeterministic, or stateful; use real implementations for pure logic. Over-mocking tests the mocks, not the code.
-- Avoid conceptually duplicated test cases. If two tests exercise the same logic with only minor input variations, combine them; split only when the logic path meaningfully differs.
-- Keep existing test cases intact when modifying test files.
+- Avoid conceptually duplicated tests — combine minor input variations; split only when the logic path differs. Keep existing tests intact when modifying.
 
 ## 9. Before committing
 
-- Run the project's linters, formatters, and type checker on touched files. See the `aqr-style-rules` skill for the exact tools. Run on touched files only — do not reformat the whole tree as part of an unrelated change.
-- Ensure new public functions are covered by at least one test that exercises a realistic input.
-- If the change affects a public surface or a documented contract, update the corresponding interface doc or design doc in the same change.
+- Run linters, formatters, and the type checker on touched files only — do not reformat the whole tree in an unrelated change.
+- A new public function is covered by at least one realistic test.
+- If the change affects a public surface or documented contract, update the matching interface or design doc in the same change.
