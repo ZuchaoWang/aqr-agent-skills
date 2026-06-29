@@ -61,7 +61,7 @@ Constraints: target ~1 page. If a tool is standard and the reason is obvious ("p
 
 ## 5. Concepts
 
-The domain concepts the project actively uses. Concepts considered but not go here. For each concept:
+The domain concepts the project actively uses. Concepts considered but not adopted belong in background, not here. For each concept:
 
 - **Definition** — one or two sentences precise enough that two team members would agree on it.
 - **Used here** — where it shows up (a component, data model, algorithm, or user-facing term). If it has no use site, it belongs in background, not here.

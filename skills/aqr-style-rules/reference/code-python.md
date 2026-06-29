@@ -1,6 +1,6 @@
 # Code and test style (Python)
 
-Opinionated Python-stack style defaults for code and tests. Apply these unless the project records a different choice
+Opinionated Python-stack style defaults for code and tests. Apply these unless the project records a different choice.
 
 ## 1. Code
 
