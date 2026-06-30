@@ -16,4 +16,4 @@ Opinionated style defaults — taste, not a quality floor. They layer on top of 
 | Code and tests (JavaScript) | `.nvmrc` Node version pin, editorconfig, naming — minimal seed | `reference/code-javascript.md` |
 | Notebooks (Jupyter) | kernel pin, required header cells, root-finding boilerplate | `reference/notebooks.md` |
 | Presentations (PowerPoint) | 16:10 layout, bullet symbols and margins, render-and-inspect | `reference/presentation.md` |
-| Documentation (markdown) | summary paragraph, numbered headings, no separators, key: value lists, `.markdownlint.json` lint config | `reference/documentation.md` |
+| Documentation (markdown) | summary paragraph, numbered headings, no separators, key: value lists, Mermaid for diagrams, `.markdownlint.json` lint config | `reference/documentation.md` |
