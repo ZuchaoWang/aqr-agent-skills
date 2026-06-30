@@ -1,72 +1,45 @@
 # Design content criteria
 
-Criteria for common design docs. §1 lists the contents to include by case; §2 gives the design criteria.
+Criteria for design docs. §1 lists the contents to include (universal, plus the UI overlay); §2 gives the design criteria.
 
 ## 1. Contents by case
 
-A design doc may combine cases (e.g. a frontend module that is also a visualization); include the sections from each case that applies.
+A design doc may combine cases (e.g. a module that is also a frontend); include the sections from each case that applies.
 
 ### 1.1 Universal contents (every design doc)
 
+Every design doc — system, layer, or module — covers the same categories; only the depth scales by level. A unit that has children describes those children as black boxes (their interface and how they compose); a leaf module carries the implementation detail. If the unit follows a well-known pattern (B/S, C/S, MVC, MVVM, microservices, event-driven, …), name it and state only where this unit deviates — do not re-explain the pattern, which already implies its components, data flow, and control flow.
+
 - **Summary** — what this design covers and explicitly what it does not.
-- **Key design decisions** — decision records, format in §2.4.
-- **Diagrams** — used to show data flow or control flow; describe each in prose first.
+- **Public interface (this unit's own) and its conceptual implementation** — the upward contract this unit's parent defined for it, restated and shown as implemented. Shape it by unit type:
+  - Website / frontend — the URL route map: each route and what it shows.
+  - Network service — the endpoints: method, path, request/response fields, error shape.
+  - Other module — the signatures of its public API: the functions or methods it exposes.
+- **Decomposition and children's interfaces** — if this unit splits into children, name each child module, its role and boundaries, the public interface it must satisfy (the downward, black-box contract this unit imposes on it), and how the children communicate and compose. For a website, the inter-module interface is the B/S API — the request/response contract between browser and server, and between frontend and backend modules.
+- **Data model, state, and persistence** — the conceptual structures this unit owns; what state exists, who owns it, and how it persists. Conceptual level, not a full DDL. Omit if stateless.
+- **Data flow and control flow** — how data enters, is transformed, is stored, and leaves; the request lifecycle, state transitions, concurrency, caching, failure and retry paths. Add a diagram when the flow is not obvious from prose, and describe it in prose first.
+- **Key algorithms** — for each non-trivial part: a well-known algorithm or pattern → just name it; otherwise brief pseudocode; trivial → nothing. A choice among several strategies is a decision (§2.3), not inline prose.
+- **Key design and implementation decisions** — decision records, one per entry; format in §2.3.
+- **Testing approach** — behaviors and edge cases to cover; what to mock versus use real.
 
-### 1.2 System architecture
+### 1.2 UI / frontend (overlay)
 
-Design at the system layer: treat each module as a black box, define only its public interface, and put the effort into how the modules work together. Do not open a module's internals here — that belongs in the module's own design.
-
-If the system follows a well-known pattern (B/S, C/S, MVC, MVVM, microservices, event-driven, …), just name it and state the key interfaces between its parts. Do not re-explain the pattern; it already implies its components, data flow, and control flow. Otherwise, describe the system directly:
-
-- **Modules** — one per major module: role, public interface, dependencies, boundaries.
-- **Data flow** — how data enters, is transformed, is stored, and leaves.
-- **Control and workflow flow** — request lifecycle, state transitions, concurrency, failure and retry paths.
-
-Even when a pattern is named, add a bullet only where this system deviates from or extends it.
-
-### 1.3 Non-visual module
-
-The default for a per-module design; use §1.5 instead when the module is itself a visualization. Design at this module's layer: if it has submodules, treat each as a black box, define only its public interface, and focus on how they compose. Give implementation detail only for a leaf module — one with no further submodules to delegate to — and even then, not all detail. The same layering rule applies recursively.
-
-For a leaf module:
-
-- **Data model** — persistent structures at a conceptual level, not a full DDL. Omit if stateless.
-- **Algorithms and implementation** — for each non-trivial part, choose by how familiar it is:
-  - A well-known algorithm or design pattern → just name it.
-  - Other non-trivial logic → brief pseudocode.
-  - Trivial → write nothing.
-- **Testing approach** — behaviors and edge cases to cover, what to mock vs. use real.
-
-If a part requires choosing among several strategies, record it as a decision (§2.4), not as prose.
-
-### 1.4 UI / frontend (overlay)
-
-Apply when the design describes a frontend — a whole app or a single module.
+Apply when the design describes a frontend — a whole app or a single module. For a frontend, decomposition is the component tree, and the inter-component interface is carried by state and interactions — not prop wiring, which is an implementation detail.
 
 - **Component tree** — the component hierarchy; a reader can draw it from the text.
-- **Prop list** — what crosses each component boundary.
 - **State list** — which component owns each piece of state; local, shared, server/cache.
 - **Interactions** — which component handles which event and where the state change lands.
 
-### 1.5 Visualization (overlay)
-
-Apply when the design describes a single chart or visualization component.
-
-- **Data shape and chart type** — field types (quantitative / ordinal / nominal / temporal) and the chart chosen; which fields map to which marks and channels.
-- **Visual encoding** — explicitly state how each visual property is decided: x, y, z (z-index), color, size, width, and the rest. For each, name the data field (or constant) it encodes and why (see §2.3).
-- **Axes, scales, legends, labels** — scale choices, ranges, zero-baselines for length encodings.
-- **Interaction** — hover, filter, zoom, drill; what each reveals.
-- **Performance** — aggregation, sampling, canvas vs. SVG, for large datasets.
-
 ## 2. Design criteria
 
-Apply §2.1 to every design doc; apply §2.2 or §2.3 when the case matches; apply §2.4 to every design doc.
+Apply §2.1 and §2.3 to every design doc; apply §2.2 when the case is a UI/frontend.
 
 ### 2.1 Universal design criteria
 
 - Reviewable without reading code; a reader can reproduce the design's shape from the text.
 - Explicit boundaries — every unit states what is inside and outside its responsibility.
 - Conceptual only; implementation detail lives in code.
+- No code inventories — exhaustive file lists, internal class and function signatures, and test-function names belong in the code, not here. Document the designed contract — the public interface and why each part is exposed — not the derived internal inventory; review the code after execution.
 - Be concise. Do not write code when a list of items will do — describe what and why, not how it is implemented.
 
 Decomposition and responsibility (when the design splits into units):
@@ -86,19 +59,7 @@ Decomposition and responsibility (when the design splits into units):
 - Extract a component when the same UI is needed a second time (to avoid copy-paste); also split on an unreadable prop list or a stateful concern leaking into a presentational component.
 - A component does not define its own absolute position; that is set by its parent's layout. The component only sizes and lays out its own children.
 
-### 2.3 Visualization criteria
-
-Adapt marks-and-channels theory (Munzner, *Visualization Analysis and Design*): data is encoded as **marks** (point, line, area) through **channels** (position, color, size, shape). Two principles govern channel choice:
-
-- **Expressiveness** — the channel must suit the data type. Position/length/size suit quantitative and ordinal; hue/shape suit nominal. Nominal data on a size channel, or quantitative magnitude on hue alone, are violations.
-- **Effectiveness** — prefer the most precise channel. For quantitative data: position > length > angle > area > luminance > hue. Reserve position for the variable read most accurately.
-
-Further:
-
-- No double-encoding one variable across two redundant channels without a reason.
-- A table is the better encoding when the reader needs precise values or row comparison.
-
-### 2.4 Recording design decisions
+### 2.3 Recording design decisions
 
 Record each significant decision as a short entry with three fields:
 

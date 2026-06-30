@@ -38,7 +38,7 @@ disable-model-invocation: <true | false | omit>
 **Opinionated** — taste-based choices:
 
 - `aqr-doc-blueprint` — Reference for the recommended docs layout: the `docs/` tree plus the root entry points that route into it. Describes what docs a project should have and where; not how to write them. Does not mention issues or workflow.
-- `aqr-doc-content` — Content criteria for every standard doc type in the blueprint layout (design, interface, project, research, dataset). Applied when writing or reviewing docs; criteria are not copied into the project.
+- `aqr-doc-content` — Content criteria for every standard doc type in the blueprint layout (design, project, research, dataset). Applied when writing or reviewing docs; criteria are not copied into the project.
 - `aqr-style-rules` — Opinionated, stack-specific style defaults (code, tests, notebooks, presentations, doc formatting) layered on top of the code and doc criteria. Applied when writing or reviewing code, tests, notebooks, or decks; not copied into the project.
 
 All five skills are auto-invocable — the host may invoke any of them based on context, and the user can also name one directly via slash command.
@@ -77,7 +77,7 @@ For software-development work, use the AQR skills under `.claude/skills/` and in
 
 - `aqr-project-principle` — any non-trivial work (the quality bar for the work)
 - `aqr-code-criteria` — writing or reviewing source code
-- `aqr-doc-content` — writing or reviewing docs (design, interface, project, research, dataset)
+- `aqr-doc-content` — writing or reviewing docs (design, project, research, dataset)
 - `aqr-doc-blueprint` — laying out or auditing the `docs/` tree
 - `aqr-style-rules` — formatting and style for code, tests, notebooks, decks, docs
 ```

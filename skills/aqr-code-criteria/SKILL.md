@@ -57,4 +57,4 @@ Prefer an existing library over hand-rolled code for cross-cutting concerns (ret
 
 - Run linters, formatters, and the type checker on touched files only — do not reformat the whole tree in an unrelated change.
 - A new public function is covered by at least one realistic test.
-- If the change affects a public surface or documented contract, update the matching interface or design doc in the same change.
+- If the change affects a public surface or documented contract, update the matching design doc in the same change.

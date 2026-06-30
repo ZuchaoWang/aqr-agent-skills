@@ -40,8 +40,7 @@ docs/
     {{old_project_name}}.md  # what carried over and what changed from the prior project
 
   architecture/
-    design.md             # system-level design: components, data flow, key decisions
-    interface.md          # external API contract: endpoints, request/response, error envelope
+    design.md             # system-level design: public interface (incl. external API), components, data flow, key decisions
     deploy.md             # deployment topology, runtime environment, ops notes
     tech_stack.md         # languages, frameworks, libraries, and rationale
 
@@ -51,16 +50,20 @@ docs/
     brainstorm.md         # discussion of possible designs
 
   implementation/
-    # Two layouts, chosen based on source-tree shape:
+    # One design doc per module, named after the module. The rule recurses at every
+    # level: a unit (the implementation root, a layer, or a module) that is a single
+    # module is one file; a unit with several modules is a folder.
 
-    {{module_name}}/      # flat — single-stack projects
-      design.md           # module-level design: components, data flow
-      interface.md        # module file and signature contract
+    # Multi-stack project — one entry per stack (e.g. frontend, backend):
+    {{layer}}.md              # a layer that is a single module
+    {{layer}}/                # a layer with several modules
+      index.md                #   layer design: its modules as black boxes
+      modules/{{module}}.md   #   one per module; recurses identically
 
-    {{layer}}/            # layered — multi-stack projects (e.g., frontend/, backend/)
-      {{module_name}}/    # one folder per top-level source module
-        design.md         # module-level design: components, data flow
-        interface.md      # module file and signature contract
+    # Single-stack project — same rule, no layer level:
+    {{module}}.md             # the implementation, if it is a single module
+    index.md                  # the implementation, if it has several modules
+    modules/{{module}}.md     #   one per module; recurses identically
 
   data/
     {{dataset}}.md        # one doc per dataset
