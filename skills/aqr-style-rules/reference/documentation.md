@@ -14,3 +14,7 @@ Opinionated markdown formatting defaults for project docs.
 - For two-column tables, convert to key: value lists instead.
 
 Enforce these in `.markdownlint.json` at the repo root, disabling any rule that conflicts with this style (for example, the horizontal-rule rule, since separators are disallowed, and any line-length rule).
+
+## 3. Diagrams
+
+- Render diagrams as Mermaid fenced blocks (` ```mermaid `), not ASCII art or image files, so they render inline and stay editable as text.
